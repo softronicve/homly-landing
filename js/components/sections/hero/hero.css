@@ -8,9 +8,9 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
 .hero-sub{margin:22px 0 30px;font-size:clamp(1.02rem,1.4vw,1.2rem);color:var(--ink-soft);max-width:34ch}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
 .hero-side{display:flex;flex-direction:column;justify-content:flex-start;gap:22px}
-.hero-icon{width:clamp(52px,5.5vw,80px);height:auto;display:block}
+.stat-icon{width:30px;height:30px;flex:none;border-radius:50%}
 .stat-stack{border-top:1px solid var(--ink)}
-.stat{padding:18px 0;border-bottom:1px solid var(--line)}
+.stat{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
 .stat .n{font-family:"Nunito Sans",sans-serif;font-size:2.4rem;font-weight:500;line-height:1}
 .stat .l{margin-top:6px;font-size:.85rem;color:var(--ink-soft)}
 .hero-tag{position:absolute;right:clamp(20px,5vw,72px);top:118px;z-index:1;
@@ -20,5 +20,4 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .hero-tag{display:none}
-  .hero-icon{display:none}
 }

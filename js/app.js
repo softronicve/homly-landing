@@ -1,28 +1,23 @@
 /**
- * app.js — Punto de arranque de la SPA.
- * Importa los componentes (se auto-registran como custom elements), monta el
- * router en #app-root y define las rutas. homly.js intercepta los <a
- * data-router-link> y hace pushState sin recargar.
+ * app.js — arranque de la SPA. Monta el router y define las rutas con lazy
+ * loading (cada página se descarga bajo demanda). El nav y el hero viven inline
+ * en el shell (above-the-fold) y se importan acá para hidratarse.
  */
-import './components/sections/nav/nav.js'; // <homly-nav> — shell estático (above-fold)
-import './components/sections/hero/hero.js'; // <homly-hero> — shell estático (above-fold)
-import './components/pages/home-page.js';
-import './components/pages/contact/contact.js';
+import './components/sections/nav/nav.js';
+import './components/sections/hero/hero.js';
 import { HomlyRouter } from './core/homly.js';
 
 const router = new HomlyRouter('app-root');
 
-// Ruta principal → página de inicio.
-router.add('/', '<homly-home-page></homly-home-page>');
+router.add('/', 'homly-home-page', () => import('./components/pages/home-page.js'));
+router.add('/contacto', 'homly-contact-page', () => import('./components/pages/contact/contact.js'));
 
-router.add('/contacto', '<homly-contact-page></homly-contact-page>');
-
-// El hero vive inline en el shell (primer render rápido); se oculta fuera de la home.
+// El hero vive inline en el shell; se oculta fuera de la home.
 const hero = document.querySelector('homly-hero');
 const baseHandle = router.handleRoute.bind(router);
-router.handleRoute = (path) => {
-  baseHandle(path);
+router.handleRoute = async (path) => {
   if (hero) hero.hidden = path !== '/';
+  await baseHandle(path);
 };
 
 router.start();

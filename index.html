@@ -77,7 +77,7 @@
 <!-- nav y hero van inline para que la primera pantalla pinte sin esperar fetch;
      homly.js los hidrata. El resto de secciones se cargan al hacer scroll. -->
 <homly-nav>
-  <style>@scope {
+  <style data-homly-scope>@scope {
     nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:.4s ease;border-bottom:1px solid transparent}
     nav.scrolled{background:rgba(245,241,232,.86);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
     .nav-in{display:flex;align-items:center;justify-content:space-between;padding:20px clamp(20px,5vw,72px);max-width:var(--max);margin:0 auto}
@@ -114,7 +114,7 @@
 </homly-nav>
 
 <homly-hero>
-  <style>@scope {
+  <style data-homly-scope>@scope {
     header{position:relative;padding:clamp(110px,13vh,160px) 0 80px;overflow:hidden}
     .grid-lines{position:absolute;inset:0;z-index:0;
       background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
@@ -125,9 +125,9 @@
     .hero-sub{margin:22px 0 30px;font-size:clamp(1.02rem,1.4vw,1.2rem);color:var(--ink-soft);max-width:34ch}
     .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
     .hero-side{display:flex;flex-direction:column;justify-content:flex-start;gap:22px}
-    .hero-icon{width:clamp(52px,5.5vw,80px);height:auto;display:block}
+    .stat-icon{width:30px;height:30px;flex:none;border-radius:50%}
     .stat-stack{border-top:1px solid var(--ink)}
-    .stat{padding:18px 0;border-bottom:1px solid var(--line)}
+    .stat{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
     .stat .n{font-family:"Nunito Sans",sans-serif;font-size:2.4rem;font-weight:500;line-height:1}
     .stat .l{margin-top:6px;font-size:.85rem;color:var(--ink-soft)}
     .hero-tag{position:absolute;right:clamp(20px,5vw,72px);top:118px;z-index:1;
@@ -136,7 +136,6 @@
     @media(max-width:900px){
       .hero-grid{grid-template-columns:1fr;gap:36px}
       .hero-tag{display:none}
-      .hero-icon{display:none}
     }
   }</style>
   <header>
@@ -147,16 +146,15 @@
         <h1>El CRM que<br>entiende a <em>quién</em><br>le vendes.</h1>
         <p class="hero-sub">Homly conecta cada propiedad con el cliente correcto: presupuesto, familia, ubicación y urgencia, calculado en segundos.</p>
         <div class="hero-cta">
-          <a href="#planes" class="btn btn-fill">Comenzar gratis →</a>
+          <button type="button" class="btn btn-fill" data-action="openProPlan">Comenzar gratis →</button>
           <a href="#matching" class="btn btn-ghost">Ver el motor de matching</a>
         </div>
       </div>
       <div class="hero-side">
-        <img class="hero-icon" src="/icono_homly.png" alt="" aria-hidden="true" />
         <div class="stat-stack">
-          <div class="stat reveal"><div class="n">+38%</div><div class="l">conversión de leads cualificados</div></div>
-          <div class="stat reveal"><div class="n">9</div><div class="l">módulos: propiedades, clientes, agenda, contratos</div></div>
-          <div class="stat reveal"><div class="n">&lt;1s</div><div class="l">para calcular compatibilidad propiedad–cliente</div></div>
+          <div class="stat reveal"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true" /><div class="stat-body"><div class="n">+38%</div><div class="l">conversión de leads cualificados</div></div></div>
+          <div class="stat reveal"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true" /><div class="stat-body"><div class="n">9</div><div class="l">módulos: propiedades, clientes, agenda, contratos</div></div></div>
+          <div class="stat reveal"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true" /><div class="stat-body"><div class="n">&lt;1s</div><div class="l">para calcular compatibilidad propiedad–cliente</div></div></div>
         </div>
       </div>
     </div>

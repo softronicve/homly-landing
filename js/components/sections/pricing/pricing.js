@@ -1,5 +1,6 @@
 import { Homly, HomlyComponent } from '../../../core/homly.js';
 import { revealOnScroll } from '../../../shared/reveal.js';
+import { uiStore, openCheckoutModal } from '../../../stores/uiStore.js';
 
 const WA_NUMBER = '584145200715';
 const FALLBACK_RATE = 100;
@@ -21,14 +22,14 @@ class Pricing extends HomlyComponent {
   get templateUrl() { return './pricing.html'; }
   get styleUrl() { return './pricing.css'; }
 
+  get globalStores() { return [uiStore]; }
+
   get store() {
     return (this._store ??= Homly.createStore({
       isMonthly: true, isAnnual: false, rate: FALLBACK_RATE,
       proAmt: fmtUSD(PLANS.pro.usdM), proPer: PLANS.pro.perM, proVes: '—',
       agenciaAmt: fmtUSD(PLANS.agencia.usdM), agenciaPer: PLANS.agencia.perM, agenciaVes: '—',
       rateInfo: 'Cotización BCV del día',
-      modalOpen: false, modalPlan: '', modalLabel: '—', modalPrice: '—',
-      waLink: `https://wa.me/${WA_NUMBER}`,
     }));
   }
 
@@ -37,15 +38,15 @@ class Pricing extends HomlyComponent {
       setMonthly: () => { this.store.state.isMonthly = true; this.store.state.isAnnual = false; this._recompute(); },
       setAnnual: () => { this.store.state.isAnnual = true; this.store.state.isMonthly = false; this._recompute(); },
       openPlan: (target) => this._openPlan(target.dataset.plan),
-      closeModal: () => { this.store.state.modalOpen = false; },
+      closeModal: () => { uiStore.state.modalOpen = false; },
     };
   }
 
   onMount() {
     revealOnScroll(this, this.signal);
     const overlay = this.querySelector('.modal-ov');
-    overlay?.addEventListener('click', (e) => { if (e.target === overlay) this.store.state.modalOpen = false; }, { signal: this.signal });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') this.store.state.modalOpen = false; }, { signal: this.signal });
+    overlay?.addEventListener('click', (e) => { if (e.target === overlay) uiStore.state.modalOpen = false; }, { signal: this.signal });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') uiStore.state.modalOpen = false; }, { signal: this.signal });
     this._loadRate();
   }
 
@@ -71,12 +72,13 @@ class Pricing extends HomlyComponent {
     const per = annual ? p.perA : p.perM;
     const amt = fmtUSD(usd);
     const vesStr = p.ves ? '  ·  ≈ ' + fmtVES(usd * s.rate) : '';
-    s.modalPlan = p.name;
-    s.modalLabel = 'Plan ' + p.name + ' · ' + per;
-    s.modalPrice = amt + vesStr;
     const msg = encodeURIComponent(`Hola, quiero activar el plan ${p.name} (${annual ? 'anual' : 'mensual'}) de Homly. ${amt} ${per}.`);
-    s.waLink = `https://wa.me/${WA_NUMBER}?text=${msg}`;
-    s.modalOpen = true;
+    openCheckoutModal({
+      plan: p.name,
+      label: 'Plan ' + p.name + ' · ' + per,
+      price: amt + vesStr,
+      waLink: `https://wa.me/${WA_NUMBER}?text=${msg}`,
+    });
   }
 
   async _loadRate() {
