@@ -12,7 +12,7 @@ Web Components en vanilla JS, sin build.
 - `js/components/sections/*` — cada sección con su `.js`, `.html` y `.css`
   (hero, nav, marquee, modules, matching, workflow, pricing, cta, footer).
 
-Las secciones que están más abajo se cargan cuando te acercás a ellas con el scroll.
+Cada página se carga bajo demanda (code splitting por ruta vía dynamic import); las secciones de la home se importan al montar.
 
 ## Correr en local
 
@@ -22,3 +22,11 @@ node serve.cjs 8080 .
 
 Y abrí http://localhost:8080. Sirve cualquier servidor estático; por ejemplo
 `python3 -m http.server` también funciona.
+
+## 🤝 Contribuir
+
+La rama `main` está protegida: todo cambio entra por Pull Request, validado por el creador (o quien tenga permiso de escritura).
+
+1. Hacé un fork. 2. Creá tu rama (`feature/...`). 3. Commiteá. 4. Pusheá. 5. Abrí un Pull Request hacia `main`.
+
+Estándares de código del framework: [guías de homly.js](https://github.com/softronicve/homly-framework/blob/main/CONTRIBUTING.md).
