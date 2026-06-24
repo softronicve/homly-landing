@@ -1,0 +1,10 @@
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.step{background:var(--paper);padding:40px 30px;transition:.3s}
+.step:hover{background:var(--ink);color:var(--paper)}
+.step:hover .idx,.step:hover .step-n{color:var(--clay)}
+.step-n{font-family:"Nunito Sans",sans-serif;font-size:3.4rem;font-weight:300;color:var(--line);line-height:1;margin-bottom:24px}
+.step h3{font-size:1.3rem;margin-bottom:10px}
+.step p{font-size:.92rem;color:var(--ink-soft)}
+.step:hover p{color:rgba(245,241,232,.7)}
+
+@media(max-width:900px){ .flow{grid-template-columns:1fr} }

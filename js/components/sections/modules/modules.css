@@ -1,0 +1,14 @@
+.mods{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.mod{border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+  padding:42px 36px 48px;position:relative;transition:.3s ease;background:transparent}
+.mod:nth-child(3n){border-right:0}
+.mod:hover{background:var(--paper-2)}
+.mod-ico{width:42px;height:42px;color:var(--clay);margin-bottom:26px}
+.mod h3{font-size:1.5rem;margin-bottom:12px;letter-spacing:-.02em}
+.mod p{color:var(--ink-soft);font-size:.96rem}
+.mod .idx{position:absolute;top:24px;right:30px}
+
+@media(max-width:900px){
+  .mods{grid-template-columns:1fr}
+  .mod:nth-child(3n){border-right:1px solid var(--line)}
+}

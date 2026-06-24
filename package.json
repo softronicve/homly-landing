@@ -1,0 +1,9 @@
+{
+  "name": "homly-landing",
+  "version": "0.1.0",
+  "description": "Landing de homly.world, hecha con homly.js.",
+  "private": true,
+  "scripts": {
+    "start": "node serve.cjs 8080 ."
+  }
+}

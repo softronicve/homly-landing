@@ -1,0 +1,11 @@
+footer{padding:70px 0 40px;border-top:1px solid var(--ink)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px}
+.foot-grid h4{font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:20px}
+.foot-grid a{display:block;padding:7px 0;color:var(--ink-soft);font-size:.95rem;transition:color .2s}
+.foot-grid a:hover{color:var(--clay-ink)}
+.foot-brand p{color:var(--ink-soft);max-width:30ch;margin-top:18px;font-size:.95rem}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;
+  padding-top:30px;border-top:1px solid var(--line);font-size:.84rem;color:var(--ink-soft);flex-wrap:wrap;gap:14px}
+
+@media(max-width:900px){ .foot-grid{grid-template-columns:1fr 1fr} }
