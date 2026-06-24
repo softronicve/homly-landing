@@ -1,0 +1,44 @@
+<section class="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-form">
+      <span class="eyebrow mono">Contacto</span>
+      <h1>Hablemos.</h1>
+      <p class="contact-lead">Contanos qué necesitás y te respondemos en menos de 24 horas.</p>
+
+      <label class="field">
+        <span>Nombre</span>
+        <input type="text" data-model="nombre" placeholder="Tu nombre" autocomplete="name">
+      </label>
+
+      <label class="field">
+        <span>Email</span>
+        <input type="email" data-model="email" placeholder="tu@email.com" autocomplete="email">
+      </label>
+
+      <label class="field">
+        <span>Mensaje</span>
+        <textarea data-model="mensaje" rows="5" placeholder="¿En qué te ayudamos?"></textarea>
+      </label>
+
+      <button type="button" class="btn btn-fill" data-action="enviar" data-bind="botonTexto"></button>
+    </div>
+
+    <aside class="contact-preview">
+      <span class="mono prev-tag">Vista previa en tiempo real</span>
+      <div class="prev-card">
+        <div class="prev-row">
+          <span class="prev-k">Nombre</span>
+          <span class="prev-v" data-bind="nombre"></span>
+        </div>
+        <div class="prev-row">
+          <span class="prev-k">Email</span>
+          <span class="prev-v" data-bind="email"></span>
+        </div>
+        <div class="prev-row prev-msg">
+          <span class="prev-k">Mensaje</span>
+          <p class="prev-v" data-bind="mensaje"></p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>

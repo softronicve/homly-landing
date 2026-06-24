@@ -1,0 +1,30 @@
+.contact{padding:clamp(130px,16vh,190px) 0 clamp(80px,12vh,130px)}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,6vw,80px);align-items:start}
+
+h1{font-size:clamp(2.4rem,5vw,4rem);letter-spacing:-.03em;margin:18px 0 14px}
+.contact-lead{color:var(--ink-soft);max-width:36ch;margin-bottom:34px}
+
+.field{display:block;margin-bottom:20px}
+.field span{display:block;font-size:.85rem;color:var(--ink-soft);margin-bottom:8px}
+.field input,.field textarea{
+  width:100%;font-family:inherit;font-size:1rem;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  padding:13px 15px;transition:border-color .2s;resize:vertical
+}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--clay)}
+.contact-form .btn{margin-top:8px}
+
+.contact-preview{position:sticky;top:110px}
+.prev-tag{display:block;color:var(--ink-soft);margin-bottom:14px}
+.prev-card{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:26px 28px}
+.prev-row{padding:14px 0;border-bottom:1px solid var(--line)}
+.prev-row:last-child{border-bottom:0}
+.prev-k{display:block;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.prev-v{font-size:1rem;color:var(--ink);word-break:break-word}
+.prev-msg .prev-v{white-space:pre-wrap;line-height:1.55;min-height:1.4em}
+
+@media(max-width:860px){
+  .contact-grid{grid-template-columns:1fr;gap:36px}
+  .contact-preview{position:static}
+}
