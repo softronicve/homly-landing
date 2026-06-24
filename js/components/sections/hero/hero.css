@@ -1,24 +1,24 @@
-header{position:relative;padding:clamp(120px,15vh,180px) 0 80px;overflow:hidden}
+header{position:relative;padding:clamp(110px,13vh,160px) 0 80px;overflow:hidden}
 .grid-lines{position:absolute;inset:0;z-index:0;
   background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
   background-size:100% 25%,12.5% 100%;opacity:.5;mask-image:radial-gradient(ellipse 80% 80% at 70% 30%,#000,transparent)}
-.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
-h1{font-size:clamp(2.3rem,5vw,4.4rem);letter-spacing:-.035em}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+h1{font-size:clamp(2rem,4.4vw,3.8rem);letter-spacing:-.035em}
 h1 em{font-style:italic;color:var(--clay);font-weight:300}
-.hero-sub{margin:24px 0 32px;font-size:clamp(1.02rem,1.4vw,1.22rem);color:var(--ink-soft);max-width:34ch}
+.hero-sub{margin:22px 0 30px;font-size:clamp(1.02rem,1.4vw,1.2rem);color:var(--ink-soft);max-width:34ch}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
-.hero-side{display:flex;flex-direction:column;justify-content:center;gap:30px}
-.hero-icon{width:clamp(72px,9vw,116px);height:auto;display:block}
+.hero-side{display:flex;flex-direction:column;justify-content:flex-start;gap:22px}
+.hero-icon{width:clamp(52px,5.5vw,80px);height:auto;display:block}
 .stat-stack{border-top:1px solid var(--ink)}
-.stat{padding:20px 0;border-bottom:1px solid var(--line)}
-.stat .n{font-family:"Nunito Sans",sans-serif;font-size:2.6rem;font-weight:500;line-height:1}
+.stat{padding:18px 0;border-bottom:1px solid var(--line)}
+.stat .n{font-family:"Nunito Sans",sans-serif;font-size:2.4rem;font-weight:500;line-height:1}
 .stat .l{margin-top:6px;font-size:.85rem;color:var(--ink-soft)}
 .hero-tag{position:absolute;right:clamp(20px,5vw,72px);top:118px;z-index:1;
   writing-mode:vertical-rl;font-family:"Spline Sans Mono",monospace;font-size:.7rem;
   letter-spacing:.32em;text-transform:uppercase;color:var(--ink-soft)}
 
 @media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
   .hero-tag{display:none}
   .hero-icon{display:none}
 }
