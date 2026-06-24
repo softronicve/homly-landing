@@ -1,4 +1,4 @@
-import { Homly, HomlyComponent } from '../../../core/homly.js';
+import { Homly, HomlyComponent } from 'homly';
 import { revealOnScroll } from '../../../shared/reveal.js';
 import { uiStore, openCheckoutModal } from '../../../stores/uiStore.js';
 

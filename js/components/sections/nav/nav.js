@@ -1,4 +1,4 @@
-import { Homly, HomlyComponent } from '../../../core/homly.js';
+import { Homly, HomlyComponent } from 'homly';
 
 class Nav extends HomlyComponent {
   get basePath() { return import.meta.url; }

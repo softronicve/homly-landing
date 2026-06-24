@@ -1,4 +1,4 @@
-import { HomlyComponent } from '../../core/homly.js';
+import { HomlyComponent } from 'homly';
 
 // Se importan apenas monta la página (después de que el hero inline ya pintó).
 const sections = [

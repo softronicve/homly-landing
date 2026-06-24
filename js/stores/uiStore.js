@@ -1,4 +1,4 @@
-import { Homly } from '../core/homly.js';
+import { Homly } from 'homly';
 
 // Estado global de UI compartido entre componentes (modal de checkout / WhatsApp).
 export const uiStore = Homly.createStore({

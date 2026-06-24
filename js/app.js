@@ -5,7 +5,7 @@
  */
 import './components/sections/nav/nav.js';
 import './components/sections/hero/hero.js';
-import { HomlyRouter } from './core/homly.js';
+import { HomlyRouter } from 'homly';
 
 const router = new HomlyRouter('app-root');
 
