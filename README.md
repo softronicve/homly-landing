@@ -7,7 +7,7 @@ Web Components en vanilla JS, sin build.
 
 - `index.html` — el shell. Trae los tokens de diseño y deja inline el nav y el
   hero (lo primero que se ve) para que la pantalla pinte enseguida.
-- `js/core/homly.js` — el framework.
+- El framework `homly.js` se carga desde jsDelivr (CDN), fijado por versión (`@v1.1.0`) mediante un import map en `index.html`; los componentes lo importan con el specifier `homly`.
 - `js/app.js` — arranca el router.
 - `js/components/sections/*` — cada sección con su `.js`, `.html` y `.css`
   (hero, nav, marquee, modules, matching, workflow, pricing, cta, footer).
