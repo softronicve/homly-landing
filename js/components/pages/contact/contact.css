@@ -13,10 +13,14 @@ h1{font-size:clamp(2.4rem,5vw,4rem);letter-spacing:-.03em;margin:18px 0 14px}
 }
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--clay)}
 .contact-form .btn{margin-top:8px}
+.contact-form .btn.enviado{background:var(--pine);border-color:var(--pine);cursor:default;pointer-events:none}
 
 .contact-preview{position:sticky;top:110px}
 .prev-tag{display:block;color:var(--ink-soft);margin-bottom:14px}
-.prev-card{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:26px 28px}
+.prev-card{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:26px 28px;transition:border-color .3s}
+.prev-card.sent{border-color:var(--clay)}
+.prev-badge{display:inline-block;margin-bottom:16px;font-family:"Spline Sans Mono",monospace;font-size:.72rem;
+  letter-spacing:.06em;color:var(--paper);background:var(--pine);padding:5px 12px;border-radius:999px}
 .prev-row{padding:14px 0;border-bottom:1px solid var(--line)}
 .prev-row:last-child{border-bottom:0}
 .prev-k{display:block;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.08em;
@@ -24,7 +28,19 @@ h1{font-size:clamp(2.4rem,5vw,4rem);letter-spacing:-.03em;margin:18px 0 14px}
 .prev-v{font-size:1rem;color:var(--ink);word-break:break-word}
 .prev-msg .prev-v{white-space:pre-wrap;line-height:1.55;min-height:1.4em}
 
+/* Créditos / Open Source */
+.credits{margin-top:clamp(56px,8vw,90px);padding-top:40px;border-top:1px solid var(--ink)}
+.credits-tag{display:block;color:var(--clay-ink);margin-bottom:12px}
+.credits-lead{color:var(--ink-soft);max-width:54ch;margin-bottom:28px;font-size:1.02rem}
+.credits-links{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.credit-card{display:flex;flex-direction:column;gap:6px;padding:20px 22px;border:1px solid var(--line);
+  border-radius:14px;background:var(--paper);transition:transform .25s ease,border-color .25s}
+.credit-card:hover{transform:translateY(-3px);border-color:var(--clay)}
+.credit-k{font-family:"Spline Sans Mono",monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.credit-v{font-family:"Nunito Sans",sans-serif;font-size:1.15rem;color:var(--ink)}
+
 @media(max-width:860px){
   .contact-grid{grid-template-columns:1fr;gap:36px}
   .contact-preview{position:static}
+  .credits-links{grid-template-columns:1fr}
 }

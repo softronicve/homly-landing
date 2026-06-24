@@ -10,17 +10,20 @@ class ContactPage extends HomlyComponent {
       nombre: '',
       email: '',
       mensaje: '',
-      botonTexto: 'Enviar mensaje',
+      enviado: false,
+      botonTexto: 'Enviar mensaje', // etiqueta reactiva del botón (idle / enviando / enviado)
     }));
   }
 
   get actions() {
     return {
-      enviar: () => {
+      enviarMensaje: async () => {
         const s = this.store.state;
+        if (s.enviado) return;
         s.botonTexto = 'Enviando...';
-        setTimeout(() => { s.botonTexto = '¡Enviado! ✓'; }, 900);
-        setTimeout(() => { s.botonTexto = 'Enviar mensaje'; }, 2400);
+        await new Promise((r) => setTimeout(r, 1000));
+        s.enviado = true;
+        s.botonTexto = '¡Mensaje enviado!';
       },
     };
   }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacidad y eliminación de datos · Homly</title>
+<meta name="description" content="Cómo solicitar la eliminación de tus datos personales en Homly.">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/png" href="/icono_homly.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Nunito+Sans:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#FAFAFA;--paper-2:#F0F0F1;--ink:#231F20;--ink-soft:#434345;--clay:#F05223;--clay-ink:#B23A0B;--line:rgba(35,31,32,.14)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--clay-ink)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  header{border-bottom:1px solid var(--line);padding:22px 0}
+  header .wrap{display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:1.25rem;color:var(--ink);text-decoration:none}
+  .logo img{width:30px;height:30px;border-radius:50%}
+  header a.home{font-size:.92rem;color:var(--ink-soft);text-decoration:none}
+  main{padding:clamp(40px,7vw,72px) 0}
+  h1{font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:clamp(2rem,5vw,2.8rem);letter-spacing:-.02em;margin-bottom:10px}
+  .lead{color:var(--ink-soft);margin-bottom:36px;font-size:1.05rem}
+  h2{font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:1.3rem;margin:34px 0 12px}
+  p{margin-bottom:14px}
+  ul{margin:0 0 14px 22px}
+  li{margin-bottom:8px}
+  .steps{list-style:none;counter-reset:s}
+  .steps li{position:relative;padding:14px 0 14px 46px;border-top:1px solid var(--line)}
+  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:13px;width:28px;height:28px;display:grid;place-items:center;background:var(--ink);color:var(--paper);border-radius:50%;font-family:"Nunito Sans",sans-serif;font-size:.9rem}
+  .wa{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;margin:8px 0;transition:background .2s}
+  .wa:hover{background:var(--clay-ink)}
+  .note{background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:18px 20px;color:var(--ink-soft);font-size:.95rem;margin-top:12px}
+  footer{border-top:1px solid var(--line);padding:30px 0;color:var(--ink-soft);font-size:.85rem;margin-top:48px}
+  footer a{color:var(--ink-soft)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/icono_homly.png" alt="">Homly</a>
+    <a class="home" href="/">← Volver al inicio</a>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h1>Privacidad y eliminación de datos</h1>
+    <p class="lead">En Homly podés pedir que eliminemos tus datos personales cuando quieras. Acá te explicamos qué datos tratamos y cómo solicitar el borrado.</p>
+
+    <h2>Qué datos tratamos</h2>
+    <ul>
+      <li>Datos de contacto que nos compartís: nombre, email y los mensajes que nos enviás.</li>
+      <li>Si conectás WhatsApp o Facebook a tu cuenta: el identificador y los mensajes de ese canal, usados únicamente para gestionar tus conversaciones dentro de Homly.</li>
+    </ul>
+
+    <h2>Cómo solicitar la eliminación</h2>
+    <ol class="steps">
+      <li>Escribinos por WhatsApp al <strong>+58 414-520-0715</strong> con el texto «Quiero eliminar mis datos», o usá nuestro <a href="/contacto">formulario de contacto</a> con el asunto «Eliminar mis datos».</li>
+      <li>Indicanos el email (y, si aplica, el número de WhatsApp) con el que usás Homly, para poder identificar tu cuenta.</li>
+      <li>Verificamos tu identidad y eliminamos (o anonimizamos) tus datos.</li>
+    </ol>
+    <a class="wa" href="https://wa.me/584145200715?text=Quiero%20eliminar%20mis%20datos%20de%20Homly." target="_blank" rel="noopener noreferrer">Pedir eliminación por WhatsApp →</a>
+
+    <h2>Plazo</h2>
+    <p>Procesamos la solicitud y eliminamos tus datos en un plazo máximo de <strong>30 días</strong>, y te confirmamos cuando esté hecho. Conservamos solo lo que exija la ley (por ejemplo, registros de facturación).</p>
+
+    <div class="note">
+      Si vinculaste Homly con tu cuenta de Facebook o WhatsApp, también podés revisar y revocar el acceso desde la configuración de tu cuenta de Meta.
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="wrap">© 2026 Homly · <a href="https://softronic.dev" target="_blank" rel="noopener noreferrer">Softronic</a>. Todos los derechos reservados.</div>
+</footer>
+</body>
+</html>
