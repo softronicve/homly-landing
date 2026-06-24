@@ -7,5 +7,10 @@ footer{padding:70px 0 40px;border-top:1px solid var(--ink)}
 .foot-brand p{color:var(--ink-soft);max-width:30ch;margin-top:18px;font-size:.95rem}
 .foot-bot{display:flex;justify-content:space-between;align-items:center;
   padding-top:30px;border-top:1px solid var(--line);font-size:.84rem;color:var(--ink-soft);flex-wrap:wrap;gap:14px}
+.foot-bot span a{color:var(--ink);text-decoration:underline;text-underline-offset:2px;transition:color .2s}
+.foot-bot span a:hover{color:var(--clay-ink)}
+.foot-social{display:flex;align-items:center;gap:16px}
+.foot-social a{display:inline-flex;color:var(--ink-soft);transition:color .2s,transform .2s}
+.foot-social a:hover{color:var(--clay-ink);transform:translateY(-1px)}
 
 @media(max-width:900px){ .foot-grid{grid-template-columns:1fr 1fr} }
