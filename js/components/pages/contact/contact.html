@@ -1,44 +1,67 @@
 <section class="contact">
-  <div class="wrap contact-grid">
-    <div class="contact-form">
-      <span class="eyebrow mono">Contacto</span>
-      <h1>Hablemos.</h1>
-      <p class="contact-lead">Contanos qué necesitás y te respondemos en menos de 24 horas.</p>
+  <div class="wrap">
+    <div class="contact-grid">
+      <!-- Columna izquierda: formulario -->
+      <div class="contact-form">
+        <span class="eyebrow mono">Contacto</span>
+        <h1>Hablemos.</h1>
+        <p class="contact-lead">Contanos qué necesitás y te respondemos en menos de 24 horas.</p>
 
-      <label class="field">
-        <span>Nombre</span>
-        <input type="text" data-model="nombre" placeholder="Tu nombre" autocomplete="name">
-      </label>
+        <label class="field">
+          <span>Nombre</span>
+          <input type="text" data-model="nombre" placeholder="Tu nombre" autocomplete="name">
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" data-model="email" placeholder="tu@email.com" autocomplete="email">
+        </label>
+        <label class="field">
+          <span>Mensaje</span>
+          <textarea data-model="mensaje" rows="5" placeholder="¿En qué te ayudamos?"></textarea>
+        </label>
 
-      <label class="field">
-        <span>Email</span>
-        <input type="email" data-model="email" placeholder="tu@email.com" autocomplete="email">
-      </label>
+        <button type="button" class="btn btn-fill" data-action="enviarMensaje" data-bind-class="enviado:enviado" data-bind="botonTexto"></button>
+      </div>
 
-      <label class="field">
-        <span>Mensaje</span>
-        <textarea data-model="mensaje" rows="5" placeholder="¿En qué te ayudamos?"></textarea>
-      </label>
-
-      <button type="button" class="btn btn-fill" data-action="enviar" data-bind="botonTexto"></button>
+      <!-- Columna derecha: vista previa en vivo -->
+      <aside class="contact-preview">
+        <span class="mono prev-tag">Vista previa en tiempo real</span>
+        <div class="prev-card" data-bind-class="sent:enviado">
+          <span class="prev-badge" data-if="enviado">✓ Mensaje enviado</span>
+          <div class="prev-row">
+            <span class="prev-k">Nombre</span>
+            <span class="prev-v" data-bind="nombre"></span>
+          </div>
+          <div class="prev-row">
+            <span class="prev-k">Email</span>
+            <span class="prev-v" data-bind="email"></span>
+          </div>
+          <div class="prev-row prev-msg">
+            <span class="prev-k">Mensaje</span>
+            <p class="prev-v" data-bind="mensaje"></p>
+          </div>
+        </div>
+      </aside>
     </div>
 
-    <aside class="contact-preview">
-      <span class="mono prev-tag">Vista previa en tiempo real</span>
-      <div class="prev-card">
-        <div class="prev-row">
-          <span class="prev-k">Nombre</span>
-          <span class="prev-v" data-bind="nombre"></span>
-        </div>
-        <div class="prev-row">
-          <span class="prev-k">Email</span>
-          <span class="prev-v" data-bind="email"></span>
-        </div>
-        <div class="prev-row prev-msg">
-          <span class="prev-k">Mensaje</span>
-          <p class="prev-v" data-bind="mensaje"></p>
-        </div>
+    <!-- Créditos / Open Source -->
+    <footer class="credits">
+      <span class="mono credits-tag">Tecnología & Open Source</span>
+      <p class="credits-lead">Esta landing está hecha con <strong>homly.js</strong>, nuestro micro-framework de Web Components en vanilla JS — cero dependencias, sin build.</p>
+      <div class="credits-links">
+        <a href="https://softronic.dev" target="_blank" rel="noopener noreferrer" class="credit-card">
+          <span class="credit-k">Creado por</span>
+          <span class="credit-v">Softronic ↗</span>
+        </a>
+        <a href="https://github.com/softronicve/homly-landing" target="_blank" rel="noopener noreferrer" class="credit-card">
+          <span class="credit-k">Repo de la landing</span>
+          <span class="credit-v">homly-landing ↗</span>
+        </a>
+        <a href="https://github.com/softronicve/homly-framework" target="_blank" rel="noopener noreferrer" class="credit-card">
+          <span class="credit-k">Repo del framework</span>
+          <span class="credit-v">homly-framework ↗</span>
+        </a>
       </div>
-    </aside>
+    </footer>
   </div>
 </section>
