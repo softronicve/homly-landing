@@ -11,19 +11,18 @@ class ContactPage extends HomlyComponent {
       email: '',
       mensaje: '',
       enviado: false,
-      botonTexto: 'Enviar mensaje', // etiqueta reactiva del botón (idle / enviando / enviado)
     }));
   }
 
   get actions() {
     return {
+      // El framework gestiona el estado de carga del botón (disabled +
+      // is-loading + data-loading-text); acá solo simulamos el envío.
       enviarMensaje: async () => {
         const s = this.store.state;
         if (s.enviado) return;
-        s.botonTexto = 'Enviando...';
-        await new Promise((r) => setTimeout(r, 1000));
+        await new Promise((r) => setTimeout(r, 1500));
         s.enviado = true;
-        s.botonTexto = '¡Mensaje enviado!';
       },
     };
   }

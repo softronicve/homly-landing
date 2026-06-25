@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <script type="importmap">
-{ "imports": { "homly": "https://cdn.jsdelivr.net/gh/softronicve/homly-framework@v1.1.0/homly.js" } }
+{ "imports": { "homly": "https://cdn.jsdelivr.net/gh/softronicve/homly-framework@v1.2.0/homly.js" } }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700;800;900&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -52,6 +52,12 @@
   .btn-fill{background:var(--ink);color:var(--paper)}
   .btn-fill:hover{background:var(--clay-ink);border-color:var(--clay-ink);transform:translateY(-2px)}
   .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  /* Estado de carga que gestiona homly.js (clase is-loading + disabled). */
+  .btn:disabled{opacity:.65;cursor:default;transform:none}
+  .btn.is-loading{cursor:progress;pointer-events:none}
+  .btn.is-loading::after{content:"";width:14px;height:14px;border:2px solid currentColor;
+    border-right-color:transparent;border-radius:50%;animation:btn-spin .6s linear infinite}
+  @keyframes btn-spin{to{transform:rotate(360deg)}}
 
   .eyebrow{display:inline-flex;align-items:center;gap:12px;margin-bottom:30px}
   .eyebrow::before{content:"";width:46px;height:1px;background:var(--clay)}
