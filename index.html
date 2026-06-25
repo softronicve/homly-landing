@@ -59,6 +59,17 @@
     border-right-color:transparent;border-radius:50%;animation:btn-spin .6s linear infinite}
   @keyframes btn-spin{to{transform:rotate(360deg)}}
 
+  /* Hydration barrier: el contenido de app-root se revela entero al estar listo
+     (evita el stagger), mientras un spinner CSS marca la espera. El hero es
+     inline (fuera de app-root) y sigue pintando al instante. */
+  #app-root{opacity:0;transition:opacity .4s ease}
+  :root[data-hydration-ready] #app-root{opacity:1}
+  #hydration-spinner{position:fixed;top:55%;left:50%;width:34px;height:34px;
+    margin:-17px 0 0 -17px;border:3px solid var(--line);border-top-color:var(--clay);
+    border-radius:50%;animation:btn-spin .7s linear infinite;z-index:50;
+    transition:opacity .3s ease}
+  :root[data-hydration-ready] #hydration-spinner{opacity:0;pointer-events:none}
+
   .eyebrow{display:inline-flex;align-items:center;gap:12px;margin-bottom:30px}
   .eyebrow::before{content:"";width:46px;height:1px;background:var(--clay)}
 
@@ -172,6 +183,8 @@
 </homly-hero>
 
 <div id="app-root"></div>
+<div id="hydration-spinner" aria-hidden="true"></div>
+<noscript><style>#app-root{opacity:1!important}#hydration-spinner{display:none}</style></noscript>
 
 <script type="module" src="/js/app.js"></script>
 </body>
