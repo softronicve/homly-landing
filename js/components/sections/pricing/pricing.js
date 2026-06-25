@@ -25,18 +25,26 @@ class Pricing extends HomlyComponent {
   get globalStores() { return [uiStore]; }
 
   get store() {
-    return (this._store ??= Homly.createStore({
-      isMonthly: true, isAnnual: false, rate: FALLBACK_RATE,
-      proAmt: fmtUSD(PLANS.pro.usdM), proPer: PLANS.pro.perM, proVes: '—',
-      agenciaAmt: fmtUSD(PLANS.agencia.usdM), agenciaPer: PLANS.agencia.perM, agenciaVes: '—',
-      rateInfo: 'Cotización BCV del día',
-    }));
+    return (this._store ??= (() => {
+      // Solo el estado fuente; los precios mostrados se derivan con computed.
+      const s = Homly.createStore({ isMonthly: true, isAnnual: false, rate: FALLBACK_RATE });
+      for (const key of ['pro', 'agencia']) {
+        const p = PLANS[key];
+        s.computed(key + 'Amt', ['isAnnual'], (annual) => fmtUSD(annual ? p.usdA : p.usdM));
+        s.computed(key + 'Per', ['isAnnual'], (annual) => (annual ? p.perA : p.perM));
+        s.computed(key + 'Ves', ['isAnnual', 'rate'], (annual, rate) =>
+          p.ves ? '≈ ' + fmtVES((annual ? p.usdA : p.usdM) * rate) : '');
+      }
+      s.computed('rateInfo', ['rate'], (rate) => '1 USD = ' + fmtVES(rate) + ' · BCV');
+      return s;
+    })());
   }
 
   get actions() {
     return {
-      setMonthly: () => { this.store.state.isMonthly = true; this.store.state.isAnnual = false; this._recompute(); },
-      setAnnual: () => { this.store.state.isAnnual = true; this.store.state.isMonthly = false; this._recompute(); },
+      // Solo cambia el estado fuente; los precios se recalculan solos (computed).
+      setMonthly: () => { this.store.state.isMonthly = true; this.store.state.isAnnual = false; },
+      setAnnual: () => { this.store.state.isAnnual = true; this.store.state.isMonthly = false; },
       openPlan: (target) => this._openPlan(target.dataset.plan),
       closeModal: () => { uiStore.state.modalOpen = false; },
     };
@@ -48,19 +56,6 @@ class Pricing extends HomlyComponent {
     overlay?.addEventListener('click', (e) => { if (e.target === overlay) uiStore.state.modalOpen = false; }, { signal: this.signal });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') uiStore.state.modalOpen = false; }, { signal: this.signal });
     this._loadRate();
-  }
-
-  _recompute() {
-    const s = this.store.state;
-    const annual = s.isAnnual;
-    for (const key of ['pro', 'agencia']) {
-      const p = PLANS[key];
-      const usd = annual ? p.usdA : p.usdM;
-      s[key + 'Amt'] = fmtUSD(usd);
-      s[key + 'Per'] = annual ? p.perA : p.perM;
-      s[key + 'Ves'] = p.ves ? '≈ ' + fmtVES(usd * s.rate) : '';
-    }
-    s.rateInfo = '1 USD = ' + fmtVES(s.rate) + ' · BCV';
   }
 
   _openPlan(key) {
@@ -82,9 +77,8 @@ class Pricing extends HomlyComponent {
   }
 
   async _loadRate() {
-    const rate = await this._getRate();
-    this.store.state.rate = rate;
-    this._recompute();
+    // Setear la tasa basta: los precios en VES y la info de tasa son computed.
+    this.store.state.rate = await this._getRate();
   }
 
   async _getRate() {
