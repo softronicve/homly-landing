@@ -21,13 +21,20 @@ JS). Es **opcional**: el sitio funciona igual sin esto (client-render + la barre
 hidratación). El framework lo soporta vía la adopción de DOM del router (homly.js ≥
 v1.8.0); no hay build ni dependencia de runtime — el HTML servido es estático.
 
+Dos archivos:
+
+- **`index.shell.html`** — la **fuente** (la shell limpia: `#app-root` vacío, sin
+  `data-hydration-ready`). Es lo que editás a nivel shell (head, nav/hero inline, etc.).
+- **`index.html`** — el artefacto **generado** que sirve Caddy. **No lo edites a mano**
+  (la tool lo regenera y pisa tus cambios).
+
 ```
-node tools/prerender.cjs        # bakea la home en index.html (+ data-hydration-ready)
-node tools/prerender.cjs --reset # vuelve a la shell (sin prerender)
+node tools/prerender.cjs        # genera index.html desde index.shell.html (+ data-hydration-ready)
+node tools/prerender.cjs --reset # deja index.html = la shell (sin prerender)
 ```
 
 Requiere `puppeteer-core` + Chrome, **solo para regenerar** (no para servir). Re-corré
-la tool cuando cambie el contenido de la home.
+la tool cuando cambie el contenido de la home (las secciones viven en `js/components/`).
 
 ## Correr en local
 
