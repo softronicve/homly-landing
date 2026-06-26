@@ -14,6 +14,21 @@ Web Components en vanilla JS, sin build.
 
 Cada página se carga bajo demanda (code splitting por ruta vía dynamic import); las secciones de la home se importan al montar.
 
+## Prerender (opcional)
+
+La home se puede **prerenderizar** para que pinte en el primer frame (y se vea sin
+JS). Es **opcional**: el sitio funciona igual sin esto (client-render + la barrera de
+hidratación). El framework lo soporta vía la adopción de DOM del router (homly.js ≥
+v1.8.0); no hay build ni dependencia de runtime — el HTML servido es estático.
+
+```
+node tools/prerender.cjs        # bakea la home en index.html (+ data-hydration-ready)
+node tools/prerender.cjs --reset # vuelve a la shell (sin prerender)
+```
+
+Requiere `puppeteer-core` + Chrome, **solo para regenerar** (no para servir). Re-corré
+la tool cuando cambie el contenido de la home.
+
 ## Correr en local
 
 ```
