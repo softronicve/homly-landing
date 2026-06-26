@@ -59,9 +59,9 @@
     border-right-color:transparent;border-radius:50%;animation:btn-spin .6s linear infinite}
   @keyframes btn-spin{to{transform:rotate(360deg)}}
 
-  /* Hydration barrier: el contenido de app-root se revela entero al estar listo
-     (evita el stagger), mientras un spinner CSS marca la espera. El hero es
-     inline (fuera de app-root) y sigue pintando al instante. */
+  /* Hydration barrier (modo normal): el contenido de app-root se revela entero al
+     estar listo (evita el stagger), mientras un spinner CSS marca la espera. En
+     dist/ (prerenderizado) data-hydration-ready ya está puesto y la barrera no espera. */
   #app-root{opacity:0;transition:opacity .4s ease}
   :root[data-hydration-ready] #app-root{opacity:1}
   #hydration-spinner{position:fixed;top:55%;left:50%;width:34px;height:34px;
