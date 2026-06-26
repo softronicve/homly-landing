@@ -5,36 +5,43 @@ Web Components en vanilla JS, sin build.
 
 ## Cómo está armada
 
-- `index.html` — el shell. Trae los tokens de diseño y deja inline el nav y el
-  hero (lo primero que se ve) para que la pantalla pinte enseguida.
-- El framework `homly.js` se carga desde jsDelivr (CDN), fijado por versión (`@v1.1.0`) mediante un import map en `index.html`; los componentes lo importan con el specifier `homly`.
+- `index.html` — el shell normal. Trae los tokens y primitivas de diseño globales; el
+  nav, el hero y las secciones son componentes que renderizan de sus propios archivos.
+- El framework `homly.js` se carga desde jsDelivr (CDN), fijado por versión (`@v1.8.0`) mediante un import map en `index.html`; los componentes lo importan con el specifier `homly`.
 - `js/app.js` — arranca el router.
 - `js/components/sections/*` — cada sección con su `.js`, `.html` y `.css`
   (hero, nav, marquee, modules, matching, workflow, pricing, cta, footer).
 
 Cada página se carga bajo demanda (code splitting por ruta vía dynamic import); las secciones de la home se importan al montar.
 
-## Prerender (opcional)
+## Prerender (opcional) — dos index
 
-La home se puede **prerenderizar** para que pinte en el primer frame (y se vea sin
-JS). Es **opcional**: el sitio funciona igual sin esto (client-render + la barrera de
-hidratación). El framework lo soporta vía la adopción de DOM del router (homly.js ≥
-v1.8.0); no hay build ni dependencia de runtime — el HTML servido es estático.
+Hay dos entradas:
 
-Dos archivos:
-
-- **`index.shell.html`** — la **fuente** (la shell limpia: `#app-root` vacío, sin
-  `data-hydration-ready`). Es lo que editás a nivel shell (head, nav/hero inline, etc.).
-- **`index.html`** — el artefacto **generado** que sirve Caddy. **No lo edites a mano**
-  (la tool lo regenera y pisa tus cambios).
+- **`index.html`** — el sitio normal (client-render). `<homly-nav>`/`<homly-hero>` y las
+  secciones renderizan de sus componentes. Es la **fuente** que editás.
+- **`dist/index.html`** — el **compilado**: el mismo sitio con nav, hero y `#app-root`
+  **horneados** (+ `data-hydration-ready`) para que pinte en el primer frame. Se genera
+  con la tool y se commitea. **Caddy sirve este.**
 
 ```
-node tools/prerender.cjs        # genera index.html desde index.shell.html (+ data-hydration-ready)
-node tools/prerender.cjs --reset # deja index.html = la shell (sin prerender)
+node tools/prerender.cjs   # genera dist/index.html desde index.html (NO modifica index.html)
 ```
 
-Requiere `puppeteer-core` + Chrome, **solo para regenerar** (no para servir). Re-corré
-la tool cuando cambie el contenido de la home (las secciones viven en `js/components/`).
+Requiere `puppeteer-core` + Chrome, **solo para regenerar** (no para servir). Re-corré la tool
+cuando cambie el contenido de la home. Para servir el normal en vez del compilado, apuntá Caddy
+a `/index.html` en vez de `/dist/index.html`.
+
+Caddy (sirve el compilado; assets del root):
+
+```
+homly.world {
+  root * /var/www/homly-landing
+  @notFile not file {path}
+  rewrite @notFile /dist/index.html
+  file_server
+}
+```
 
 ## Correr en local
 
