@@ -15,7 +15,16 @@ router.add('/contacto', 'homly-contact-page', () => import('./components/pages/c
 // El hero vive inline en el shell; se oculta fuera de la home.
 const hero = document.querySelector('homly-hero');
 const baseHandle = router.handleRoute.bind(router);
+let currentPath = null;
 router.handleRoute = async (path) => {
+  // Mismo path: no re-renderizamos (el router haría scrollTo(0,0) y mataría el
+  // salto del ancla). Con hash es una navegación in-page (#seccion) → deja que el
+  // browser scrollee. Sin hash es el logo/home estando ya en home → scroll arriba.
+  if (path === currentPath) {
+    if (!location.hash) window.scrollTo(0, 0);
+    return;
+  }
+  currentPath = path;
   if (hero) hero.hidden = path !== '/';
   await baseHandle(path);
 };
