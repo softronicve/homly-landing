@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <script type="importmap">
-{ "imports": { "homly": "https://cdn.jsdelivr.net/gh/softronicve/homly-framework@v1.8.0/homly.js" } }
+{ "imports": { "homly": "https://cdn.jsdelivr.net/gh/softronicve/homly-framework@v1.8.3/homly.js" } }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700;800;900&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -28,12 +28,12 @@
     --max:1280px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%}
   body{
     background:var(--paper);color:var(--ink);
     font-family:"Manrope",system-ui,sans-serif;font-weight:400;
     font-size:clamp(16px,1.05vw,18px);line-height:1.6;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;overflow-x:clip;
   }
   body::before{
     content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.5;
@@ -599,6 +599,6 @@ footer{padding:70px 0 40px;border-top:1px solid var(--ink)}
 <div id="hydration-spinner" aria-hidden="true"></div>
 <noscript><style>#app-root{opacity:1!important}#hydration-spinner{display:none}</style></noscript>
 
-<script type="module" src="/js/app.js"></script>
+<script type="module" src="/js/app.js?v=1.8.3-2"></script>
 </body>
 </html>
