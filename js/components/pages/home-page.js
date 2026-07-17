@@ -2,7 +2,6 @@ import { HomlyComponent } from 'homly';
 
 // Se importan apenas monta la página (después de que el hero inline ya pintó).
 const sections = [
-  () => import('../sections/marquee/marquee.js'),
   () => import('../sections/modules/modules.js'),
   () => import('../sections/matching/matching.js'),
   () => import('../sections/workflow/workflow.js'),

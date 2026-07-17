@@ -1,11 +1,13 @@
 // Anima los elementos .reveal de un contenedor cuando entran al viewport.
+// Sólo lo llevan las entradas de sección (sec-head, cta, feature); los ítems
+// repetidos de grilla (mods, steps, plans, stats) entran sin animar a propósito.
 export function revealOnScroll(container, signal) {
   const els = container.querySelectorAll('.reveal');
   if (!els.length) return;
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
+    entries.forEach((e) => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('in'), (i % 4) * 90);
+        e.target.classList.add('in');
         io.unobserve(e.target);
       }
     });
