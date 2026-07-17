@@ -1,5 +1,4 @@
 import { HomlyComponent } from 'homly';
-import { revealOnScroll } from '../../../shared/reveal.js';
 import { uiStore, openCheckoutModal } from '../../../stores/uiStore.js';
 
 const WA_NUMBER = '584145200715';
@@ -20,8 +19,6 @@ class Hero extends HomlyComponent {
       }),
     };
   }
-
-  onMount() { revealOnScroll(this, this.signal); }
 }
 
 customElements.define('homly-hero', Hero);

@@ -1,28 +1,10 @@
-<!DOCTYPE html>
-<html lang="es" data-hydration-ready>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Homly — El CRM inmobiliario que entiende a quién le vendes</title>
-<meta name="description" content="Homly es el CRM inmobiliario inteligente: matching propiedad-cliente, perfil familiar, agenda de visitas y analítica de conversión. Para agencias y agentes que cierran más.">
-<meta name="theme-color" content="#FAFAFA">
-<meta property="og:title" content="Homly — CRM Inmobiliario Inteligente">
-<meta property="og:description" content="Matching inteligente propiedad-cliente, perfil familiar y analítica de conversión para agencias inmobiliarias.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://homly.world">
-<link rel="icon" type="image/png" href="/icono_homly.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<script type="importmap">
+<!DOCTYPE html> <html lang="es" data-hydration-ready> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Homly — El CRM inmobiliario que entiende a quién le vendes</title> <meta name="description" content="Homly es el CRM inmobiliario inteligente: matching propiedad-cliente, perfil familiar, agenda de visitas y analítica de conversión. Para agencias y agentes que cierran más."> <meta name="theme-color" content="#FFFFFF"> <meta property="og:title" content="Homly — CRM Inmobiliario Inteligente"> <meta property="og:description" content="Matching inteligente propiedad-cliente, perfil familiar y analítica de conversión para agencias inmobiliarias."> <meta property="og:type" content="website"> <meta property="og:url" content="https://homly.world"> <link rel="icon" type="image/png" href="/icono_homly.png"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin> <script type="importmap">
 { "imports": { "homly": "https://cdn.jsdelivr.net/gh/softronicve/homly-framework@v1.8.3/homly.js" } }
-</script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700;800;900&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
+</script> <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700;800;900&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet"> <style>
   /* Tokens y primitivas compartidas. El estilo de cada sección vive en su
      propio archivo .css, aislado con @scope. */
   :root{
-    --paper:#FAFAFA; --paper-2:#F0F0F1; --ink:#231F20; --ink-soft:#434345;
+    --paper:#FFFFFF; --paper-2:#F7F7F8; --ink:#231F20; --ink-soft:#434345;
     --clay:#F05223; --clay-deep:#B23A0B; --clay-ink:#B23A0B; --pine:#2B414E;
     --gold:#FFCD33; --line:rgba(35,31,32,.14);
     --max:1280px;
@@ -34,11 +16,6 @@
     font-family:"Manrope",system-ui,sans-serif;font-weight:400;
     font-size:clamp(16px,1.05vw,18px);line-height:1.6;
     -webkit-font-smoothing:antialiased;overflow-x:clip;
-  }
-  body::before{
-    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.5;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
-    mix-blend-mode:multiply;
   }
   h1,h2,h3,.display{font-family:"Nunito Sans",sans-serif;font-weight:400;line-height:1.02;letter-spacing:-.02em}
   a{color:inherit;text-decoration:none}
@@ -91,13 +68,7 @@
   @media(max-width:900px){
     .sec-head{flex-direction:column;align-items:flex-start}
   }
-</style>
-</head>
-<body>
-
-<!-- nav y hero son componentes: renderizan de sus archivos (nav.html/.css, hero.html/.css).
-     El prerender los hornea en dist/index.html para el first-paint; este es el modo normal. -->
-<homly-nav><style data-homly-scope="">@scope {
+</style> </head> <body> <homly-nav><style data-homly-scope="">@scope {
 nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:.4s ease;border-bottom:1px solid transparent}
 nav.scrolled{background:rgba(245,241,232,.86);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;padding:20px clamp(20px,5vw,72px);max-width:var(--max);margin:0 auto}
@@ -115,32 +86,9 @@ nav.scrolled{background:rgba(245,241,232,.86);backdrop-filter:blur(14px);border-
   .nav-toggle{display:block}
 }
 
-}</style><!-- nav.html — barra de navegación. .scrolled y menú móvil por señales. -->
-<nav data-bind-class="scrolled:scrolled">
-  <div class="nav-in">
-    <a href="/" data-router-link="" class="logo" aria-label="Homly inicio">
-      <img class="logo-full" src="/logo_homly.png" alt="Homly">
-    </a>
-    <div class="nav-links" data-bind-class="open:menuOpen">
-      <a href="#modulos">Plataforma</a>
-      <a href="#matching">Matching IA</a>
-      <a href="#flujo">Cómo funciona</a>
-      <a href="#planes">Planes</a>
-      <a href="#planes" class="btn btn-fill">Comenzar gratis →</a>
-    </div>
-    <button class="nav-toggle" data-action="toggleMenu" aria-label="Menú">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
-    </button>
-  </div>
-</nav>
-</homly-nav>
-
-<homly-hero><style data-homly-scope="">@scope {
+}</style> <nav data-bind-class="scrolled:scrolled"> <div class="nav-in"> <a href="/" data-router-link="" class="logo" aria-label="Homly inicio"> <img class="logo-full" src="/logo_homly.png" alt="Homly"> </a> <div class="nav-links" data-bind-class="open:menuOpen"> <a href="#modulos">Plataforma</a> <a href="#matching">Matching IA</a> <a href="#flujo">Cómo funciona</a> <a href="#planes">Planes</a> <a href="#planes" class="btn btn-fill">Comenzar gratis →</a> </div> <button class="nav-toggle" data-action="toggleMenu" aria-label="Menú"> <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg> </button> </div> </nav> </homly-nav> <homly-hero><style data-homly-scope="">@scope {
 header{position:relative;padding:clamp(110px,13vh,160px) 0 80px;overflow:hidden}
-.grid-lines{position:absolute;inset:0;z-index:0;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:100% 25%,12.5% 100%;opacity:.5;mask-image:radial-gradient(ellipse 80% 80% at 70% 30%,#000,transparent)}
-.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
 h1{font-size:clamp(2rem,4.4vw,3.8rem);letter-spacing:-.035em}
 h1 em{font-style:italic;color:var(--clay);font-weight:300}
 .hero-sub{margin:22px 0 30px;font-size:clamp(1.02rem,1.4vw,1.2rem);color:var(--ink-soft);max-width:34ch}
@@ -151,54 +99,11 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
 .stat{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
 .stat .n{font-family:"Nunito Sans",sans-serif;font-size:2.4rem;font-weight:500;line-height:1}
 .stat .l{margin-top:6px;font-size:.85rem;color:var(--ink-soft)}
-.hero-tag{position:absolute;right:clamp(20px,5vw,72px);top:118px;z-index:1;
-  writing-mode:vertical-rl;font-family:"Spline Sans Mono",monospace;font-size:.7rem;
-  letter-spacing:.32em;text-transform:uppercase;color:var(--ink-soft)}
-
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:36px}
-  .hero-tag{display:none}
 }
 
-}</style><header>
-  <div class="grid-lines" aria-hidden="true"></div>
-  <span class="hero-tag">CRM Inmobiliario · 2026</span>
-  <div class="wrap hero-grid">
-    <div>
-      <h1>El CRM que<br>entiende a <em>quién</em><br>le vendes.</h1>
-      <p class="hero-sub">Homly conecta cada propiedad con el cliente correcto: presupuesto, familia, ubicación y urgencia, calculado en segundos.</p>
-      <div class="hero-cta">
-        <button type="button" class="btn btn-fill" data-action="openProPlan">Comenzar gratis →</button>
-        <a href="#matching" class="btn btn-ghost">Ver el motor de matching</a>
-      </div>
-    </div>
-    <div class="hero-side">
-      <div class="stat-stack">
-        <div class="stat reveal in"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true"><div class="stat-body"><div class="n">+38%</div><div class="l">conversión de leads cualificados</div></div></div>
-        <div class="stat reveal in"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true"><div class="stat-body"><div class="n">9</div><div class="l">módulos: propiedades, clientes, agenda, contratos</div></div></div>
-        <div class="stat reveal in"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true"><div class="stat-body"><div class="n">&lt;1s</div><div class="l">para calcular compatibilidad propiedad–cliente</div></div></div>
-      </div>
-    </div>
-  </div>
-</header>
-</homly-hero>
-
-<div id="app-root"><homly-home-page><homly-marquee><style data-homly-scope="">@scope {
-.marquee{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
-  background:var(--ink);color:var(--paper);overflow:hidden;padding:18px 0}
-.marquee-track{display:flex;gap:60px;white-space:nowrap;animation:scroll 32s linear infinite;width:max-content}
-.marquee-track span{font-family:"Nunito Sans",sans-serif;font-size:1.4rem;font-style:italic;display:flex;align-items:center;gap:60px}
-.marquee-track span::after{content:"✦";color:var(--clay);font-style:normal;font-size:1rem}
-@keyframes scroll{to{transform:translateX(-50%)}}
-
-}</style><div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Matching inteligente<span></span></span><span>Perfil familiar<span></span></span><span>Agenda de visitas<span></span></span><span>Lead scoring<span></span></span><span>Contratos digitales<span></span></span><span>Analítica de conversión<span></span></span>
-    <span>Matching inteligente<span></span></span><span>Perfil familiar<span></span></span><span>Agenda de visitas<span></span></span><span>Lead scoring<span></span></span><span>Contratos digitales<span></span></span><span>Analítica de conversión<span></span></span>
-  </div>
-</div>
-</homly-marquee>
-<homly-modules><style data-homly-scope="">@scope {
+}</style><header> <div class="wrap hero-grid"> <div> <h1>El CRM que<br>entiende a <em>quién</em><br>le vendes.</h1> <p class="hero-sub">Homly conecta cada propiedad con el cliente correcto: presupuesto, familia, ubicación y urgencia, calculado en segundos.</p> <div class="hero-cta"> <button type="button" class="btn btn-fill" data-action="openProPlan">Comenzar gratis →</button> <a href="#matching" class="btn btn-ghost">Ver el motor de matching</a> </div> </div> <div class="hero-side"> <div class="stat-stack"> <div class="stat"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true"><div class="stat-body"><div class="n">+38%</div><div class="l">conversión de leads cualificados</div></div></div> <div class="stat"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true"><div class="stat-body"><div class="n">9</div><div class="l">módulos: propiedades, clientes, agenda, contratos</div></div></div> <div class="stat"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true"><div class="stat-body"><div class="n">&lt;1s</div><div class="l">para calcular compatibilidad propiedad–cliente</div></div></div> </div> </div> </div> </header> </homly-hero> <div id="app-root"><homly-home-page><homly-modules><style data-homly-scope="">@scope {
 .mods{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
 .mod{border-bottom:1px solid var(--line);border-right:1px solid var(--line);
   padding:42px 36px 48px;position:relative;transition:.3s ease;background:transparent}
@@ -214,45 +119,7 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
   .mod:nth-child(3n){border-right:1px solid var(--line)}
 }
 
-}</style><section id="modulos">
-  <div class="wrap">
-    <div class="sec-head reveal in">
-      <h2>Una plataforma, todo el ciclo de venta.</h2>
-      <p>Nueve módulos diseñados para agencias y agentes que gestionan cartera, clientes y cierres en un solo lugar.</p>
-    </div>
-    <div class="mods">
-      <div class="mod reveal in"><span class="idx">01</span>
-        <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"></path></svg>
-        <h3>Propiedades</h3><p>CRUD completo con galería, geolocalización, historial de precios, estados y certificación energética.</p></div>
-      <div class="mod reveal in"><span class="idx">02</span>
-        <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.4"></circle><path d="M3 21c0-3.6 2.7-6 6-6s6 2.4 6 6M16 11l2 2 4-4"></path></svg>
-        <h3>Clientes &amp; leads</h3><p>Perfil completo, composición familiar, preferencias, lead scoring automático e historial de interacciones.</p></div>
-      <div class="mod reveal in"><span class="idx">03</span>
-        <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M3 12h18"></path><circle cx="12" cy="12" r="9"></circle></svg>
-        <h3>Matching IA</h3><p>Algoritmo de compatibilidad con pesos configurables: presupuesto, ubicación, tamaño y amenidades.</p></div>
-      <div class="mod reveal in"><span class="idx">04</span>
-        <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4.5" width="18" height="17" rx="1.5"></rect><path d="M3 9h18M8 2.5v4M16 2.5v4"></path></svg>
-        <h3>Agenda de visitas</h3><p>Calendario, recordatorios automáticos, confirmación, no-show y feedback del cliente tras cada visita.</p></div>
-      <div class="mod reveal in"><span class="idx">05</span>
-        <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-        <h3>Comunicaciones</h3><p>Chat en tiempo real, notificaciones push, email automatizado y WhatsApp Business integrado.</p></div>
-      <div class="mod reveal in"><span class="idx">06</span>
-        <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2v6h6M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM9 13h6M9 17h6"></path></svg>
-        <h3>Contratos &amp; pagos</h3><p>Generación de contratos, firma digital, seguimiento de pagos y alertas de vencimiento.</p></div>
-      <div class="mod reveal in"><span class="idx">07</span>
-        <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"></path></svg>
-        <h3>Analítica</h3><p>Dashboard ejecutivo, KPIs por agente, análisis de conversión y reportes exportables.</p></div>
-      <div class="mod reveal in"><span class="idx">08</span>
-        <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6zM9 12l2 2 4-4"></path></svg>
-        <h3>Roles &amp; seguridad</h3><p>RBAC granular: super admin, admin de agencia, agente y cliente. Audit logs de cada acción.</p></div>
-      <div class="mod reveal in"><span class="idx">09</span>
-        <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
-        <h3>Multi-agencia</h3><p>Arquitectura multi-tenant lista para escalar: cada agencia con su cartera, su equipo y sus métricas.</p></div>
-    </div>
-  </div>
-</section>
-</homly-modules>
-<homly-matching><style data-homly-scope="">@scope {
+}</style><section id="modulos"> <div class="wrap"> <div class="sec-head reveal in"> <h2>Una plataforma, todo el ciclo de venta.</h2> <p>Nueve módulos diseñados para agencias y agentes que gestionan cartera, clientes y cierres en un solo lugar.</p> </div> <div class="mods"> <div class="mod"><span class="idx">01</span> <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"></path></svg> <h3>Propiedades</h3><p>CRUD completo con galería, geolocalización, historial de precios, estados y certificación energética.</p></div> <div class="mod"><span class="idx">02</span> <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.4"></circle><path d="M3 21c0-3.6 2.7-6 6-6s6 2.4 6 6M16 11l2 2 4-4"></path></svg> <h3>Clientes &amp; leads</h3><p>Perfil completo, composición familiar, preferencias, lead scoring automático e historial de interacciones.</p></div> <div class="mod"><span class="idx">03</span> <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M3 12h18"></path><circle cx="12" cy="12" r="9"></circle></svg> <h3>Matching IA</h3><p>Algoritmo de compatibilidad con pesos configurables: presupuesto, ubicación, tamaño y amenidades.</p></div> <div class="mod"><span class="idx">04</span> <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4.5" width="18" height="17" rx="1.5"></rect><path d="M3 9h18M8 2.5v4M16 2.5v4"></path></svg> <h3>Agenda de visitas</h3><p>Calendario, recordatorios automáticos, confirmación, no-show y feedback del cliente tras cada visita.</p></div> <div class="mod"><span class="idx">05</span> <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> <h3>Comunicaciones</h3><p>Chat en tiempo real, notificaciones push, email automatizado y WhatsApp Business integrado.</p></div> <div class="mod"><span class="idx">06</span> <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2v6h6M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM9 13h6M9 17h6"></path></svg> <h3>Contratos &amp; pagos</h3><p>Generación de contratos, firma digital, seguimiento de pagos y alertas de vencimiento.</p></div> <div class="mod"><span class="idx">07</span> <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"></path></svg> <h3>Analítica</h3><p>Dashboard ejecutivo, KPIs por agente, análisis de conversión y reportes exportables.</p></div> <div class="mod"><span class="idx">08</span> <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6zM9 12l2 2 4-4"></path></svg> <h3>Roles &amp; seguridad</h3><p>RBAC granular: super admin, admin de agencia, agente y cliente. Audit logs de cada acción.</p></div> <div class="mod"><span class="idx">09</span> <svg class="mod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg> <h3>Multi-agencia</h3><p>Arquitectura multi-tenant lista para escalar: cada agencia con su cartera, su equipo y sus métricas.</p></div> </div> </div> </section> </homly-modules> <homly-matching><style data-homly-scope="">@scope {
 .feature{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,110px);align-items:center}
 .feature-copy h2{font-size:clamp(2rem,4.2vw,3.4rem);margin:24px 0 22px}
 .feature-copy ul{list-style:none;margin-top:32px}
@@ -281,37 +148,7 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
   .match-card{box-shadow:14px 14px 0 -2px var(--clay)}
 }
 
-}</style><section id="matching" style="background:var(--paper-2)">
-  <div class="wrap">
-    <div class="feature">
-      <div class="feature-copy reveal in">
-        <span class="eyebrow mono">Motor de matching</span>
-        <h2>No más enviar todo a todos.</h2>
-        <p style="color:var(--ink-soft)">Homly puntúa cada propiedad contra el perfil real del cliente —incluida su familia— y prioriza lo que de verdad va a cerrar.</p>
-        <ul>
-          <li><b>30%</b><span>Presupuesto: rango de compra o alquiler frente al precio real.</span></li>
-          <li><b>25%</b><span>Ubicación: zonas preferidas, cercanía a colegios y transporte.</span></li>
-          <li><b>20%</b><span>Tamaño: habitaciones recomendadas según composición familiar.</span></li>
-          <li><b>15%</b><span>Amenidades: mascotas, teletrabajo, accesibilidad.</span></li>
-          <li><b>10%</b><span>Otros factores: urgencia, lead score e historial.</span></li>
-        </ul>
-      </div>
-      <div class="match-card reveal in" role="img" aria-label="Tarjeta de match de ejemplo">
-        <div class="mhead"><span class="mono">Match #HM-4827</span><span class="mono">Cliente · Familia Rivas</span></div>
-        <div class="score-ring">
-          <div class="ring"><span>91</span></div>
-          <div><p>Compatibilidad alta</p><p>Ático 3 hab · Miraflores · $285.000</p></div>
-        </div>
-        <div class="mbar"><div class="mb-top"><span>Presupuesto</span><span>96%</span></div><div class="mb-track"><div class="mb-fill" style="width:96%"></div></div></div>
-        <div class="mbar"><div class="mb-top"><span>Ubicación</span><span>88%</span></div><div class="mb-track"><div class="mb-fill" style="width:88%;animation-delay:.1s"></div></div></div>
-        <div class="mbar"><div class="mb-top"><span>Tamaño / habitaciones</span><span>100%</span></div><div class="mb-track"><div class="mb-fill" style="width:100%;animation-delay:.2s"></div></div></div>
-        <div class="mbar"><div class="mb-top"><span>Amenidades</span><span>74%</span></div><div class="mb-track"><div class="mb-fill" style="width:74%;animation-delay:.3s"></div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-</homly-matching>
-<homly-workflow><style data-homly-scope="">@scope {
+}</style><section id="matching" style="background:var(--paper-2)"> <div class="wrap"> <div class="feature"> <div class="feature-copy reveal in"> <h2>No más enviar todo a todos.</h2> <p style="color:var(--ink-soft)">Homly puntúa cada propiedad contra el perfil real del cliente —incluida su familia— y prioriza lo que de verdad va a cerrar.</p> <ul> <li><b>30%</b><span>Presupuesto: rango de compra o alquiler frente al precio real.</span></li> <li><b>25%</b><span>Ubicación: zonas preferidas, cercanía a colegios y transporte.</span></li> <li><b>20%</b><span>Tamaño: habitaciones recomendadas según composición familiar.</span></li> <li><b>15%</b><span>Amenidades: mascotas, teletrabajo, accesibilidad.</span></li> <li><b>10%</b><span>Otros factores: urgencia, lead score e historial.</span></li> </ul> </div> <div class="match-card reveal in" role="img" aria-label="Tarjeta de match de ejemplo"> <div class="mhead"><span class="mono">Match #HM-4827</span><span class="mono">Cliente · Familia Rivas</span></div> <div class="score-ring"> <div class="ring"><span>91</span></div> <div><p>Compatibilidad alta</p><p>Ático 3 hab · Miraflores · $285.000</p></div> </div> <div class="mbar"><div class="mb-top"><span>Presupuesto</span><span>96%</span></div><div class="mb-track"><div class="mb-fill" style="width:96%"></div></div></div> <div class="mbar"><div class="mb-top"><span>Ubicación</span><span>88%</span></div><div class="mb-track"><div class="mb-fill" style="width:88%;animation-delay:.1s"></div></div></div> <div class="mbar"><div class="mb-top"><span>Tamaño / habitaciones</span><span>100%</span></div><div class="mb-track"><div class="mb-fill" style="width:100%;animation-delay:.2s"></div></div></div> <div class="mbar"><div class="mb-top"><span>Amenidades</span><span>74%</span></div><div class="mb-track"><div class="mb-fill" style="width:74%;animation-delay:.3s"></div></div></div> </div> </div> </div> </section> </homly-matching> <homly-workflow><style data-homly-scope="">@scope {
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .step{background:var(--paper);padding:40px 30px;transition:.3s}
 .step:hover{background:var(--ink);color:var(--paper)}
@@ -323,22 +160,7 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
 
 @media(max-width:900px){ .flow{grid-template-columns:1fr} }
 
-}</style><section id="flujo">
-  <div class="wrap">
-    <div class="sec-head reveal in">
-      <h2>Del lead al cierre, sin perder el hilo.</h2>
-      <p>Un flujo claro para tu equipo: capturar, entender, conectar y cerrar.</p>
-    </div>
-    <div class="flow">
-      <div class="step reveal in"><div class="step-n">01</div><span class="idx">CAPTURA</span><h3>Registra el lead</h3><p>Fuente, presupuesto y perfil familiar. El lead score se calcula solo.</p></div>
-      <div class="step reveal in"><div class="step-n">02</div><span class="idx">ENTIENDE</span><h3>Perfil familiar</h3><p>Miembros, edades, mascotas y necesidades especiales definen lo que busca de verdad.</p></div>
-      <div class="step reveal in"><div class="step-n">03</div><span class="idx">CONECTA</span><h3>Matching automático</h3><p>Homly sugiere las propiedades con mayor compatibilidad y notifica al agente.</p></div>
-      <div class="step reveal in"><div class="step-n">04</div><span class="idx">CIERRA</span><h3>Visita y contrato</h3><p>Agenda la visita, recoge feedback y genera el contrato con seguimiento de pagos.</p></div>
-    </div>
-  </div>
-</section>
-</homly-workflow>
-<homly-pricing><style data-homly-scope="">@scope {
+}</style><section id="flujo"> <div class="wrap"> <div class="sec-head reveal in"> <h2>Del lead al cierre, sin perder el hilo.</h2> <p>Un flujo claro para tu equipo: capturar, entender, conectar y cerrar.</p> </div> <div class="flow"> <div class="step"><div class="step-n">01</div><span class="idx">CAPTURA</span><h3>Registra el lead</h3><p>Fuente, presupuesto y perfil familiar. El lead score se calcula solo.</p></div> <div class="step"><div class="step-n">02</div><span class="idx">ENTIENDE</span><h3>Perfil familiar</h3><p>Miembros, edades, mascotas y necesidades especiales definen lo que busca de verdad.</p></div> <div class="step"><div class="step-n">03</div><span class="idx">CONECTA</span><h3>Matching automático</h3><p>Homly sugiere las propiedades con mayor compatibilidad y notifica al agente.</p></div> <div class="step"><div class="step-n">04</div><span class="idx">CIERRA</span><h3>Visita y contrato</h3><p>Agenda la visita, recoge feedback y genera el contrato con seguimiento de pagos.</p></div> </div> </div> </section> </homly-workflow> <homly-pricing><style data-homly-scope="">@scope {
 #planes{padding:120px 0;background:var(--paper-2)}
 .plans-head{text-align:center;max-width:720px;margin:0 auto 32px}
 .plans-head h2{font-size:clamp(2.2rem,4.5vw,3.6rem)}
@@ -428,108 +250,7 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
 .modal .close:hover{background:var(--paper-2)}
 .modal-wrap{position:relative}
 
-}</style><section id="planes">
-  <div class="wrap">
-    <div class="plans-head reveal in">
-      <span class="eyebrow mono">Precios</span>
-      <h2>Empieza gratis,<br>crece a tu ritmo.</h2>
-      <p>Un plan para cada momento de tu negocio. Precios en dólares con conversión al BCV del día.</p>
-      <div class="billing-toggle">
-        <button data-action="setMonthly" data-bind-class="on:isMonthly" class="on">Mensual</button>
-        <button data-action="setAnnual" data-bind-class="on:isAnnual">Anual <span class="save-pill">−33%</span></button>
-      </div>
-    </div>
-
-    <div class="plans-grid">
-      <!-- FREE -->
-      <div class="plan ghost reveal in">
-        <div class="plan-name">Free</div>
-        <div class="plan-price free"><span class="amt">$0</span><span class="per">para siempre</span></div>
-        <div class="plan-ves">Sin costo</div>
-        <div class="plan-desc">Para el agente independiente que empieza. Prueba el matching y el Kanban con tu primera propiedad.</div>
-        <ul>
-          <li><b>1 propiedad activa</b></li>
-          <li>Matching inteligente completo</li>
-          <li>Kanban de leads</li>
-          <li>App móvil para tus clientes</li>
-          <li class="minus">Sin contratos digitales</li>
-          <li class="minus">Sin analítica avanzada</li>
-        </ul>
-        <button class="plan-cta" data-action="openPlan" data-plan="free">Comenzar gratis</button>
-      </div>
-
-      <!-- PRO -->
-      <div class="plan featured reveal in">
-        <div class="plan-name">Pro</div>
-        <div class="plan-price"><span class="amt" data-bind="proAmt">$24.99</span><span class="per" data-bind="proPer">por mes</span></div>
-        <div class="plan-ves" data-bind="proVes">≈ Bs 2.499</div>
-        <div class="plan-desc">Agente independiente con cartera activa. Propiedades ilimitadas, contratos y reportes.</div>
-        <ul>
-          <li><b>Propiedades ilimitadas</b></li>
-          <li>Matching inteligente + IA</li>
-          <li>Kanban + visitas + agenda</li>
-          <li>Contratos digitales + firma</li>
-          <li>Analítica de conversión</li>
-          <li>Soporte prioritario por WhatsApp</li>
-        </ul>
-        <button class="plan-cta" data-action="openPlan" data-plan="pro">Comenzar Pro</button>
-      </div>
-
-      <!-- AGENCIA -->
-      <div class="plan ghost reveal in">
-        <div class="plan-name">Agencia</div>
-        <div class="plan-price"><span class="amt" data-bind="agenciaAmt">$9.99</span><span class="per" data-bind="agenciaPer">agente/mes</span></div>
-        <div class="plan-ves" data-bind="agenciaVes">≈ Bs 999</div>
-        <div class="plan-desc">Agencias con equipo. Mínimo 3 agentes. Branding propio, multi-usuario y panel admin completo.</div>
-        <ul>
-          <li><b>Desde 3 agentes</b></li>
-          <li>Todo lo de Pro × agente</li>
-          <li>Logo y branding de la agencia</li>
-          <li>Panel admin con roles RBAC</li>
-          <li>Tablero Kanban compartido</li>
-          <li>Onboarding y capacitación</li>
-        </ul>
-        <button class="plan-cta" data-action="openPlan" data-plan="agencia">Comenzar Agencia</button>
-      </div>
-    </div>
-
-    <div class="rate-indicator">
-      <span class="live-dot"></span><span data-bind="rateInfo">1 USD = Bs 100 · BCV</span>
-    </div>
-
-    <p class="plans-note">
-      Cobranza en USD, USDT, Pago Móvil, Zelle o Binance Pay. ¿Dudas sobre el plan o forma de pago?
-      <a href="https://wa.me/584145200715" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>.
-    </p>
-  </div>
-
-  <!-- Modal de checkout / contacto -->
-  <div class="modal-ov" data-bind-class="open:modalOpen" role="dialog" aria-modal="true">
-    <div class="modal-wrap">
-      <div class="modal">
-        <button class="close" data-action="closeModal" aria-label="Cerrar">×</button>
-        <h3>Activar plan <span data-bind="modalPlan"></span></h3>
-        <p class="modal-sub">Te conectamos por WhatsApp para activar tu cuenta y coordinar el pago en menos de 24 horas.</p>
-        <div class="modal-summary">
-          <div class="l" data-bind="modalLabel"> </div>
-          <div class="r" data-bind="modalPrice"> </div>
-        </div>
-        <ul class="methods">
-          <li>Pago Móvil (Banco R4)</li>
-          <li>Transferencia USD (Zelle)</li>
-          <li>USDT (Binance Pay / red TRC20)</li>
-          <li>Tarjeta internacional vía Zinli</li>
-        </ul>
-        <a class="whatsapp-cta" data-bind-attr="href:waLink" target="_blank" rel="noopener">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.9 2.9 4.6 4 1.1.4 1.9.7 2.5.9.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.3-.7.3-1.2.2-1.4-.1-.1-.2-.2-.5-.3zM12 2.2C6.6 2.2 2.2 6.6 2.2 12c0 1.8.5 3.6 1.4 5.1l-1.5 5.5 5.6-1.5c1.4.8 3.1 1.2 4.7 1.2 5.4 0 9.8-4.4 9.8-9.8s-4.3-9.3-10.2-9.3zm5.8 14c-.2.7-1.3 1.4-1.9 1.4-.5 0-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.5-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.4-1.1-2.7 0-1.3.7-1.9.9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4-.1.6.4.2.6.7 2 .8 2.1.1.1.1.3 0 .5-.1.2-.1.3-.2.5-.1.2-.2.3-.3.5-.1.1-.2.3-.1.5.1.3.6 1.2 1.5 1.9 1.1.9 2 1.3 2.3 1.4.3.1.4.1.6-.1.2-.2.6-.8.8-1 .2-.3.4-.2.6-.1.3.1 1.6.8 1.9.9.3.1.5.2.5.3.1.1.1.7-.1 1.4z"></path></svg>
-        Continuar por WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-</homly-pricing>
-<homly-cta><style data-homly-scope="">@scope {
+}</style><section id="planes"> <div class="wrap"> <div class="plans-head reveal in"> <h2>Empieza gratis,<br>crece a tu ritmo.</h2> <p>Un plan para cada momento de tu negocio. Precios en dólares con conversión al BCV del día.</p> <div class="billing-toggle"> <button data-action="setMonthly" data-bind-class="on:isMonthly" class="on">Mensual</button> <button data-action="setAnnual" data-bind-class="on:isAnnual">Anual <span class="save-pill">−33%</span></button> </div> </div> <div class="plans-grid"> <div class="plan ghost"> <div class="plan-name">Free</div> <div class="plan-price free"><span class="amt">$0</span><span class="per">para siempre</span></div> <div class="plan-ves">Sin costo</div> <div class="plan-desc">Para el agente independiente que empieza. Prueba el matching y el Kanban con tu primera propiedad.</div> <ul> <li><b>1 propiedad activa</b></li> <li>Matching inteligente completo</li> <li>Kanban de leads</li> <li>App móvil para tus clientes</li> <li class="minus">Sin contratos digitales</li> <li class="minus">Sin analítica avanzada</li> </ul> <button class="plan-cta" data-action="openPlan" data-plan="free">Comenzar gratis</button> </div> <div class="plan featured"> <div class="plan-name">Pro</div> <div class="plan-price"><span class="amt" data-bind="proAmt">$24.99</span><span class="per" data-bind="proPer">por mes</span></div> <div class="plan-ves" data-bind="proVes">≈ Bs 2.499</div> <div class="plan-desc">Agente independiente con cartera activa. Propiedades ilimitadas, contratos y reportes.</div> <ul> <li><b>Propiedades ilimitadas</b></li> <li>Matching inteligente + IA</li> <li>Kanban + visitas + agenda</li> <li>Contratos digitales + firma</li> <li>Analítica de conversión</li> <li>Soporte prioritario por WhatsApp</li> </ul> <button class="plan-cta" data-action="openPlan" data-plan="pro">Comenzar Pro</button> </div> <div class="plan ghost"> <div class="plan-name">Agencia</div> <div class="plan-price"><span class="amt" data-bind="agenciaAmt">$9.99</span><span class="per" data-bind="agenciaPer">agente/mes</span></div> <div class="plan-ves" data-bind="agenciaVes">≈ Bs 999</div> <div class="plan-desc">Agencias con equipo. Mínimo 3 agentes. Branding propio, multi-usuario y panel admin completo.</div> <ul> <li><b>Desde 3 agentes</b></li> <li>Todo lo de Pro × agente</li> <li>Logo y branding de la agencia</li> <li>Panel admin con roles RBAC</li> <li>Tablero Kanban compartido</li> <li>Onboarding y capacitación</li> </ul> <button class="plan-cta" data-action="openPlan" data-plan="agencia">Comenzar Agencia</button> </div> </div> <div class="rate-indicator"> <span class="live-dot"></span><span data-bind="rateInfo">1 USD = Bs 100 · BCV</span> </div> <p class="plans-note"> Cobranza en USD, USDT, Pago Móvil, Zelle o Binance Pay. ¿Dudas sobre el plan o forma de pago? <a href="https://wa.me/584145200715" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>. </p> </div> <div class="modal-ov" data-bind-class="open:modalOpen" role="dialog" aria-modal="true"> <div class="modal-wrap"> <div class="modal"> <button class="close" data-action="closeModal" aria-label="Cerrar">×</button> <h3>Activar plan <span data-bind="modalPlan"></span></h3> <p class="modal-sub">Te conectamos por WhatsApp para activar tu cuenta y coordinar el pago en menos de 24 horas.</p> <div class="modal-summary"> <div class="l" data-bind="modalLabel"> </div> <div class="r" data-bind="modalPrice"> </div> </div> <ul class="methods"> <li>Pago Móvil (Banco R4)</li> <li>Transferencia USD (Zelle)</li> <li>USDT (Binance Pay / red TRC20)</li> <li>Tarjeta internacional vía Zinli</li> </ul> <a class="whatsapp-cta" data-bind-attr="href:waLink" target="_blank" rel="noopener"> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.9 2.9 4.6 4 1.1.4 1.9.7 2.5.9.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.3-.7.3-1.2.2-1.4-.1-.1-.2-.2-.5-.3zM12 2.2C6.6 2.2 2.2 6.6 2.2 12c0 1.8.5 3.6 1.4 5.1l-1.5 5.5 5.6-1.5c1.4.8 3.1 1.2 4.7 1.2 5.4 0 9.8-4.4 9.8-9.8s-4.3-9.3-10.2-9.3zm5.8 14c-.2.7-1.3 1.4-1.9 1.4-.5 0-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.5-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.4-1.1-2.7 0-1.3.7-1.9.9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4-.1.6.4.2.6.7 2 .8 2.1.1.1.1.3 0 .5-.1.2-.1.3-.2.5-.1.2-.2.3-.3.5-.1.1-.2.3-.1.5.1.3.6 1.2 1.5 1.9 1.1.9 2 1.3 2.3 1.4.3.1.4.1.6-.1.2-.2.6-.8.8-1 .2-.3.4-.2.6-.1.3.1 1.6.8 1.9.9.3.1.5.2.5.3.1.1.1.7-.1 1.4z"></path></svg> Continuar por WhatsApp </a> </div> </div> </div> </section> </homly-pricing> <homly-cta><style data-homly-scope="">@scope {
 .cta{background:var(--ink);color:var(--paper);text-align:center;border-radius:4px;
   padding:clamp(60px,10vw,110px) 30px;position:relative;overflow:hidden}
 .cta::after{content:"";position:absolute;inset:0;
@@ -542,17 +263,7 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
 .cta .btn-fill{background:var(--clay-ink);border-color:var(--clay-ink);font-size:1rem;padding:16px 34px}
 .cta .btn-fill:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 
-}</style><section>
-  <div class="wrap">
-    <div class="cta reveal in">
-      <h2>Vende como las<br>agencias <em>líderes.</em></h2>
-      <p>API REST en Laravel, app Flutter multiplataforma y matching inteligente. Empieza gratis hoy.</p>
-      <a href="#planes" class="btn btn-fill">Ver planes →</a>
-    </div>
-  </div>
-</section>
-</homly-cta>
-<homly-footer><style data-homly-scope="">@scope {
+}</style><section> <div class="wrap"> <div class="cta reveal in"> <h2>Vende como las<br>agencias <em>líderes.</em></h2> <p>API REST en Laravel, app Flutter multiplataforma y matching inteligente. Empieza gratis hoy.</p> <a href="#planes" class="btn btn-fill">Ver planes →</a> </div> </div> </section> </homly-cta> <homly-footer><style data-homly-scope="">@scope {
 footer{padding:70px 0 40px;border-top:1px solid var(--ink)}
 .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px}
 .foot-grid h4{font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.16em;
@@ -570,35 +281,4 @@ footer{padding:70px 0 40px;border-top:1px solid var(--ink)}
 
 @media(max-width:900px){ .foot-grid{grid-template-columns:1fr 1fr} }
 
-}</style><footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <a href="#" class="logo"><img class="logo-icon" src="/icono_homly.png" alt="" aria-hidden="true" style="width:28px;height:28px">Homly</a>
-        <p>CRM inmobiliario inteligente. Conecta cada propiedad con el cliente correcto.</p>
-      </div>
-      <div><h4>Plataforma</h4><a href="#modulos">Módulos</a><a href="#matching">Matching IA</a><a href="#flujo">Cómo funciona</a></div>
-      <div><h4>Productos</h4><a href="https://app.homly.world">App para clientes</a><a href="#planes">Planes</a><a href="https://api.homly.world/api/health">API status</a></div>
-      <div><h4>Empresa</h4><a href="#">Sobre Homly</a><a href="/privacidad.html">Privacidad</a><a href="/terminos.html">Términos</a><a href="/contacto" data-router-link="">Contacto</a></div>
-    </div>
-    <div class="foot-bot">
-      <span>© 2026 Homly · <a href="https://softronic.dev" target="_blank" rel="noopener noreferrer">Softronic</a>. Todos los derechos reservados.</span>
-      <div class="foot-social">
-        <a href="https://github.com/softronicve/homly-framework" target="_blank" rel="noopener noreferrer" aria-label="homly-framework en GitHub" title="homly-framework">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.21 11.19.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 3-.4c1.02 0 2.05.13 3 .4 2.29-1.53 3.3-1.21 3.3-1.21.66 1.66.24 2.88.12 3.18.77.83 1.24 1.88 1.24 3.17 0 4.53-2.81 5.53-5.49 5.82.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .31.22.68.83.56C20.56 21.91 24 17.5 24 12.29 24 5.78 18.63.5 12 .5z"></path></svg>
-        </a>
-        <a href="https://github.com/softronicve/homly-landing" target="_blank" rel="noopener noreferrer" aria-label="homly-landing en GitHub" title="homly-landing">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.21 11.19.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 3-.4c1.02 0 2.05.13 3 .4 2.29-1.53 3.3-1.21 3.3-1.21.66 1.66.24 2.88.12 3.18.77.83 1.24 1.88 1.24 3.17 0 4.53-2.81 5.53-5.49 5.82.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .31.22.68.83.56C20.56 21.91 24 17.5 24 12.29 24 5.78 18.63.5 12 .5z"></path></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</footer>
-</homly-footer>
-</homly-home-page></div>
-<div id="hydration-spinner" aria-hidden="true"></div>
-<noscript><style>#app-root{opacity:1!important}#hydration-spinner{display:none}</style></noscript>
-
-<script type="module" src="/js/app.js?v=1.8.3-2"></script>
-</body>
-</html>
+}</style><footer> <div class="wrap"> <div class="foot-grid"> <div class="foot-brand"> <a href="#" class="logo"><img class="logo-icon" src="/icono_homly.png" alt="" aria-hidden="true" style="width:28px;height:28px">Homly</a> <p>CRM inmobiliario inteligente. Conecta cada propiedad con el cliente correcto.</p> </div> <div><h4>Plataforma</h4><a href="#modulos">Módulos</a><a href="#matching">Matching IA</a><a href="#flujo">Cómo funciona</a></div> <div><h4>Productos</h4><a href="https://app.homly.world">App para clientes</a><a href="#planes">Planes</a><a href="https://api.homly.world/api/health">API status</a></div> <div><h4>Empresa</h4><a href="#">Sobre Homly</a><a href="/privacidad.html">Privacidad</a><a href="/terminos.html">Términos</a><a href="/contacto" data-router-link="">Contacto</a></div> </div> <div class="foot-bot"> <span>© 2026 Homly · <a href="https://softronic.dev" target="_blank" rel="noopener noreferrer">Softronic</a>. Todos los derechos reservados.</span> <div class="foot-social"> <a href="https://github.com/softronicve/homly-framework" target="_blank" rel="noopener noreferrer" aria-label="homly-framework en GitHub" title="homly-framework"> <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.21 11.19.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 3-.4c1.02 0 2.05.13 3 .4 2.29-1.53 3.3-1.21 3.3-1.21.66 1.66.24 2.88.12 3.18.77.83 1.24 1.88 1.24 3.17 0 4.53-2.81 5.53-5.49 5.82.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .31.22.68.83.56C20.56 21.91 24 17.5 24 12.29 24 5.78 18.63.5 12 .5z"></path></svg> </a> <a href="https://github.com/softronicve/homly-landing" target="_blank" rel="noopener noreferrer" aria-label="homly-landing en GitHub" title="homly-landing"> <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.21 11.19.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 3-.4c1.02 0 2.05.13 3 .4 2.29-1.53 3.3-1.21 3.3-1.21.66 1.66.24 2.88.12 3.18.77.83 1.24 1.88 1.24 3.17 0 4.53-2.81 5.53-5.49 5.82.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .31.22.68.83.56C20.56 21.91 24 17.5 24 12.29 24 5.78 18.63.5 12 .5z"></path></svg> </a> </div> </div> </div> </footer> </homly-footer> </homly-home-page></div> <div id="hydration-spinner" aria-hidden="true"></div> <noscript><style>#app-root{opacity:1!important}#hydration-spinner{display:none}</style></noscript> <script type="module" src="/js/app.js?v=1.8.3-2"></script> </body> </html>

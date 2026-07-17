@@ -10,7 +10,7 @@ Web Components en vanilla JS, sin build.
 - El framework `homly.js` se carga desde jsDelivr (CDN), fijado por versión (`@v1.8.0`) mediante un import map en `index.html`; los componentes lo importan con el specifier `homly`.
 - `js/app.js` — arranca el router.
 - `js/components/sections/*` — cada sección con su `.js`, `.html` y `.css`
-  (hero, nav, marquee, modules, matching, workflow, pricing, cta, footer).
+  (hero, nav, modules, matching, workflow, pricing, cta, footer).
 
 Cada página se carga bajo demanda (code splitting por ruta vía dynamic import); las secciones de la home se importan al montar.
 
