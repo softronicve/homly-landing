@@ -5,7 +5,7 @@
       <p>Un plan para cada momento de tu negocio. Precios en dólares con conversión al BCV del día.</p>
       <div class="billing-toggle">
         <button data-action="setMonthly" data-bind-class="on:isMonthly">Mensual</button>
-        <button data-action="setAnnual" data-bind-class="on:isAnnual">Anual <span class="save-pill">−33%</span></button>
+        <button data-action="setAnnual" data-bind-class="on:isAnnual">Anual</button>
       </div>
     </div>
 
@@ -15,9 +15,9 @@
         <div class="plan-name">Free</div>
         <div class="plan-price free"><span class="amt">$0</span><span class="per">para siempre</span></div>
         <div class="plan-ves">Sin costo</div>
-        <div class="plan-desc">Para el agente independiente que empieza. Prueba el matching y el Kanban con tu primera propiedad.</div>
+        <div class="plan-desc">Para el agente independiente que empieza. Prueba el matching y el Kanban con tus primeras 5 propiedades.</div>
         <ul>
-          <li><b>1 propiedad activa</b></li>
+          <li><b>5 propiedades activas</b></li>
           <li>Matching inteligente completo</li>
           <li>Kanban de leads</li>
           <li>App móvil para tus clientes</li>
@@ -32,6 +32,7 @@
         <div class="plan-name">Pro</div>
         <div class="plan-price"><span class="amt" data-bind="proAmt"></span><span class="per" data-bind="proPer"></span></div>
         <div class="plan-ves" data-bind="proVes"></div>
+        <div class="plan-save" data-bind="proSave"></div>
         <div class="plan-desc">Agente independiente con cartera activa. Propiedades ilimitadas, contratos y reportes.</div>
         <ul>
           <li><b>Propiedades ilimitadas</b></li>
@@ -49,6 +50,7 @@
         <div class="plan-name">Agencia</div>
         <div class="plan-price"><span class="amt" data-bind="agenciaAmt"></span><span class="per" data-bind="agenciaPer"></span></div>
         <div class="plan-ves" data-bind="agenciaVes"></div>
+        <div class="plan-save" data-bind="agenciaSave"></div>
         <div class="plan-desc">Agencias con equipo. Mínimo 3 agentes. Branding propio, multi-usuario y panel admin completo.</div>
         <ul>
           <li><b>Desde 3 agentes</b></li>
@@ -67,7 +69,7 @@
     </div>
 
     <p class="plans-note">
-      Cobranza en USD, USDT, Pago Móvil, Zelle o Binance Pay. ¿Dudas sobre el plan o forma de pago?
+      Cobranza en USD, USDT, Pago Móvil o Binance Pay. ¿Dudas sobre el plan o forma de pago?
       <a href="https://wa.me/584145200715" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>.
     </p>
   </div>
@@ -85,7 +87,6 @@
         </div>
         <ul class="methods">
           <li>Pago Móvil (Banco R4)</li>
-          <li>Transferencia USD (Zelle)</li>
           <li>USDT (Binance Pay / red TRC20)</li>
           <li>Tarjeta internacional vía Zinli</li>
         </ul>
