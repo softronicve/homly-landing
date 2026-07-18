@@ -11,7 +11,7 @@ const LS_TTL_MS = 3600 * 1000;
 const PLANS = {
   free:    { name: 'Free',    usdM: 0,     usdA: 0,   perM: 'para siempre', perA: 'para siempre', ves: false },
   pro:     { name: 'Pro',     usdM: 24.99, usdA: 199, perM: 'por mes',      perA: 'por año',      ves: true },
-  agencia: { name: 'Agencia', usdM: 9.99,  usdA: 79,  perM: 'agente/mes',   perA: 'agente/año',   ves: true },
+  agencia: { name: 'Agencia', usdM: 9.99,  usdA: 99,  perM: 'agente/mes',   perA: 'agente/año',   ves: true },
 };
 
 const fmtUSD = (n) => '$' + n.toFixed(2).replace(/\.00$/, '');
@@ -34,6 +34,9 @@ class Pricing extends HomlyComponent {
         s.computed(key + 'Per', ['isAnnual'], (annual) => (annual ? p.perA : p.perM));
         s.computed(key + 'Ves', ['isAnnual', 'rate'], (annual, rate) =>
           p.ves ? '≈ ' + fmtVES((annual ? p.usdA : p.usdM) * rate) : '');
+        // Ahorro real del pago anual vs 12 meses (honesto, por plan). Vacío en mensual.
+        s.computed(key + 'Save', ['isAnnual'], (annual) =>
+          annual && p.usdM > 0 ? 'Ahorra ' + Math.round((1 - p.usdA / (p.usdM * 12)) * 100) + '%' : '');
       }
       s.computed('rateInfo', ['rate'], (rate) => '1 USD = ' + fmtVES(rate) + ' · BCV');
       return s;
