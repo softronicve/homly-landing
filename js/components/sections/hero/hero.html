@@ -4,15 +4,61 @@
       <h1>El CRM que<br>entiende a <em>quién</em><br>le vendes.</h1>
       <p class="hero-sub">Homly conecta cada propiedad con el cliente correcto: presupuesto, familia, ubicación y urgencia, calculado en segundos.</p>
       <div class="hero-cta">
-        <a href="https://admin.homly.world/#/registro?plan=pro" class="btn btn-fill">Comenzar gratis →</a>
+        <a href="https://admin.homly.world/#/registro?plan=pro" class="btn btn-fill">Empezar gratis 45 días →</a>
         <a href="#matching" class="btn btn-ghost">Ver el motor de matching</a>
       </div>
+      <p class="hero-note mono">Sin tarjeta · Cancelas cuando quieras</p>
     </div>
+
+    <!-- Demostración del motor: un cliente, tres propiedades, el match ganador.
+         Es contenido real y legible; sólo el trazo SVG es decorativo. -->
     <div class="hero-side">
-      <div class="stat-stack">
-        <div class="stat"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true" /><div class="stat-body"><div class="n">9</div><div class="l">módulos en una sola plataforma</div></div></div>
-        <div class="stat"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true" /><div class="stat-body"><div class="n">5</div><div class="l">factores que pondera el matching</div></div></div>
-        <div class="stat"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true" /><div class="stat-body"><div class="n">4</div><div class="l">roles RBAC: agencia, agente, cliente, admin</div></div></div>
+      <div class="match" role="group" aria-label="Ejemplo del motor de matching">
+        <article class="client">
+          <div class="client-top">
+            <span class="avatar" aria-hidden="true">MG</span>
+            <span>
+              <span class="client-name">María González</span>
+              <span class="client-role mono">Cliente · busca comprar</span>
+            </span>
+          </div>
+          <div class="crits">
+            <span class="crit">$45.000</span>
+            <span class="crit">Familia de 4</span>
+            <span class="crit">Santa Elena, Barquisimeto</span>
+            <span class="crit hot">Urgente</span>
+          </div>
+        </article>
+
+        <svg class="wire" viewBox="0 0 300 52" aria-hidden="true" focusable="false">
+          <path d="M150 0 C150 26, 60 22, 46 50" />
+          <circle cx="46" cy="50" r="4" />
+        </svg>
+
+        <div class="props">
+          <article class="prop win">
+            <div>
+              <h3 class="t">Casa en Santa Elena</h3>
+              <p class="s">Barquisimeto · 4 hab · 180 m² · $43.500</p>
+              <p class="why mono">Presupuesto + zona + familia</p>
+            </div>
+            <span class="score">92%</span>
+          </article>
+          <article class="prop lose">
+            <div>
+              <h3 class="t">Apartamento en Nueva Segovia</h3>
+              <p class="s">Barquisimeto · 2 hab · 78 m² · $39.000</p>
+            </div>
+            <span class="score">40%</span>
+          </article>
+          <article class="prop lose">
+            <div>
+              <h3 class="t">Quinta en La Lagunita</h3>
+              <p class="s">Caracas · 5 hab · 320 m² · $96.000</p>
+            </div>
+            <span class="score">18%</span>
+          </article>
+        </div>
       </div>
     </div>
   </div>

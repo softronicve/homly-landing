@@ -86,24 +86,103 @@ nav.scrolled{background:rgba(245,241,232,.86);backdrop-filter:blur(14px);border-
   .nav-toggle{display:block}
 }
 
-}</style> <nav data-bind-class="scrolled:scrolled"> <div class="nav-in"> <a href="/" data-router-link="" class="logo" aria-label="Homly inicio"> <img class="logo-full" src="/logo_homly.png" alt="Homly"> </a> <div class="nav-links" data-bind-class="open:menuOpen"> <a href="#modulos">Plataforma</a> <a href="#matching">Matching IA</a> <a href="#flujo">Cómo funciona</a> <a href="#planes">Planes</a> <a href="#planes" class="btn btn-fill">Comenzar gratis →</a> </div> <button class="nav-toggle" data-action="toggleMenu" aria-label="Menú"> <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg> </button> </div> </nav> </homly-nav> <homly-hero><style data-homly-scope="">@scope {
+}</style> <nav data-bind-class="scrolled:scrolled"> <div class="nav-in"> <a href="/" data-router-link="" class="logo" aria-label="Homly inicio"> <img class="logo-full" src="/logo_homly.png" alt="Homly"> </a> <div class="nav-links" data-bind-class="open:menuOpen"> <a href="#modulos">Plataforma</a> <a href="#matching">Matching IA</a> <a href="#flujo">Cómo funciona</a> <a href="#planes">Planes</a> <a href="https://admin.homly.world/#/registro?plan=pro" class="btn btn-fill">Empezar gratis 45 días →</a> </div> <button class="nav-toggle" data-action="toggleMenu" aria-label="Menú"> <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg> </button> </div> </nav> </homly-nav> <homly-hero><style data-homly-scope="">@scope {
 header{position:relative;padding:clamp(110px,13vh,160px) 0 80px;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
 h1{font-size:clamp(2rem,4.4vw,3.8rem);letter-spacing:-.035em}
 h1 em{font-style:italic;color:var(--clay);font-weight:300}
 .hero-sub{margin:22px 0 30px;font-size:clamp(1.02rem,1.4vw,1.2rem);color:var(--ink-soft);max-width:34ch}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
-.hero-side{display:flex;flex-direction:column;justify-content:flex-start;gap:22px}
-.stat-icon{width:30px;height:30px;flex:none;border-radius:50%}
-.stat-stack{border-top:1px solid var(--ink)}
-.stat{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
-.stat .n{font-family:"Nunito Sans",sans-serif;font-size:2.4rem;font-weight:500;line-height:1}
-.stat .l{margin-top:6px;font-size:.85rem;color:var(--ink-soft)}
+.hero-note{margin-top:16px;color:var(--ink-soft)}
+.hero-side{display:flex;flex-direction:column;justify-content:center}
+
+/* ── Motor de matching ─────────────────────────────────────────────
+   Un cliente arriba, tres propiedades abajo y un trazo que dibuja el
+   match ganador. Todo CSS + SVG: sin JS y sin dependencias. El loop
+   corre 6,5 s y queda congelado en su estado final con reduced-motion. */
+.match{display:flex;flex-direction:column}
+
+.client{border:1px solid rgba(43,65,78,.34);border-radius:3px;padding:14px 16px;
+  box-shadow:0 6px 20px -10px rgba(43,65,78,.4)}
+.client-top{display:flex;align-items:center;gap:11px;margin-bottom:11px}
+.avatar{width:34px;height:34px;border-radius:50%;flex:none;background:var(--pine);
+  color:var(--paper);display:grid;place-items:center;font-weight:700;font-size:.82rem}
+.client-name{display:block;font-weight:700;font-size:.95rem;line-height:1.2}
+.client-role{display:block;color:var(--ink-soft)}
+.crits{display:flex;flex-wrap:wrap;gap:6px}
+.crit{font-family:"Spline Sans Mono",monospace;font-size:.64rem;letter-spacing:.05em;
+  background:var(--paper-2);border:1px solid var(--line);padding:4px 8px;
+  border-radius:2px;color:var(--ink-soft)}
+.crit.hot{background:rgba(240,82,35,.1);border-color:rgba(240,82,35,.38);color:var(--clay-ink)}
+
+.wire{display:block;width:100%;height:52px}
+.wire path{fill:none;stroke:var(--clay);stroke-width:2;stroke-linecap:round;
+  stroke-dasharray:120;stroke-dashoffset:120;animation:hero-draw 6.5s ease-in-out infinite}
+.wire circle{fill:var(--clay);opacity:0;animation:hero-pip 6.5s ease-in-out infinite}
+@keyframes hero-draw{
+  0%,8%{stroke-dashoffset:120}
+  30%,88%{stroke-dashoffset:0}
+  97%,100%{stroke-dashoffset:120}
+}
+@keyframes hero-pip{
+  0%,26%{opacity:0}
+  34%,88%{opacity:1}
+  97%,100%{opacity:0}
+}
+
+.props{display:flex;flex-direction:column;gap:9px}
+.prop{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;
+  border:1px solid var(--line);border-radius:3px;padding:12px 14px}
+.prop .t{font-family:"Manrope",system-ui,sans-serif;font-weight:600;font-size:.9rem;
+  line-height:1.25;letter-spacing:0}
+.prop .s{font-size:.76rem;color:var(--ink-soft);margin-top:2px}
+.score{font-family:"Spline Sans Mono",monospace;font-size:.78rem;color:var(--ink-soft);
+  white-space:nowrap}
+
+.prop.win{animation:hero-win 6.5s ease-in-out infinite}
+.prop.lose{animation:hero-lose 6.5s ease-in-out infinite}
+.prop.lose+.prop.lose{animation-delay:.08s}
+.prop.win .score{padding:4px 9px;border-radius:2px;animation:hero-score 6.5s ease-in-out infinite}
+.why{margin-top:5px;color:var(--clay-ink);opacity:0;animation:hero-why 6.5s ease-in-out infinite}
+
+@keyframes hero-win{
+  0%,30%{transform:none;border-color:var(--line);box-shadow:0 0 0 rgba(240,82,35,0)}
+  44%,88%{transform:translateY(-3px) scale(1.022);border-color:var(--clay);
+    box-shadow:0 10px 26px -12px rgba(240,82,35,.75)}
+  97%,100%{transform:none;border-color:var(--line);box-shadow:0 0 0 rgba(240,82,35,0)}
+}
+@keyframes hero-lose{
+  0%,30%{opacity:1}
+  46%,88%{opacity:.42}
+  97%,100%{opacity:1}
+}
+@keyframes hero-score{
+  0%,32%{background:transparent;color:var(--ink-soft)}
+  46%,88%{background:var(--clay);color:var(--paper)}
+  97%,100%{background:transparent;color:var(--ink-soft)}
+}
+@keyframes hero-why{
+  0%,44%{opacity:0}
+  58%,88%{opacity:1}
+  97%,100%{opacity:0}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .wire path,.wire circle,.prop.win,.prop.lose,.prop.win .score,.why{animation:none}
+  .wire path{stroke-dashoffset:0}
+  .wire circle{opacity:1}
+  .prop.win{transform:translateY(-3px) scale(1.022);border-color:var(--clay);
+    box-shadow:0 10px 26px -12px rgba(240,82,35,.75)}
+  .prop.win .score{background:var(--clay);color:var(--paper)}
+  .prop.lose{opacity:.42}
+  .why{opacity:1}
+}
+
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:36px}
 }
 
-}</style><header> <div class="wrap hero-grid"> <div> <h1>El CRM que<br>entiende a <em>quién</em><br>le vendes.</h1> <p class="hero-sub">Homly conecta cada propiedad con el cliente correcto: presupuesto, familia, ubicación y urgencia, calculado en segundos.</p> <div class="hero-cta"> <a href="https://admin.homly.world/#/registro?plan=pro" class="btn btn-fill">Comenzar gratis →</a> <a href="#matching" class="btn btn-ghost">Ver el motor de matching</a> </div> </div> <div class="hero-side"> <div class="stat-stack"> <div class="stat"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true"><div class="stat-body"><div class="n">9</div><div class="l">módulos en una sola plataforma</div></div></div> <div class="stat"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true"><div class="stat-body"><div class="n">5</div><div class="l">factores que pondera el matching</div></div></div> <div class="stat"><img class="stat-icon" src="/icono_homly.png" alt="" aria-hidden="true"><div class="stat-body"><div class="n">4</div><div class="l">roles RBAC: agencia, agente, cliente, admin</div></div></div> </div> </div> </div> </header> </homly-hero> <div id="app-root"><homly-home-page><homly-modules><style data-homly-scope="">@scope {
+}</style><header> <div class="wrap hero-grid"> <div> <h1>El CRM que<br>entiende a <em>quién</em><br>le vendes.</h1> <p class="hero-sub">Homly conecta cada propiedad con el cliente correcto: presupuesto, familia, ubicación y urgencia, calculado en segundos.</p> <div class="hero-cta"> <a href="https://admin.homly.world/#/registro?plan=pro" class="btn btn-fill">Empezar gratis 45 días →</a> <a href="#matching" class="btn btn-ghost">Ver el motor de matching</a> </div> <p class="hero-note mono">Sin tarjeta · Cancelas cuando quieras</p> </div> <div class="hero-side"> <div class="match" role="group" aria-label="Ejemplo del motor de matching"> <article class="client"> <div class="client-top"> <span class="avatar" aria-hidden="true">MG</span> <span> <span class="client-name">María González</span> <span class="client-role mono">Cliente · busca comprar</span> </span> </div> <div class="crits"> <span class="crit">$45.000</span> <span class="crit">Familia de 4</span> <span class="crit">Santa Elena, Barquisimeto</span> <span class="crit hot">Urgente</span> </div> </article> <svg class="wire" viewBox="0 0 300 52" aria-hidden="true" focusable="false"> <path d="M150 0 C150 26, 60 22, 46 50"></path> <circle cx="46" cy="50" r="4"></circle> </svg> <div class="props"> <article class="prop win"> <div> <h3 class="t">Casa en Santa Elena</h3> <p class="s">Barquisimeto · 4 hab · 180 m² · $43.500</p> <p class="why mono">Presupuesto + zona + familia</p> </div> <span class="score">92%</span> </article> <article class="prop lose"> <div> <h3 class="t">Apartamento en Nueva Segovia</h3> <p class="s">Barquisimeto · 2 hab · 78 m² · $39.000</p> </div> <span class="score">40%</span> </article> <article class="prop lose"> <div> <h3 class="t">Quinta en La Lagunita</h3> <p class="s">Caracas · 5 hab · 320 m² · $96.000</p> </div> <span class="score">18%</span> </article> </div> </div> </div> </div> </header> </homly-hero> <div id="app-root"><homly-home-page><homly-modules><style data-homly-scope="">@scope {
 .mods{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
 .mod{border-bottom:1px solid var(--line);border-right:1px solid var(--line);
   padding:42px 36px 48px;position:relative;transition:.3s ease;background:transparent}
@@ -252,7 +331,7 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
 .modal .close:hover{background:var(--paper-2)}
 .modal-wrap{position:relative}
 
-}</style><section id="planes"> <div class="wrap"> <div class="plans-head reveal in"> <h2>Empieza gratis,<br>crece a tu ritmo.</h2> <p>Un plan para cada momento de tu negocio. Precios en dólares con conversión al BCV del día.</p> <div class="billing-toggle"> <button data-action="setMonthly" data-bind-class="on:isMonthly" class="on">Mensual</button> <button data-action="setAnnual" data-bind-class="on:isAnnual">Anual</button> </div> </div> <div class="plans-grid"> <div class="plan ghost"> <div class="plan-name">Free</div> <div class="plan-price free"><span class="amt">$0</span><span class="per">para siempre</span></div> <div class="plan-ves">Sin costo</div> <div class="plan-desc">Para el agente independiente que empieza. Prueba el matching y el Kanban con tus primeras 5 propiedades.</div> <ul> <li><b>5 propiedades activas</b></li> <li>Matching inteligente completo</li> <li>Kanban de leads</li> <li>App móvil para tus clientes</li> <li class="minus">Sin contratos digitales</li> <li class="minus">Sin analítica avanzada</li> </ul> <button class="plan-cta" data-action="openPlan" data-plan="free">Comenzar gratis</button> </div> <div class="plan featured"> <div class="plan-name">Pro</div> <div class="plan-price"><span class="amt" data-bind="proAmt">$24.99</span><span class="per" data-bind="proPer">por mes</span></div> <div class="plan-ves" data-bind="proVes">≈ Bs 2.499</div> <div class="plan-save" data-bind="proSave"></div> <div class="plan-desc">Agente independiente con cartera activa. Propiedades ilimitadas, contratos y reportes.</div> <ul> <li><b>Propiedades ilimitadas</b></li> <li>Matching inteligente + IA</li> <li>Kanban + visitas + agenda</li> <li>Contratos digitales + firma</li> <li>Analítica de conversión</li> <li>Soporte prioritario por WhatsApp</li> </ul> <button class="plan-cta" data-action="openPlan" data-plan="pro">Comenzar Pro</button> </div> <div class="plan ghost"> <div class="plan-name">Agencia</div> <div class="plan-price"><span class="amt" data-bind="agenciaAmt">$9.99</span><span class="per" data-bind="agenciaPer">agente/mes</span></div> <div class="plan-ves" data-bind="agenciaVes">≈ Bs 999</div> <div class="plan-save" data-bind="agenciaSave"></div> <div class="plan-desc">Agencias con equipo. Mínimo 3 agentes. Branding propio, multi-usuario y panel admin completo.</div> <ul> <li><b>Desde 3 agentes</b></li> <li>Todo lo de Pro × agente</li> <li>Logo y branding de la agencia</li> <li>Panel admin con roles RBAC</li> <li>Tablero Kanban compartido</li> <li>Onboarding y capacitación</li> </ul> <button class="plan-cta" data-action="openPlan" data-plan="agencia">Comenzar Agencia</button> </div> </div> <div class="rate-indicator"> <span class="live-dot"></span><span data-bind="rateInfo">1 USD = Bs 100 · BCV</span> </div> <p class="plans-note"> Cobranza en USD, USDT, Pago Móvil o Binance Pay. ¿Dudas sobre el plan o forma de pago? <a href="https://wa.me/584145200715" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>. </p> </div> <div class="modal-ov" data-bind-class="open:modalOpen" role="dialog" aria-modal="true"> <div class="modal-wrap"> <div class="modal"> <button class="close" data-action="closeModal" aria-label="Cerrar">×</button> <h3>Activar plan <span data-bind="modalPlan"></span></h3> <p class="modal-sub">Te conectamos por WhatsApp para activar tu cuenta y coordinar el pago en menos de 24 horas.</p> <div class="modal-summary"> <div class="l" data-bind="modalLabel"> </div> <div class="r" data-bind="modalPrice"> </div> </div> <ul class="methods"> <li>Pago Móvil (Banco R4)</li> <li>USDT (Binance Pay / red TRC20)</li> <li>Tarjeta internacional vía Zinli</li> </ul> <a class="whatsapp-cta" data-bind-attr="href:waLink" target="_blank" rel="noopener"> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.9 2.9 4.6 4 1.1.4 1.9.7 2.5.9.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.3-.7.3-1.2.2-1.4-.1-.1-.2-.2-.5-.3zM12 2.2C6.6 2.2 2.2 6.6 2.2 12c0 1.8.5 3.6 1.4 5.1l-1.5 5.5 5.6-1.5c1.4.8 3.1 1.2 4.7 1.2 5.4 0 9.8-4.4 9.8-9.8s-4.3-9.3-10.2-9.3zm5.8 14c-.2.7-1.3 1.4-1.9 1.4-.5 0-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.5-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.4-1.1-2.7 0-1.3.7-1.9.9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4-.1.6.4.2.6.7 2 .8 2.1.1.1.1.3 0 .5-.1.2-.1.3-.2.5-.1.2-.2.3-.3.5-.1.1-.2.3-.1.5.1.3.6 1.2 1.5 1.9 1.1.9 2 1.3 2.3 1.4.3.1.4.1.6-.1.2-.2.6-.8.8-1 .2-.3.4-.2.6-.1.3.1 1.6.8 1.9.9.3.1.5.2.5.3.1.1.1.7-.1 1.4z"></path></svg> Continuar por WhatsApp </a> </div> </div> </div> </section> </homly-pricing> <homly-cta><style data-homly-scope="">@scope {
+}</style><section id="planes"> <div class="wrap"> <div class="plans-head reveal in"> <h2>Empieza gratis,<br>crece a tu ritmo.</h2> <p>Un plan para cada momento de tu negocio. Precios en dólares con conversión al BCV del día.</p> <div class="billing-toggle"> <button data-action="setMonthly" data-bind-class="on:isMonthly" class="on">Mensual</button> <button data-action="setAnnual" data-bind-class="on:isAnnual">Anual</button> </div> </div> <div class="plans-grid"> <div class="plan ghost"> <div class="plan-name">Free</div> <div class="plan-price free"><span class="amt">$0</span><span class="per">para siempre</span></div> <div class="plan-ves">Sin costo</div> <div class="plan-desc">Para el agente independiente que empieza. Prueba el matching y el Kanban con tus primeras 5 propiedades.</div> <ul> <li><b>5 propiedades activas</b></li> <li>Matching inteligente completo</li> <li>Kanban de leads</li> <li>App móvil para tus clientes</li> <li class="minus">Sin contratos digitales</li> <li class="minus">Sin analítica avanzada</li> </ul> <button class="plan-cta" data-action="openPlan" data-plan="free">Comenzar gratis</button> </div> <div class="plan featured"> <div class="plan-name">Pro</div> <div class="plan-price"><span class="amt" data-bind="proAmt">$24.99</span><span class="per" data-bind="proPer">por mes</span></div> <div class="plan-ves" data-bind="proVes">≈ Bs 2.499</div> <div class="plan-save" data-bind="proSave"></div> <div class="plan-desc">Agente independiente con cartera activa. Propiedades ilimitadas, contratos y reportes.</div> <ul> <li><b>Propiedades ilimitadas</b></li> <li>Matching inteligente + IA</li> <li>Kanban + visitas + agenda</li> <li>Contratos digitales + firma</li> <li>Analítica de conversión</li> <li>Soporte prioritario por WhatsApp</li> </ul> <a href="https://admin.homly.world/#/registro?plan=pro" class="plan-cta">Comenzar Pro</a> </div> <div class="plan ghost"> <div class="plan-name">Agencia</div> <div class="plan-price"><span class="amt" data-bind="agenciaAmt">$9.99</span><span class="per" data-bind="agenciaPer">agente/mes</span></div> <div class="plan-ves" data-bind="agenciaVes">≈ Bs 999</div> <div class="plan-save" data-bind="agenciaSave"></div> <div class="plan-desc">Agencias con equipo. Mínimo 3 agentes. Branding propio, multi-usuario y panel admin completo.</div> <ul> <li><b>Desde 3 agentes</b></li> <li>Todo lo de Pro × agente</li> <li>Logo y branding de la agencia</li> <li>Panel admin con roles RBAC</li> <li>Tablero Kanban compartido</li> <li>Onboarding y capacitación</li> </ul> <a href="https://admin.homly.world/#/registro?plan=agencia" class="plan-cta">Comenzar Agencia</a> </div> </div> <div class="rate-indicator"> <span class="live-dot"></span><span data-bind="rateInfo">1 USD = Bs 100 · BCV</span> </div> <p class="plans-note"> Cobranza en USD, USDT, Pago Móvil o Binance Pay. ¿Dudas sobre el plan o forma de pago? <a href="https://wa.me/584145200715" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>. </p> </div> <div class="modal-ov" data-bind-class="open:modalOpen" role="dialog" aria-modal="true"> <div class="modal-wrap"> <div class="modal"> <button class="close" data-action="closeModal" aria-label="Cerrar">×</button> <h3>Activar plan <span data-bind="modalPlan"></span></h3> <p class="modal-sub">Te conectamos por WhatsApp para activar tu cuenta y coordinar el pago en menos de 24 horas.</p> <div class="modal-summary"> <div class="l" data-bind="modalLabel"> </div> <div class="r" data-bind="modalPrice"> </div> </div> <ul class="methods"> <li>Pago Móvil (Banco R4)</li> <li>USDT (Binance Pay / red TRC20)</li> <li>Tarjeta internacional vía Zinli</li> </ul> <a class="whatsapp-cta" data-bind-attr="href:waLink" target="_blank" rel="noopener"> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.9 2.9 4.6 4 1.1.4 1.9.7 2.5.9.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.3-.7.3-1.2.2-1.4-.1-.1-.2-.2-.5-.3zM12 2.2C6.6 2.2 2.2 6.6 2.2 12c0 1.8.5 3.6 1.4 5.1l-1.5 5.5 5.6-1.5c1.4.8 3.1 1.2 4.7 1.2 5.4 0 9.8-4.4 9.8-9.8s-4.3-9.3-10.2-9.3zm5.8 14c-.2.7-1.3 1.4-1.9 1.4-.5 0-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.5-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.4-1.1-2.7 0-1.3.7-1.9.9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4-.1.6.4.2.6.7 2 .8 2.1.1.1.1.3 0 .5-.1.2-.1.3-.2.5-.1.2-.2.3-.3.5-.1.1-.2.3-.1.5.1.3.6 1.2 1.5 1.9 1.1.9 2 1.3 2.3 1.4.3.1.4.1.6-.1.2-.2.6-.8.8-1 .2-.3.4-.2.6-.1.3.1 1.6.8 1.9.9.3.1.5.2.5.3.1.1.1.7-.1 1.4z"></path></svg> Continuar por WhatsApp </a> </div> </div> </div> </section> </homly-pricing> <homly-cta><style data-homly-scope="">@scope {
 .cta{background:var(--ink);color:var(--paper);text-align:center;border-radius:4px;
   padding:clamp(60px,10vw,110px) 30px;position:relative;overflow:hidden}
 .cta::after{content:"";position:absolute;inset:0;
