@@ -64,12 +64,12 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
 }
 @keyframes hero-lose{
   0%,30%{opacity:1}
-  46%,88%{opacity:.42}
+  46%,88%{opacity:.75}
   97%,100%{opacity:1}
 }
 @keyframes hero-score{
   0%,32%{background:transparent;color:var(--ink-soft)}
-  46%,88%{background:var(--clay);color:var(--paper)}
+  46%,88%{background:var(--clay-ink);color:var(--paper)}
   97%,100%{background:transparent;color:var(--ink-soft)}
 }
 @keyframes hero-why{
@@ -84,8 +84,8 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
   .wire circle{opacity:1}
   .prop.win{transform:translateY(-3px) scale(1.022);border-color:var(--clay);
     box-shadow:0 10px 26px -12px rgba(240,82,35,.75)}
-  .prop.win .score{background:var(--clay);color:var(--paper)}
-  .prop.lose{opacity:.42}
+  .prop.win .score{background:var(--clay-ink);color:var(--paper)}
+  .prop.lose{opacity:.75}
   .why{opacity:1}
 }
 

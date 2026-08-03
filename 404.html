@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Página no encontrada · Homly</title>
+<meta name="description" content="La página que buscás no existe o cambió de dirección.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preload" href="/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/nunito-sans.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  /* Fuentes self-hosteadas: los mismos .woff2 variables (subset latin) que servía
+     Google, sin los dos orígenes de terceros ni el CSS render-blocking. */
+  @font-face{font-family:"Manrope";src:url(/fonts/manrope.woff2) format("woff2");
+    font-weight:400 700;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"Nunito Sans";src:url(/fonts/nunito-sans.woff2) format("woff2");
+    font-weight:400 900;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"Spline Sans Mono";src:url(/fonts/spline-sans-mono.woff2) format("woff2");
+    font-weight:400 500;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  :root{--paper:#FFFFFF;--ink:#231F20;--ink-soft:#434345;--clay:#F05223;--clay-ink:#B23A0B;--line:rgba(35,31,32,.14)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;
+    line-height:1.6;min-height:100vh;display:flex;align-items:center;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:640px;margin:0 auto;padding:60px 24px}
+  .code{font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:clamp(4rem,14vw,7rem);
+    line-height:1;letter-spacing:-.04em;color:var(--clay)}
+  h1{font-family:"Nunito Sans",sans-serif;font-weight:400;font-size:clamp(1.6rem,4vw,2.3rem);
+    letter-spacing:-.02em;line-height:1.1;margin:14px 0 14px}
+  p{color:var(--ink-soft);margin-bottom:30px}
+  .links{display:flex;flex-wrap:wrap;gap:12px}
+  a.btn{display:inline-flex;align-items:center;padding:13px 24px;font-size:.9rem;font-weight:500;
+    border-radius:2px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;transition:.25s ease}
+  a.btn.fill{background:var(--ink);color:var(--paper)}
+  a.btn.fill:hover{background:var(--clay-ink);border-color:var(--clay-ink)}
+  a.btn:hover{background:var(--ink);color:var(--paper)}
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:40px;
+    font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:1.2rem;color:var(--ink);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="/"><img src="/favicon.svg" alt="" width="30" height="30">Homly</a>
+  <div class="code">404</div>
+  <h1>Esta página no existe.</h1>
+  <p>El enlace puede estar roto o la dirección cambió. Desde el inicio llegás a todo: módulos, matching, planes y contacto.</p>
+  <div class="links">
+    <a class="btn fill" href="/">Volver al inicio</a>
+    <a class="btn" href="/contacto">Contacto</a>
+    <a class="btn" href="/#planes">Ver planes</a>
+  </div>
+</div>
+</body>
+</html>
