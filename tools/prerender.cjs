@@ -25,7 +25,7 @@ const ROUTES = [
     out: 'contacto.html',
     ready: '#app-root homly-footer .foot-grid',
     title: 'Contacto · Homly — hablemos de tu inmobiliaria',
-    description: 'Escribinos y te respondemos en menos de 24 horas. Consultas sobre planes, migración de tu cartera o demo del CRM inmobiliario Homly.',
+    description: 'Escríbenos y te respondemos en menos de 24 horas. Consultas sobre planes, migración de tu cartera o demo del CRM inmobiliario Homly.',
     canonical: 'https://homly.world/contacto',
     ogTitle: 'Contacto · Homly',
     ogDescription: 'Consultas sobre planes, migración de cartera o demo del CRM inmobiliario Homly. Respondemos en menos de 24 horas.',
