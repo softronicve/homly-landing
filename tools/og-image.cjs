@@ -10,7 +10,7 @@ const ROOT = path.resolve(__dirname, '..');
 const OUT = path.join(ROOT, 'og-image.png');
 const CHROME = process.env.CHROME || '/usr/bin/google-chrome';
 
-const logo = fs.readFileSync(path.join(ROOT, 'logo_homly.png')).toString('base64');
+const logo = fs.readFileSync(path.join(ROOT, 'logo-homly-600.png')).toString('base64');
 
 const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Nunito+Sans:wght@400;700&family=Spline+Sans+Mono:wght@500&display=swap" rel="stylesheet">
