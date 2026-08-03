@@ -151,9 +151,13 @@
      El prerender los hornea en dist/index.html para el first-paint; este es el modo normal. -->
 <homly-nav></homly-nav>
 
+<!-- El <main> envuelve hero + app-root (landmark único que pedía Lighthouse). Va por
+     fuera de los dos tags para no romper los reemplazos del prerender. -->
+<main>
 <homly-hero></homly-hero>
 
 <div id="app-root"></div>
+</main>
 <div id="hydration-spinner" aria-hidden="true"></div>
 <noscript><style>#app-root{opacity:1!important}#hydration-spinner{display:none}</style></noscript>
 

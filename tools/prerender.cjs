@@ -23,7 +23,7 @@ const ROUTES = [
   {
     path: '/contacto',
     out: 'contacto.html',
-    ready: '#app-root .contact-grid',
+    ready: '#app-root homly-footer .foot-grid',
     title: 'Contacto · Homly — hablemos de tu inmobiliaria',
     description: 'Escribinos y te respondemos en menos de 24 horas. Consultas sobre planes, migración de tu cartera o demo del CRM inmobiliario Homly.',
     canonical: 'https://homly.world/contacto',

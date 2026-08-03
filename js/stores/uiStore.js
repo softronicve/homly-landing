@@ -6,7 +6,9 @@ export const uiStore = Homly.createStore({
   modalPlan: '',
   modalLabel: ' ',
   modalPrice: ' ',
-  waLink: '',
+  // Arranca con el link genérico, no vacío: data-bind-attr hace removeAttribute con
+  // valores falsy, y un <a> sin href deja de ser rastreable (lo marcaba Lighthouse).
+  waLink: 'https://wa.me/584145200715',
 });
 
 // Abre el modal de checkout con los datos del plan elegido.
