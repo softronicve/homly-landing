@@ -8,10 +8,26 @@ const RATE_API = 'https://api.homly.world/api/v1/exchange-rate';
 const LS_KEY = 'homly_usd_ves_bcv';
 const LS_TTL_MS = 3600 * 1000;
 
+// Espeja SubscriptionPlan::PERIODS/prices() del API: más meses, más ahorro, sin permanencia.
+const PERIODS = {
+  monthly:    { months: 1,  label: 'mensual',    flag: 'isMonthly' },
+  quarterly:  { months: 3,  label: 'trimestral', flag: 'isQuarterly' },
+  semiannual: { months: 6,  label: 'semestral',  flag: 'isSemiannual' },
+  annual:     { months: 12, label: 'anual',      flag: 'isAnnual' },
+};
+const FOREVER = { monthly: 'para siempre', quarterly: 'para siempre', semiannual: 'para siempre', annual: 'para siempre' };
 const PLANS = {
-  free:    { name: 'Free',    usdM: 0,     usdA: 0,   perM: 'para siempre', perA: 'para siempre', ves: false },
-  pro:     { name: 'Pro',     usdM: 24.99, usdA: 199, perM: 'por mes',      perA: 'por año',      ves: true },
-  agencia: { name: 'Agencia', usdM: 9.99,  usdA: 99,  perM: 'agente/mes',   perA: 'agente/año',   ves: true },
+  free: { name: 'Free', ves: false, usd: { monthly: 0, quarterly: 0, semiannual: 0, annual: 0 }, per: FOREVER },
+  pro: {
+    name: 'Pro', ves: true,
+    usd: { monthly: 24.99, quarterly: 69.99, semiannual: 129.99, annual: 199 },
+    per: { monthly: 'por mes', quarterly: 'por trimestre', semiannual: 'por semestre', annual: 'por año' },
+  },
+  agencia: {
+    name: 'Agencia', ves: true,
+    usd: { monthly: 9.99, quarterly: 27.99, semiannual: 54.99, annual: 99 },
+    per: { monthly: 'agente/mes', quarterly: 'agente/trimestre', semiannual: 'agente/semestre', annual: 'agente/año' },
+  },
 };
 
 const fmtUSD = (n) => '$' + n.toFixed(2).replace(/\.00$/, '');
@@ -27,16 +43,17 @@ class Pricing extends HomlyComponent {
   get store() {
     return (this._store ??= (() => {
       // Solo el estado fuente; los precios mostrados se derivan con computed.
-      const s = Homly.createStore({ isMonthly: true, isAnnual: false, rate: FALLBACK_RATE });
+      const s = Homly.createStore({ period: 'monthly', isMonthly: true, isQuarterly: false, isSemiannual: false, isAnnual: false, rate: FALLBACK_RATE });
       for (const key of ['pro', 'agencia']) {
         const p = PLANS[key];
-        s.computed(key + 'Amt', ['isAnnual'], (annual) => fmtUSD(annual ? p.usdA : p.usdM));
-        s.computed(key + 'Per', ['isAnnual'], (annual) => (annual ? p.perA : p.perM));
-        s.computed(key + 'Ves', ['isAnnual', 'rate'], (annual, rate) =>
-          p.ves ? '≈ ' + fmtVES((annual ? p.usdA : p.usdM) * rate) : '');
-        // Ahorro real del pago anual vs 12 meses (honesto, por plan). Vacío en mensual.
-        s.computed(key + 'Save', ['isAnnual'], (annual) =>
-          annual && p.usdM > 0 ? 'Ahorra ' + Math.round((1 - p.usdA / (p.usdM * 12)) * 100) + '%' : '');
+        s.computed(key + 'Amt', ['period'], (period) => fmtUSD(p.usd[period]));
+        s.computed(key + 'Per', ['period'], (period) => p.per[period]);
+        s.computed(key + 'Ves', ['period', 'rate'], (period, rate) => (p.ves ? '≈ ' + fmtVES(p.usd[period] * rate) : ''));
+        // Ahorro real vs pagar mes a mes (honesto, por plan). Vacío en mensual.
+        s.computed(key + 'Save', ['period'], (period) => {
+          const pct = Math.round((1 - p.usd[period] / (p.usd.monthly * PERIODS[period].months)) * 100);
+          return pct > 0 ? 'Ahorra ' + pct + '%' : '';
+        });
       }
       s.computed('rateInfo', ['rate'], (rate) => '1 USD = ' + fmtVES(rate) + ' · BCV');
       return s;
@@ -46,8 +63,7 @@ class Pricing extends HomlyComponent {
   get actions() {
     return {
       // Solo cambia el estado fuente; los precios se recalculan solos (computed).
-      setMonthly: () => { this.store.state.isMonthly = true; this.store.state.isAnnual = false; },
-      setAnnual: () => { this.store.state.isAnnual = true; this.store.state.isMonthly = false; },
+      setPeriod: (target) => this._setPeriod(target.dataset.period),
       openPlan: (target) => this._openPlan(target.dataset.plan),
       closeModal: () => { uiStore.state.modalOpen = false; },
     };
@@ -61,16 +77,22 @@ class Pricing extends HomlyComponent {
     this._loadRate();
   }
 
+  _setPeriod(period) {
+    if (!PERIODS[period]) return;
+    const st = this.store.state;
+    st.period = period;
+    for (const [k, def] of Object.entries(PERIODS)) st[def.flag] = k === period;
+  }
+
   _openPlan(key) {
     const p = PLANS[key];
     if (!p) return;
     const s = this.store.state;
-    const annual = s.isAnnual;
-    const usd = annual ? p.usdA : p.usdM;
-    const per = annual ? p.perA : p.perM;
+    const usd = p.usd[s.period];
+    const per = p.per[s.period];
     const amt = fmtUSD(usd);
     const vesStr = p.ves ? '  ·  ≈ ' + fmtVES(usd * s.rate) : '';
-    const msg = encodeURIComponent(`Hola, quiero activar el plan ${p.name} (${annual ? 'anual' : 'mensual'}) de Homly. ${amt} ${per}.`);
+    const msg = encodeURIComponent(`Hola, quiero activar el plan ${p.name} (${PERIODS[s.period].label}) de Homly. ${amt} ${per}.`);
     openCheckoutModal({
       plan: p.name,
       label: 'Plan ' + p.name + ' · ' + per,

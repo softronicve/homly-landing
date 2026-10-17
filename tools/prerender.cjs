@@ -13,7 +13,7 @@ const ROOT = path.resolve(__dirname, '..');
 const INDEX = path.join(ROOT, 'index.html');         // fuente (read-only)
 const DIST_DIR = path.join(ROOT, 'dist');
 const CHROME = process.env.CHROME || '/usr/bin/google-chrome';
-const PORT = 8099;
+const PORT = Number(process.env.PORT) || 8099; // PORT=… si 8099 está ocupado
 
 // Una entrada por ruta del router (ver js/app.js). `ready` es el selector que marca que la
 // ruta terminó de renderizar. Las rutas que no son la home traen su propio head: heredan la
