@@ -2,10 +2,12 @@
   <div class="wrap">
     <div class="plans-head reveal">
       <h2>Empieza gratis,<br>crece a tu ritmo.</h2>
-      <p>Un plan para cada momento de tu negocio. Precios en dólares con conversión al BCV del día.</p>
-      <div class="billing-toggle">
-        <button data-action="setMonthly" data-bind-class="on:isMonthly">Mensual</button>
-        <button data-action="setAnnual" data-bind-class="on:isAnnual">Anual</button>
+      <p>Prueba Pro o Agencia <b>60 días gratis</b>. Después pagas mes a mes, por trimestre, semestre o año: sin permanencia mínima. Precios en dólares con conversión al BCV del día.</p>
+      <div class="billing-toggle" role="group" aria-label="Período de pago">
+        <button data-action="setPeriod" data-period="monthly" data-bind-class="on:isMonthly">Mensual</button>
+        <button data-action="setPeriod" data-period="quarterly" data-bind-class="on:isQuarterly">Trimestral</button>
+        <button data-action="setPeriod" data-period="semiannual" data-bind-class="on:isSemiannual">Semestral</button>
+        <button data-action="setPeriod" data-period="annual" data-bind-class="on:isAnnual">Anual</button>
       </div>
     </div>
 
