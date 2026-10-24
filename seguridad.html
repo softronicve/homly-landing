@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verificación y firma electrónica · Homly</title>
+<meta name="description" content="Cómo Homly verifica identidades con Didit y protege los contratos: huella SHA-256, firma con código y registro de auditoría.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://homly.world/seguridad.html">
+<meta property="og:site_name" content="Homly">
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Verificación y firma electrónica · Homly">
+<meta property="og:description" content="Cómo Homly verifica identidades con Didit y protege los contratos: huella SHA-256, firma con código y registro de auditoría.">
+<meta property="og:url" content="https://homly.world/seguridad.html">
+<meta property="og:image" content="https://homly.world/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://homly.world/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preload" href="/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/nunito-sans.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  /* Fuentes self-hosteadas: los mismos .woff2 variables (subset latin) que servía
+     Google, sin los dos orígenes de terceros ni el CSS render-blocking. */
+  @font-face{font-family:"Manrope";src:url(/fonts/manrope.woff2) format("woff2");
+    font-weight:400 700;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"Nunito Sans";src:url(/fonts/nunito-sans.woff2) format("woff2");
+    font-weight:400 900;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"Spline Sans Mono";src:url(/fonts/spline-sans-mono.woff2) format("woff2");
+    font-weight:400 500;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  :root{--paper:#FAFAFA;--paper-2:#F0F0F1;--ink:#231F20;--ink-soft:#434345;--clay:#F05223;--clay-ink:#B23A0B;--line:rgba(35,31,32,.14)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--clay-ink)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  header{border-bottom:1px solid var(--line);padding:22px 0}
+  header .wrap{display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:1.25rem;color:var(--ink);text-decoration:none}
+  .logo img{width:30px;height:30px;border-radius:50%}
+  header a.home{font-size:.92rem;color:var(--ink-soft);text-decoration:none}
+  main{padding:clamp(40px,7vw,72px) 0}
+  h1{font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:clamp(2rem,5vw,2.7rem);letter-spacing:-.02em;margin-bottom:8px}
+  .updated{color:var(--ink-soft);font-size:.92rem;margin-bottom:24px}
+  .lead{color:var(--ink-soft);margin-bottom:8px}
+  h2{font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:1.2rem;margin:32px 0 10px}
+  p{margin-bottom:13px}
+  ul{margin:0 0 13px 22px}
+  li{margin-bottom:7px}
+  strong{font-weight:600}
+  .enc{background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--clay);border-radius:12px;padding:16px 20px;margin:10px 0 4px}
+  footer{border-top:1px solid var(--line);padding:30px 0;color:var(--ink-soft);font-size:.85rem;margin-top:48px}
+  footer a{color:var(--ink-soft)}
+  code{font-family:"Spline Sans Mono",monospace;font-size:.9em;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="30" height="30">Homly</a>
+    <a class="home" href="/">← Volver al inicio</a>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h1>Verificación y firma electrónica</h1>
+    <p class="updated">Última actualización: 24 de octubre de 2026</p>
+    <p class="lead">Cómo verifica Homly la identidad de asesores, agencias y clientes, y cómo protege los contratos que se firman desde la plataforma.</p>
+
+    <h2>1. Verificación de identidad con Didit</h2>
+    <p>Homly verifica identidades con la tecnología de <a href="https://didit.me" target="_blank" rel="noopener">Didit</a> (didit.me), una plataforma especializada en verificación de identidad. Didit hace tres controles:</p>
+    <ul>
+      <li><strong>Documento de identidad:</strong> revisa que la cédula o el pasaporte sea auténtico y lee sus datos.</li>
+      <li><strong>Prueba de vida:</strong> una selfie en vivo, que descarta fotos, videos o máscaras.</li>
+      <li><strong>Comparación facial:</strong> la cara de la selfie tiene que coincidir con la del documento.</li>
+    </ul>
+    <p>Esa verificación se usa en tres casos:</p>
+    <ul>
+      <li><strong>Asesores:</strong> al aprobarse, el asesor muestra la insignia <em>Asesor verificado</em> en <a href="https://myhomly.com/verificacion">myhomly.com</a> y en el sitio de su agencia.</li>
+      <li><strong>Agencias (KYB):</strong> Didit consulta el registro mercantil de la empresa y confirma que quien la representa figura en él.</li>
+      <li><strong>Clientes de la agencia:</strong> cada agencia conecta su propia cuenta de Didit en Integraciones. Además del KYC, puede pedir la revisión de listas (PEP y sanciones) y el origen de los fondos, como pide la debida diligencia.</li>
+    </ul>
+    <div class="enc">Homly guarda solo el resultado, el nombre y el número de documento. Las fotos y la biometría se quedan en Didit; el informe se consulta bajo demanda.</div>
+
+    <h2>2. Cómo se protege un contrato</h2>
+    <ul>
+      <li><strong>Identidad de cada firmante.</strong> Homly recomienda verificarla con Didit, pero no la exige. La agencia también puede declarar que la verificó en persona. El contrato dice la verdad de cada firmante: nunca llama "biométrica" a una verificación manual.</li>
+      <li><strong>Texto congelado.</strong> Antes de firmar, el contrato se convierte en PDF y queda bloqueado en la base de datos, no solo en la aplicación. Para corregirlo hay que anularlo y crear uno nuevo, y los dos quedan en el historial.</li>
+      <li><strong>Huella digital SHA-256.</strong> Del PDF se calcula una huella SHA-256 (estándar NIST FIPS 180-4), un código de 64 caracteres. Si cambia una sola letra, la huella es otra. La huella se imprime en el anexo de firma.</li>
+      <li><strong>Firma electrónica con código.</strong> Cada firmante recibe en su correo un enlace y un código de un solo uso. Firma desde el teléfono o la computadora, sin crear cuenta.</li>
+      <li><strong>Registro de auditoría.</strong> Cada paso queda registrado con actor, fecha, hora e IP: creación, congelado, verificaciones, firmas y anulaciones. El registro solo admite entradas nuevas; no se puede editar ni borrar.</li>
+    </ul>
+
+    <h2>3. Cómo comprobar un contrato</h2>
+    <p>Cualquiera de las partes puede comprobar que su PDF no cambió. Basta calcular la huella y compararla con la impresa en el anexo:</p>
+    <ul>
+      <li><strong>Windows:</strong> <code>certutil -hashfile contrato.pdf SHA256</code></li>
+      <li><strong>Mac o Linux:</strong> <code>shasum -a 256 contrato.pdf</code></li>
+    </ul>
+    <p>Si coinciden, el archivo es exactamente el que se congeló y se firmó.</p>
+
+    <h2>4. Valor legal</h2>
+    <p>La firma electrónica en Venezuela se rige por el Decreto con Fuerza de Ley sobre Mensajes de Datos y Firmas Electrónicas (G.O. N° 37.148). La ley le da la misma eficacia que a la firma autógrafa cuando la respalda el certificado de un proveedor acreditado ante SUSCERTE.</p>
+    <p>Homly todavía no firma con ese certificado. Por eso el contrato firmado en Homly no equivale automáticamente a una firma autógrafa: es una prueba que el juez valora, reforzada por la verificación de identidad, la huella y el registro de auditoría. Para operaciones de alto valor recomendamos la revisión de un abogado y, si lo indica, la autenticación del documento.</p>
+
+    <h2>5. Responsabilidad</h2>
+    <p>Homly provee la tecnología. El contenido de cada contrato y su ejecución son responsabilidad de la agencia y de las partes que lo firman. Los modelos estándar de Homly son un punto de partida y no sustituyen la revisión de un abogado.</p>
+
+    <h2>6. Contacto</h2>
+    <p>Dudas sobre verificación o contratos: <a href="mailto:info@softronic.dev">info@softronic.dev</a> · Desarrollos Softronic, C.A., Barquisimeto, Lara, Venezuela.</p>
+  </div>
+</main>
+<footer>
+  <div class="wrap">© 2026 Homly · <a href="https://softronic.dev" target="_blank" rel="noopener noreferrer">Softronic</a>. Todos los derechos reservados. · <a href="/privacidad.html">Privacidad</a> · <a href="/terminos.html">Términos</a></div>
+</footer>
+</body>
+</html>
