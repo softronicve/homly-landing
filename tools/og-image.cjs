@@ -1,7 +1,9 @@
-// Genera og-image.png (1200x630) para las previews de redes sociales.
-// Rinde una tarjeta HTML con las fuentes y los tokens de la landing en Chrome
-// headless y la fotografía. Mismo stack que prerender.cjs (puppeteer-core +
-// Chrome), SOLO DESARROLLO. Uso: node tools/og-image.cjs
+/**
+ * Genera og-image.png (1200x630) para las previews de redes sociales.
+ * Rinde una tarjeta HTML con las fuentes y los tokens de la landing en Chrome
+ * headless y la fotografía. Mismo stack que prerender.cjs (puppeteer-core +
+ * Chrome), SOLO DESARROLLO. Uso: node tools/og-image.cjs
+ */
 const puppeteer = require('puppeteer-core');
 const fs = require('fs');
 const path = require('path');

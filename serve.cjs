@@ -1,4 +1,4 @@
-// Servidor estático sin dependencias. Uso: node serve.cjs <port> <root>
+/** Servidor estático sin dependencias. Uso: node serve.cjs <port> <root> */
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -20,7 +20,6 @@ http.createServer((req, res) => {
   if (!file.startsWith(root)) { res.writeHead(403); return res.end('403'); }
   fs.readFile(file, (err, data) => {
     if (err) {
-      // Rutas del router (sin extensión) → index.html
       if (!path.extname(p)) {
         return fs.readFile(path.join(root, 'index.html'), (e2, idx) => {
           if (e2) { res.writeHead(404); return res.end('404'); }

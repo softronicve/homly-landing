@@ -8,7 +8,7 @@ const RATE_API = 'https://api.homly.world/api/v1/exchange-rate';
 const LS_KEY = 'homly_usd_ves_bcv';
 const LS_TTL_MS = 3600 * 1000;
 
-// Espeja SubscriptionPlan::PERIODS/prices() del API: más meses, más ahorro, sin permanencia.
+/** Espeja SubscriptionPlan::PERIODS/prices() del API: más meses, más ahorro, sin permanencia. */
 const PERIODS = {
   monthly:    { months: 1,  label: 'mensual',    flag: 'isMonthly' },
   quarterly:  { months: 3,  label: 'trimestral', flag: 'isQuarterly' },
@@ -42,14 +42,12 @@ class Pricing extends HomlyComponent {
 
   get store() {
     return (this._store ??= (() => {
-      // Solo el estado fuente; los precios mostrados se derivan con computed.
       const s = Homly.createStore({ period: 'monthly', isMonthly: true, isQuarterly: false, isSemiannual: false, isAnnual: false, rate: FALLBACK_RATE });
       for (const key of ['pro', 'agencia']) {
         const p = PLANS[key];
         s.computed(key + 'Amt', ['period'], (period) => fmtUSD(p.usd[period]));
         s.computed(key + 'Per', ['period'], (period) => p.per[period]);
         s.computed(key + 'Ves', ['period', 'rate'], (period, rate) => (p.ves ? '≈ ' + fmtVES(p.usd[period] * rate) : ''));
-        // Ahorro real vs pagar mes a mes (honesto, por plan). Vacío en mensual.
         s.computed(key + 'Save', ['period'], (period) => {
           const pct = Math.round((1 - p.usd[period] / (p.usd.monthly * PERIODS[period].months)) * 100);
           return pct > 0 ? 'Ahorra ' + pct + '%' : '';
@@ -62,7 +60,6 @@ class Pricing extends HomlyComponent {
 
   get actions() {
     return {
-      // Solo cambia el estado fuente; los precios se recalculan solos (computed).
       setPeriod: (target) => this._setPeriod(target.dataset.period),
       openPlan: (target) => this._openPlan(target.dataset.plan),
       closeModal: () => { uiStore.state.modalOpen = false; },
@@ -102,7 +99,6 @@ class Pricing extends HomlyComponent {
   }
 
   async _loadRate() {
-    // Setear la tasa basta: los precios en VES y la info de tasa son computed.
     this.store.state.rate = await this._getRate();
   }
 

@@ -1,23 +1,27 @@
-// Prerender de las rutas del router. FUENTE = index.html (la shell limpia; NUNCA se modifica).
-// Genera un HTML por ruta en dist/ con nav, hero y app-root horneados + data-hydration-ready,
-// para el first-paint y para que cada ruta tenga su propio <title>/description/canonical (sin
-// esto, /contacto se servía con el HTML de la home y su canonical apuntaba a "/", así que no
-// podía rankear). Requiere puppeteer-core + Chrome — SOLO DESARROLLO (el sitio servido no
-// necesita ninguno; los dist/*.html son HTML estático). Uso: node tools/prerender.cjs
+/**
+ * Prerender de las rutas del router. FUENTE = index.html (la shell limpia; NUNCA se modifica).
+ * Genera un HTML por ruta en dist/ con nav, hero y app-root horneados + data-hydration-ready,
+ * para el first-paint y para que cada ruta tenga su propio <title>/description/canonical (sin
+ * esto, /contacto se servía con el HTML de la home y su canonical apuntaba a "/", así que no
+ * podía rankear). Requiere puppeteer-core + Chrome — SOLO DESARROLLO (el sitio servido no
+ * necesita ninguno; los dist/*.html son HTML estático). Uso: node tools/prerender.cjs
+ */
 const puppeteer = require('puppeteer-core');
 const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const INDEX = path.join(ROOT, 'index.html');         // fuente (read-only)
+const INDEX = path.join(ROOT, 'index.html');
 const DIST_DIR = path.join(ROOT, 'dist');
 const CHROME = process.env.CHROME || '/usr/bin/google-chrome';
-const PORT = Number(process.env.PORT) || 8099; // PORT=… si 8099 está ocupado
+const PORT = Number(process.env.PORT) || 8099;
 
-// Una entrada por ruta del router (ver js/app.js). `ready` es el selector que marca que la
-// ruta terminó de renderizar. Las rutas que no son la home traen su propio head: heredan la
-// shell y le pisan title, description, canonical, OG/Twitter y JSON-LD.
+/**
+ * Una entrada por ruta del router (ver js/app.js). `ready` es el selector que marca que la
+ * ruta terminó de renderizar. Las rutas que no son la home traen su propio head: heredan la
+ * shell y le pisan title, description, canonical, OG/Twitter y JSON-LD.
+ */
 const ROUTES = [
   { path: '/', out: 'index.html', ready: 'homly-footer .foot-grid' },
   {
@@ -50,21 +54,25 @@ const ROUTES = [
   },
 ];
 
-// Inyecta innerHTML horneado en un elemento vacío. Reemplazo por FUNCIÓN para que un `$` en
-// el snapshot (precios como $24.99) no se interprete como patrón de String.replace.
+/**
+ * Inyecta innerHTML horneado en un elemento vacío. Reemplazo por FUNCIÓN para que un `$` en
+ * el snapshot (precios como $24.99) no se interprete como patrón de String.replace.
+ */
 function inject(html, tag, inner) {
   return html.replace(`<${tag}></${tag}>`, () => `<${tag}>${inner}</${tag}>`);
 }
 
-// Sustituye el content de un <meta>/<link> ya presente en la shell. Si el tag no está, deja
-// el HTML igual: la shell es la única fuente de verdad de qué tags existen.
+/**
+ * Sustituye el content de un <meta>/<link> ya presente en la shell. Si el tag no está, deja
+ * el HTML igual: la shell es la única fuente de verdad de qué tags existen.
+ */
 function setAttr(html, tagRe, value) {
   return html.replace(tagRe, (m) => m.replace(/content="[^"]*"|href="[^"]*"/, (a) =>
     `${a.startsWith('content') ? 'content' : 'href'}="${value}"`));
 }
 
 function applyHead(html, route) {
-  if (!route.title) return html;                       // la home ya usa el head de la shell
+  if (!route.title) return html;
   let h = html.replace(/<title>[\s\S]*?<\/title>/, () => `<title>${route.title}</title>`);
   h = setAttr(h, /<meta name="description"[^>]*>/, route.description);
   h = setAttr(h, /<link rel="canonical"[^>]*>/, route.canonical);
@@ -78,11 +86,13 @@ function applyHead(html, route) {
   return h;
 }
 
-// Minificado seguro: saca comentarios HTML y colapsa runs de whitespace a un
-// espacio, PERO deja intacto el contenido de <script>/<style>/<pre>/<textarea>
-// (los aparta antes y los restituye). No colapsa entre tags: preserva los
-// espacios significativos de inline (<em>, <b>, <span>). ponytail: regex, no
-// dependencia; si algún día hace falta minificar CSS/JS inline, meter esbuild.
+/**
+ * Minificado seguro: saca comentarios HTML y colapsa runs de whitespace a un
+ * espacio, PERO deja intacto el contenido de <script>/<style>/<pre>/<textarea>
+ * (los aparta antes y los restituye). No colapsa entre tags: preserva los
+ * espacios significativos de inline (<em>, <b>, <span>). ponytail: regex, no
+ * dependencia; si algún día hace falta minificar CSS/JS inline, meter esbuild.
+ */
 function minify(html) {
   const stash = [];
   let h = html.replace(/<(script|style|pre|textarea)\b[^>]*>[\s\S]*?<\/\1>/gi,
@@ -91,6 +101,10 @@ function minify(html) {
   return h.replace(/\0(\d+)\0/g, (_, i) => stash[i]);
 }
 
+/**
+ * Hornea cada ruta en dist/. El hero es de la home: en otras rutas va vacío y
+ * oculto, si no su <h1> quedaría en el DOM y la página tendría dos H1.
+ */
 (async () => {
   const source = fs.readFileSync(INDEX, 'utf8');
   const server = spawn('node', [path.join(ROOT, 'serve.cjs'), String(PORT), ROOT], { stdio: 'ignore' });
@@ -114,8 +128,6 @@ function minify(html) {
       let out = source.replace('<html lang="es">', () => '<html lang="es" data-hydration-ready>');
       out = applyHead(out, route);
       out = inject(out, 'homly-nav', snap.nav);
-      // El hero es de la home: fuera de ella va vacío y oculto (si no, su <h1> quedaría
-      // en el DOM de otra ruta y la página tendría dos H1).
       out = isHome
         ? inject(out, 'homly-hero', snap.hero)
         : out.replace('<homly-hero></homly-hero>', () => '<homly-hero hidden></homly-hero>');
