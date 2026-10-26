@@ -1,6 +1,13 @@
-// Anima los elementos .reveal de un contenedor cuando entran al viewport.
-// Sólo lo llevan las entradas de sección (sec-head, cta, feature); los ítems
-// repetidos de grilla (mods, steps, plans, stats) entran sin animar a propósito.
+/**
+ * Anima los elementos .reveal de un contenedor cuando entran al viewport.
+ * Sólo lo llevan las entradas de sección (sec-head, cta, feature); los ítems
+ * repetidos de grilla (mods, steps, plans, stats) entran sin animar a propósito.
+ *
+ * En prod el prerender hornea `.in` en todos los .reveal para evitar FOUC en el
+ * first-paint, y eso mataba la animación al scrollear: los que vienen con `.in`
+ * pero están fuera del viewport real se resetean para que animen al entrar. En dev
+ * no hay nada horneado y no hace nada.
+ */
 export function revealOnScroll(container, signal) {
   const els = container.querySelectorAll('.reveal');
   if (!els.length) return;
@@ -13,10 +20,6 @@ export function revealOnScroll(container, signal) {
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
   els.forEach((el) => {
-    // En prod el prerender hornea `.in` en TODOS los .reveal (evita FOUC en el
-    // first-paint). Eso mataba la animación al scrollear: si un elemento vino con
-    // `.in` pero está fuera del viewport, lo reseteamos para que anime al entrar.
-    // (En dev no hay nada horneado → no-op.) Usa el viewport real del usuario.
     if (el.classList.contains('in') && el.getBoundingClientRect().top >= window.innerHeight) {
       el.classList.remove('in');
     }
