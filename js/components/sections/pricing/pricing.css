@@ -56,37 +56,4 @@
   .plan.featured{box-shadow:0 16px 30px -16px rgba(197,81,46,.4)}
 }
 
-/* ===== Checkout modal ===== */
-.modal-ov{
-  position:fixed;inset:0;background:rgba(26,26,23,.6);backdrop-filter:blur(4px);
-  z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;
-  opacity:0;pointer-events:none;transition:opacity .28s
-}
-.modal-ov.open{opacity:1;pointer-events:auto}
-.modal{
-  background:var(--paper);border-radius:18px;padding:36px;max-width:480px;width:100%;
-  max-height:90vh;overflow-y:auto;transform:translateY(20px);transition:transform .28s
-}
-.modal-ov.open .modal{transform:none}
-.modal h3{font-family:"Nunito Sans",sans-serif;font-size:1.8rem;margin-bottom:8px}
-.modal .modal-sub{color:var(--ink-soft);font-size:.92rem;margin-bottom:22px}
-.modal-summary{
-  background:var(--paper-2);border-radius:12px;padding:18px;margin-bottom:24px;
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px
-}
-.modal-summary .l{font-weight:600}
-.modal-summary .r{font-family:"Spline Sans Mono",monospace;color:var(--clay-ink);font-weight:600}
-.modal .methods{display:flex;flex-direction:column;gap:10px;margin-bottom:22px;font-size:.92rem}
-.modal .methods li{display:flex;gap:10px;align-items:center;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
-.modal .methods li::before{content:"●";color:var(--clay-ink);font-size:.6rem}
-.modal .whatsapp-cta{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  background:#25D366;color:#231F20;padding:16px;border-radius:12px;
-  font-weight:600;text-decoration:none;font-size:1rem
-}
-.modal .whatsapp-cta:hover{background:#1ebe5d}
-.modal .close{position:absolute;top:14px;right:14px;background:transparent;border:0;font-size:1.4rem;cursor:pointer;color:var(--ink-soft);width:36px;height:36px;border-radius:50%}
-.modal .close:hover{background:var(--paper-2)}
-.modal-wrap{position:relative}
-
 @media (max-width:480px){.billing-toggle{display:grid;grid-template-columns:1fr 1fr;border-radius:22px}.billing-toggle button{padding:9px 14px}}
