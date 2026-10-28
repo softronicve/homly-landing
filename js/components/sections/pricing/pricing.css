@@ -8,7 +8,6 @@
   padding:10px 22px;border-radius:999px;cursor:pointer;color:var(--ink-soft);transition:all .25s
 }
 .billing-toggle button.on{background:var(--ink);color:var(--paper)}
-/* Badge de ahorro vs mes a mes, por plan (se computa en pricing.js). Vacío = mensual. */
 .plan-save{
   display:inline-flex;align-self:flex-start;margin-top:-10px;font-size:.72rem;font-weight:600;
   padding:4px 11px;border-radius:999px;background:rgba(95,179,104,.16);color:#3f8c4f;letter-spacing:.02em

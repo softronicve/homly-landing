@@ -28,16 +28,12 @@
 </script> <script type="importmap">
 { "imports": { "homly": "/js/vendor/homly-1.8.3.js" } }
 </script> <link rel="preload" href="/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin> <link rel="preload" href="/fonts/nunito-sans.woff2" as="font" type="font/woff2" crossorigin> <style>
-  /* Fuentes self-hosteadas: los mismos .woff2 variables (subset latin) que servía
-     Google, sin los dos orígenes de terceros ni el CSS render-blocking. */
   @font-face{font-family:"Manrope";src:url(/fonts/manrope.woff2) format("woff2");
     font-weight:400 700;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   @font-face{font-family:"Nunito Sans";src:url(/fonts/nunito-sans.woff2) format("woff2");
     font-weight:400 900;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   @font-face{font-family:"Spline Sans Mono";src:url(/fonts/spline-sans-mono.woff2) format("woff2");
     font-weight:400 500;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-  /* Tokens y primitivas compartidas. El estilo de cada sección vive en su
-     propio archivo .css, aislado con @scope. */
   :root{
     --paper:#FFFFFF; --paper-2:#F7F7F8; --ink:#231F20; --ink-soft:#434345;
     --clay:#F05223; --clay-deep:#B23A0B; --clay-ink:#B23A0B; --pine:#2B414E;
@@ -45,9 +41,6 @@
     --max:1280px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  /* El atributo `hidden` lo pisa cualquier `display` declarado por el autor (viene
-     del UA sheet). Sin esta línea, un data-if="..." apagado se sigue viendo si el
-     componente declara display — pasaba con el badge "Mensaje enviado" de /contacto. */
   [hidden]{display:none!important}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
@@ -68,16 +61,12 @@
   .btn-fill{background:var(--ink);color:var(--paper)}
   .btn-fill:hover{background:var(--clay-ink);border-color:var(--clay-ink);transform:translateY(-2px)}
   .btn-ghost:hover{background:var(--ink);color:var(--paper)}
-  /* Estado de carga que gestiona homly.js (clase is-loading + disabled). */
   .btn:disabled{opacity:.65;cursor:default;transform:none}
   .btn.is-loading{cursor:progress;pointer-events:none}
   .btn.is-loading::after{content:"";width:14px;height:14px;border:2px solid currentColor;
     border-right-color:transparent;border-radius:50%;animation:btn-spin .6s linear infinite}
   @keyframes btn-spin{to{transform:rotate(360deg)}}
 
-  /* Hydration barrier (modo normal): el contenido de app-root se revela entero al
-     estar listo (evita el stagger), mientras un spinner CSS marca la espera. En
-     dist/ (prerenderizado) data-hydration-ready ya está puesto y la barrera no espera. */
   #app-root{opacity:0;transition:opacity .4s ease}
   :root[data-hydration-ready] #app-root{opacity:1}
   #hydration-spinner{position:fixed;top:55%;left:50%;width:34px;height:34px;
@@ -135,10 +124,6 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
 .hero-note{margin-top:16px;color:var(--ink-soft)}
 .hero-side{display:flex;flex-direction:column;justify-content:center}
 
-/* ── Motor de matching ─────────────────────────────────────────────
-   Un cliente arriba, tres propiedades abajo y un trazo que dibuja el
-   match ganador. Todo CSS + SVG: sin JS y sin dependencias. El loop
-   corre 6,5 s y queda congelado en su estado final con reduced-motion. */
 .match{display:flex;flex-direction:column}
 
 .client{border:1px solid rgba(43,65,78,.34);border-radius:3px;padding:14px 16px;
@@ -289,7 +274,6 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
   padding:10px 22px;border-radius:999px;cursor:pointer;color:var(--ink-soft);transition:all .25s
 }
 .billing-toggle button.on{background:var(--ink);color:var(--paper)}
-/* Badge de ahorro vs mes a mes, por plan (se computa en pricing.js). Vacío = mensual. */
 .plan-save{
   display:inline-flex;align-self:flex-start;margin-top:-10px;font-size:.72rem;font-weight:600;
   padding:4px 11px;border-radius:999px;background:rgba(95,179,104,.16);color:#3f8c4f;letter-spacing:.02em

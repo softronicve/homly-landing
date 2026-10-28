@@ -28,7 +28,6 @@ h1{font-size:clamp(2.4rem,5vw,4rem);letter-spacing:-.03em;margin:18px 0 14px}
 .prev-v{font-size:1rem;color:var(--ink);word-break:break-word}
 .prev-msg .prev-v{white-space:pre-wrap;line-height:1.55;min-height:1.4em}
 
-/* Créditos / Open Source */
 .credits{margin-top:clamp(56px,8vw,90px);padding-top:40px;border-top:1px solid var(--ink)}
 .credits-tag{display:block;color:var(--clay-ink);margin-bottom:12px}
 .credits-lead{color:var(--ink-soft);max-width:54ch;margin-bottom:28px;font-size:1.02rem}

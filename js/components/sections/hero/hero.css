@@ -7,10 +7,6 @@ h1 em{font-style:italic;color:var(--clay);font-weight:300}
 .hero-note{margin-top:16px;color:var(--ink-soft)}
 .hero-side{display:flex;flex-direction:column;justify-content:center}
 
-/* ── Motor de matching ─────────────────────────────────────────────
-   Un cliente arriba, tres propiedades abajo y un trazo que dibuja el
-   match ganador. Todo CSS + SVG: sin JS y sin dependencias. El loop
-   corre 6,5 s y queda congelado en su estado final con reduced-motion. */
 .match{display:flex;flex-direction:column}
 
 .client{border:1px solid rgba(43,65,78,.34);border-radius:3px;padding:14px 16px;

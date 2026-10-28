@@ -1,9 +1,8 @@
 /**
  * Prerender de las rutas del router. FUENTE = index.html (la shell limpia; NUNCA se modifica).
  * Genera un HTML por ruta en dist/ con nav, hero y app-root horneados + data-hydration-ready,
- * para el first-paint y para que cada ruta tenga su propio <title>/description/canonical (sin
- * esto, /contacto se servía con el HTML de la home y su canonical apuntaba a "/", así que no
- * podía rankear). Requiere puppeteer-core + Chrome — SOLO DESARROLLO (el sitio servido no
+ * para el first-paint y para que cada ruta tenga su propio <title>/description/canonical y
+ * pueda rankear por sí sola. Requiere puppeteer-core + Chrome — SOLO DESARROLLO (el sitio servido no
  * necesita ninguno; los dist/*.html son HTML estático). Uso: node tools/prerender.cjs
  */
 const puppeteer = require('puppeteer-core');
