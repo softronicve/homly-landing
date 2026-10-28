@@ -4,7 +4,7 @@
  * repetidos de grilla (mods, steps, plans, stats) entran sin animar a propósito.
  *
  * En prod el prerender hornea `.in` en todos los .reveal para evitar FOUC en el
- * first-paint, y eso mataba la animación al scrollear: los que vienen con `.in`
+ * first-paint, lo que anularía la animación al scrollear: los que vienen con `.in`
  * pero están fuera del viewport real se resetean para que animen al entrar. En dev
  * no hay nada horneado y no hace nada.
  */

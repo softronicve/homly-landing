@@ -56,7 +56,7 @@ class ContactPage extends HomlyComponent {
     };
   }
 
-  /** Carga el footer: /contacto es una URL indexable por sí sola y sin él quedaba con un solo enlace interno. */
+  /** Carga el footer: /contacto es una URL indexable por sí sola y sin él queda con un solo enlace interno. */
   onMount() { import('../../sections/footer/footer.js'); }
 }
 
