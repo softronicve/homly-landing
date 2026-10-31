@@ -32,4 +32,4 @@ http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream' });
     res.end(data);
   });
-}).listen(port, '127.0.0.1', () => console.log(`http://127.0.0.1:${port}`));
+}).listen(port, '127.0.0.1', function () { console.log(`http://127.0.0.1:${this.address().port}`); });
