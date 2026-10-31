@@ -14,7 +14,7 @@ const ROOT = path.resolve(__dirname, '..');
 const INDEX = path.join(ROOT, 'index.html');
 const DIST_DIR = path.join(ROOT, 'dist');
 const CHROME = process.env.CHROME || '/usr/bin/google-chrome';
-const PORT = Number(process.env.PORT) || 8099;
+const PORT = Number(process.env.PORT) || 0;
 
 /**
  * Una entrada por ruta del router (ver js/app.js). `ready` es el selector que marca que la
@@ -106,15 +106,18 @@ function minify(html) {
  */
 (async () => {
   const source = fs.readFileSync(INDEX, 'utf8');
-  const server = spawn('node', [path.join(ROOT, 'serve.cjs'), String(PORT), ROOT], { stdio: 'ignore' });
-  await new Promise((r) => setTimeout(r, 600));
+  const server = spawn('node', [path.join(ROOT, 'serve.cjs'), String(PORT), ROOT], { stdio: ['ignore', 'pipe', 'inherit'] });
+  const base = await new Promise((resolve, reject) => {
+    server.stdout.on('data', (d) => { const m = String(d).match(/http:\/\/[^\s]+/); if (m) resolve(m[0]); });
+    server.on('exit', (code) => reject(new Error(`serve.cjs terminó (código ${code}) antes de escuchar`)));
+  });
   const browser = await puppeteer.launch({ executablePath: CHROME, headless: true, args: ['--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage'] });
   try {
     fs.mkdirSync(DIST_DIR, { recursive: true });
     for (const route of ROUTES) {
       const page = await browser.newPage();
       await page.setViewport({ width: 1280, height: 900 });
-      await page.goto(`http://127.0.0.1:${PORT}${route.path}`, { waitUntil: 'networkidle0', timeout: 30000 });
+      await page.goto(`${base}${route.path}`, { waitUntil: 'networkidle0', timeout: 30000 });
       await page.waitForFunction((sel) => document.querySelector(sel), { timeout: 15000 }, route.ready);
       await page.evaluate(() => document.querySelectorAll('.reveal').forEach((e) => e.classList.add('in')));
       await new Promise((r) => setTimeout(r, 400));
