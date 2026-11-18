@@ -70,6 +70,14 @@ homly.world, www.homly.world {
   handle /contacto/ {
     redir * /contacto permanent
   }
+  # Página estática fuera del router (verificación pública de documentos; la URL va en el QR de los PDF).
+  handle /verificar {
+    rewrite * /verificar.html
+    file_server
+  }
+  handle /verificar/ {
+    redir * /verificar permanent
+  }
   handle {
     file_server {
       hide .git
