@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verificar un documento firmado · Homly</title>
+<meta name="description" content="Comprueba si un PDF es el original firmado en Homly. Tu navegador calcula su huella SHA-256: el archivo nunca se sube.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://homly.world/verificar">
+<meta property="og:site_name" content="Homly">
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Verificar un documento firmado · Homly">
+<meta property="og:description" content="Comprueba si un PDF es el original firmado en Homly. El archivo nunca sale de tu dispositivo.">
+<meta property="og:url" content="https://homly.world/verificar">
+<meta property="og:image" content="https://homly.world/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://homly.world/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preload" href="/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/nunito-sans.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face{font-family:"Manrope";src:url(/fonts/manrope.woff2) format("woff2");
+    font-weight:400 700;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"Nunito Sans";src:url(/fonts/nunito-sans.woff2) format("woff2");
+    font-weight:400 900;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"Spline Sans Mono";src:url(/fonts/spline-sans-mono.woff2) format("woff2");
+    font-weight:400 500;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  :root{--paper:#FAFAFA;--paper-2:#F0F0F1;--ink:#231F20;--ink-soft:#434345;--clay:#F05223;--clay-ink:#B23A0B;--line:rgba(35,31,32,.14);
+    --ok:#1E6B3A;--ok-bg:#EAF5EE;--warn:#8A5A00;--warn-bg:#FFF6E0;--bad:#A32020;--bad-bg:#FDECEC;--focus:#B23A0B}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--clay-ink)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  @media (min-width:600px){.wrap{padding:0 24px}}
+  header{border-bottom:1px solid var(--line);padding:22px 0}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:1.25rem;color:var(--ink);text-decoration:none}
+  .logo img{width:30px;height:30px;border-radius:50%}
+  header a.home{font-size:.92rem;color:var(--ink-soft);text-decoration:none}
+  main{padding:clamp(32px,7vw,64px) 0}
+  h1{font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:clamp(1.9rem,5vw,2.6rem);letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+  .lead{color:var(--ink-soft);margin-bottom:24px}
+  h2{font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:1.2rem;margin:36px 0 10px}
+  p{margin-bottom:13px}
+  ul{margin:0 0 13px 22px}
+  li{margin-bottom:7px}
+  strong{font-weight:600}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  /* Zona para soltar o elegir el PDF. El input real queda accesible (visualmente oculto); el label es el área. */
+  .drop{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;
+    border:2px dashed rgba(35,31,32,.32);border-radius:16px;background:#fff;padding:36px 20px;cursor:pointer;
+    transition:border-color .2s ease,background-color .2s ease}
+  .drop:hover{border-color:var(--clay)}
+  .drop.over{border-color:var(--clay);background:#FFF4EF}
+  .drop.busy{cursor:progress;opacity:.75}
+  #archivo:focus-visible + .drop{outline:3px solid var(--focus);outline-offset:3px}
+  .drop svg{width:44px;height:44px;color:var(--clay-ink);margin-bottom:4px}
+  .drop .t{font-weight:600;font-size:1.05rem}
+  .drop .btn{margin-top:10px}
+  .drop .h{font-size:.88rem;color:var(--ink-soft)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 20px;font:inherit;font-size:.95rem;font-weight:600;
+    border-radius:999px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;text-decoration:none}
+  .btn:hover{background:var(--clay-ink);border-color:var(--clay-ink)}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  .privado{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:.92rem;color:var(--ink-soft)}
+  .privado svg{flex:none;width:20px;height:20px;margin-top:3px;color:var(--ok)}
+
+  .estado{min-height:1.6em;margin-top:16px;font-size:.95rem;color:var(--ink-soft)}
+  .estado[data-tipo="error"]{color:var(--bad);font-weight:600}
+
+  /* Resultado */
+  .res{margin-top:20px;border:1px solid var(--line);border-left-width:6px;border-radius:14px;background:#fff;padding:20px}
+  .res:focus{outline:none}
+  .res:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+  .res[data-tipo="autentico"]{border-left-color:var(--ok);background:var(--ok-bg)}
+  .res[data-tipo="previa"]{border-left-color:#C98A00;background:var(--warn-bg)}
+  .res[data-tipo="anulado"],.res[data-tipo="no-firmado"],.res[data-tipo="no-coincide"]{border-left-color:var(--bad);background:var(--bad-bg)}
+  .res .tag{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;margin-bottom:8px}
+  .res[data-tipo="autentico"] .tag{background:var(--ok);color:#fff}
+  .res[data-tipo="previa"] .tag{background:var(--warn);color:#fff}
+  .res[data-tipo="anulado"] .tag,.res[data-tipo="no-firmado"] .tag,.res[data-tipo="no-coincide"] .tag{background:var(--bad);color:#fff}
+  .res h2{margin:0 0 6px;font-size:1.3rem;line-height:1.3}
+  .res .aviso{margin-bottom:12px}
+  .res dl{display:grid;grid-template-columns:1fr;gap:2px 16px;margin:12px 0;padding-top:12px;border-top:1px solid var(--line);font-size:.95rem}
+  .res dt{color:var(--ink-soft);font-size:.85rem;margin-top:8px}
+  .res dd{font-weight:600;overflow-wrap:anywhere}
+  @media (min-width:600px){.res dl{grid-template-columns:minmax(150px,auto) 1fr}.res dt{margin-top:0}}
+  .res dd ul{list-style:none;margin:0}
+  .res dd li{margin:0 0 2px;font-weight:600}
+  .res dd li span{font-weight:400;color:var(--ink-soft)}
+  .huella{font-family:"Spline Sans Mono",monospace;font-size:.8rem;font-weight:400;word-break:break-all;color:var(--ink-soft)}
+  .acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+
+  details{margin-top:18px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:12px 16px}
+  summary{cursor:pointer;font-weight:600;min-height:28px}
+  .manual{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .manual input{flex:1 1 260px;min-height:44px;font-family:"Spline Sans Mono",monospace;font-size:.85rem;padding:8px 12px;border:1px solid rgba(35,31,32,.4);border-radius:10px;background:var(--paper)}
+  .nota{font-size:.88rem;color:var(--ink-soft)}
+  .enc{background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--clay);border-radius:12px;padding:16px 20px;margin:10px 0 4px}
+  footer{border-top:1px solid var(--line);padding:30px 0;color:var(--ink-soft);font-size:.85rem;margin-top:48px}
+  footer a{color:var(--ink-soft)}
+  code{font-family:"Spline Sans Mono",monospace;font-size:.9em;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="30" height="30">Homly</a>
+    <a class="home" href="/">← Volver al inicio</a>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h1>Verificar un documento firmado</h1>
+    <p class="lead">Comprueba si un PDF es el original que se firmó en Homly, o su constancia de cierre. Si alguien cambió una sola letra, no va a coincidir.</p>
+
+    <form id="form" novalidate>
+      <input class="sr-only" type="file" id="archivo" accept="application/pdf,.pdf" aria-describedby="drop-ayuda privado">
+      <label class="drop" id="drop" for="archivo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 2v6h6M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="m9 15 2 2 4-4"/></svg>
+        <span class="t">Arrastra aquí el PDF</span>
+        <span class="h" id="drop-ayuda">o elígelo desde tu dispositivo. Solo PDF, hasta 25 MB.</span>
+        <span class="btn" aria-hidden="true">Elegir PDF</span>
+      </label>
+      <p class="privado" id="privado">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <span><strong>El archivo nunca se sube.</strong> Tu navegador calcula su huella digital (SHA-256) aquí mismo y solo esa huella, un código de 64 caracteres, se consulta con Homly.</span>
+      </p>
+    </form>
+
+    <p class="estado" id="estado" role="status" aria-live="polite"></p>
+    <section class="res" id="resultado" tabindex="-1" aria-labelledby="res-titulo" hidden></section>
+
+    <details>
+      <summary>¿Ya tienes la huella SHA-256? Pégala aquí</summary>
+      <form class="manual" id="form-huella" novalidate>
+        <label class="sr-only" for="huella">Huella SHA-256 (64 caracteres)</label>
+        <input id="huella" name="huella" inputmode="text" autocomplete="off" spellcheck="false" maxlength="80" placeholder="64 caracteres: 0-9 y a-f">
+        <button class="btn ghost" type="submit">Verificar huella</button>
+      </form>
+      <p class="nota" style="margin-top:8px">En Windows: <code>certutil -hashfile documento.pdf SHA256</code>. En Mac o Linux: <code>shasum -a 256 documento.pdf</code>.</p>
+    </details>
+
+    <h2>Qué significa cada resultado</h2>
+    <ul>
+      <li><strong>Documento auténtico:</strong> el archivo es idéntico, sin un solo cambio, al contrato firmado, al certificado de auditoría de la firma o a la constancia de cierre que registró Homly.</li>
+      <li><strong>Versión previa a las firmas:</strong> es el PDF que se envió a firmar. Su texto es el acordado, pero no lleva las firmas: pide el PDF firmado o la constancia de cierre y verifícalos aquí.</li>
+      <li><strong>Contrato anulado:</strong> el documento es de Homly, pero ese contrato se anuló y ya no tiene validez. Normalmente lo reemplaza uno nuevo.</li>
+      <li><strong>No coincide:</strong> Homly no emitió este archivo exacto.</li>
+    </ul>
+
+    <h2>Si no coincide</h2>
+    <p>No siempre es un fraude. La huella cambia con cualquier modificación del archivo, aunque el texto se vea igual:</p>
+    <ul>
+      <li>Abrirlo y volver a guardarlo, imprimirlo como PDF, comprimirlo o agregarle una firma o una anotación con otro programa.</li>
+      <li>Escanear el papel impreso: un escaneo nunca coincide.</li>
+      <li>Reenviarlo por apps que convierten o reducen los archivos.</li>
+    </ul>
+    <p>Pide a la agencia el PDF original descargado de Homly y vuelve a verificarlo. Si sigue sin coincidir, no lo des por válido y escríbenos a <a href="mailto:info@softronic.dev">info@softronic.dev</a>.</p>
+
+    <h2>Privacidad</h2>
+    <div class="enc">El PDF no sale de tu dispositivo. Homly solo recibe la huella y, si coincide, muestra lo justo para reconocer el documento: número de contrato, operación, estado, fechas, rol e iniciales de cada firmante y la agencia. Nunca correos, cédulas, montos ni la dirección del inmueble. Para evitar abusos, las consultas tienen un límite por conexión y se registran sin tu dirección IP completa.</div>
+    <p style="margin-top:16px">Cómo se protegen los contratos en Homly: <a href="/seguridad.html">Verificación y firma electrónica</a>.</p>
+  </div>
+</main>
+<footer>
+  <div class="wrap">© 2026 Homly · <a href="https://softronic.dev" target="_blank" rel="noopener noreferrer">Softronic</a>. Todos los derechos reservados. · <a href="/seguridad.html">Verificación y firma</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/terminos.html">Términos</a></div>
+</footer>
+<script src="/js/verificar.js" defer></script>
+</body>
+</html>

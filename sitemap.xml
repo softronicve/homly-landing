@@ -17,8 +17,13 @@
   </url>
   <url>
     <loc>https://homly.world/seguridad.html</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homly.world/verificar</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://homly.world/privacidad.html</loc>

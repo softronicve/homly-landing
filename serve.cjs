@@ -21,6 +21,12 @@ http.createServer((req, res) => {
   fs.readFile(file, (err, data) => {
     if (err) {
       if (!path.extname(p)) {
+        // Como el Caddyfile: /verificar sirve verificar.html; lo demás sin extensión cae en el shell.
+        const page = path.join(root, path.normalize(p) + '.html');
+        if (page.startsWith(root) && fs.existsSync(page)) {
+          res.writeHead(200, { 'Content-Type': MIME['.html'] });
+          return res.end(fs.readFileSync(page));
+        }
         return fs.readFile(path.join(root, 'index.html'), (e2, idx) => {
           if (e2) { res.writeHead(404); return res.end('404'); }
           res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
