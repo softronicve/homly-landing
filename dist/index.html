@@ -6,7 +6,7 @@
 <link rel="canonical" href="https://homly.world/">
 <meta name="facebook-domain-verification" content="y801ccsfxkighrnax86uxj3ms93w14" />
 <link rel="manifest" href="/manifest.json">
-<title>Homly · CRM y software inmobiliario para agentes</title>
+<title>Homly · CRM y software inmobiliario para agentes y agencias</title>
 <meta name="description" content="Software inmobiliario para agentes y agencias: CRM, KYC/KYB, MLS, Machine Learning, contratos y firma digital. Prueba Pro o Agencia 60 días gratis.">
 <meta name="theme-color" content="#FAF8F6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121C22" media="(prefers-color-scheme: dark)">
@@ -14,14 +14,14 @@
 <meta property="og:site_name" content="Homly">
 <meta property="og:locale" content="es_VE">
 <meta property="og:url" content="https://homly.world/">
-<meta property="og:title" content="Homly · CRM y software inmobiliario para agentes">
+<meta property="og:title" content="Homly · CRM y software inmobiliario para agentes y agencias">
 <meta property="og:description" content="Software inmobiliario para agentes y agencias: CRM, KYC/KYB, MLS, Machine Learning, contratos y firma digital. Prueba Pro o Agencia 60 días gratis.">
 <meta property="og:image" content="https://homly.world/og-image-nucleo.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Homly, software inmobiliario para agentes y agencias">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Homly · CRM y software inmobiliario para agentes">
+<meta name="twitter:title" content="Homly · CRM y software inmobiliario para agentes y agencias">
 <meta name="twitter:description" content="Software inmobiliario para agentes y agencias: CRM, KYC/KYB, MLS, Machine Learning, contratos y firma digital. Prueba Pro o Agencia 60 días gratis.">
 <meta name="twitter:image" content="https://homly.world/og-image-nucleo.png">
 <meta name="twitter:image:alt" content="Homly, software inmobiliario para agentes y agencias">
@@ -31,7 +31,7 @@
 {"@context":"https://schema.org","@graph":[
  {"@type":"Organization","@id":"https://homly.world/#organization","name":"Homly","legalName":"Desarrollos Softronic, C.A.","taxID":"J-506650606","url":"https://homly.world/","email":"info@softronic.dev","sameAs":["https://www.instagram.com/homlyve"],"logo":"https://homly.world/logo-homly-600.png",
   "address":{"@type":"PostalAddress","addressLocality":"Barquisimeto","addressRegion":"Lara","addressCountry":"VE"},
-  "contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+58-412-929-6192","availableLanguage":"Spanish"}},
+  "contactPoint":{"@type":"ContactPoint","contactType":"customer support","telephone":"+58-412-929-6192","availableLanguage":"Spanish"}},
  {"@type":"WebSite","@id":"https://homly.world/#website","url":"https://homly.world/","name":"Homly","inLanguage":"es-VE","publisher":{"@id":"https://homly.world/#organization"}},
  {"@type":"SoftwareApplication","@id":"https://homly.world/#app","name":"Homly","url":"https://homly.world/","image":"https://homly.world/og-image-nucleo.png","applicationCategory":"BusinessApplication","operatingSystem":"Web",
   "description":"Software inmobiliario con CRM, KYC/KYB, MLS y Alianzas, Machine Learning, contratos, agenda, integraciones, página web y firma digital.",
@@ -39,10 +39,11 @@
   "offers":[
    {"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD"},
    {"@type":"Offer","name":"Pro","price":"24.99","priceCurrency":"USD","priceSpecification":{"@type":"UnitPriceSpecification","price":"24.99","priceCurrency":"USD","unitCode":"MON"}},
-   {"@type":"Offer","name":"Agencia","price":"9.99","priceCurrency":"USD","description":"Precio por agente","priceSpecification":{"@type":"UnitPriceSpecification","price":"9.99","priceCurrency":"USD","unitCode":"MON","referenceQuantity":{"@type":"QuantitativeValue","value":1,"unitText":"agente"}}}]}]}
+   {"@type":"Offer","name":"Agencia","price":"9.99","priceCurrency":"USD","description":"Precio por agente, desde 3 agentes","eligibleQuantity":{"@type":"QuantitativeValue","minValue":3,"unitText":"agente"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"9.99","priceCurrency":"USD","unitCode":"MON","referenceQuantity":{"@type":"QuantitativeValue","value":1,"unitText":"agente"}}}]}]}
 </script>
 <script>
 try { const t = localStorage.getItem("theme"); document.documentElement.dataset.theme = t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); } catch {}
+try { if (sessionStorage.getItem("homly-intro") !== "1" && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("intro"); } catch {}
 </script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32x32.png" sizes="32x32">
@@ -129,6 +130,7 @@ body {
 .theme-toggle .moon, [data-theme="dark"] .theme-toggle .sun { display: none; }
 [data-theme="dark"] .theme-toggle .moon { display: block; }
 .brand img { height: 52px; width: auto; display: block; }
+.intro .brand img { opacity: 0; transform: translateY(18px); }
 h1 {
   font-family: Manrope, sans-serif;
   font-weight: 800;
@@ -147,6 +149,11 @@ h1 em { font-style: normal; color: var(--clay); }
 }
 .btn:hover { transform: translateY(-2px); }
 .btn-primary { background: var(--clay); color: var(--paper); }
+.team-cta { margin-top: 1rem; color: var(--muted); }
+.trust { list-style: none; padding: 0; margin-top: .75rem; display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; font-size: .85rem; color: var(--muted); }
+.trust li { display: flex; align-items: center; gap: .5rem; }
+.trust svg { width: 16px; height: 16px; flex: none; color: var(--clay); }
+.team-cta a { color: var(--accent-ink); font-weight: 800; text-underline-offset: 3px; }
 .btn-ghost { color: var(--fg); box-shadow: inset 0 0 0 1.5px var(--line-2); }
 .btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
@@ -198,6 +205,7 @@ h1 em { font-style: normal; color: var(--clay); }
 .stage.is-active .num { color: var(--accent-ink); }
 .stage.is-active .stage-body { grid-template-rows: 1fr; opacity: 1; }
 .chips { display: flex; flex-wrap: wrap; gap: .4rem; padding: .8rem 0 0 2.4rem; list-style: none; }
+.stage-cta { display: inline-block; margin: 1.25rem 0 .25rem 2.4rem; }
 .chips li {
   font: 700 .8rem Manrope, sans-serif; padding: .35rem .7rem; border-radius: 999px;
   color: var(--chip); box-shadow: inset 0 0 0 1px var(--chip-ring);
@@ -225,6 +233,7 @@ h1 em { font-style: normal; color: var(--clay); }
   .stage:not(.is-active) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .stage button { font-size: 1.4rem; }
   .stage-body p, .chips { padding-left: 0; }
+  .stage-cta { margin: 1rem 0 0; padding: .7rem 1.2rem; }
   .stage.is-active .stage-body { animation: stage-in .5s ease both; }
 }
 @keyframes stage-in { from { opacity: 0; transform: translateY(12px); } }
@@ -297,7 +306,7 @@ h1 em { font-style: normal; color: var(--clay); }
   content: ""; flex: none; width: 20px; height: 20px; margin-top: 1px; border-radius: 50%;
   background: var(--clay) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 10.5 2.6 2.5L14 7.5'/%3E%3C/svg%3E") center/100% no-repeat;
 }
-.plan .btn { margin-top: auto; text-align: center; }
+.plan .btn { margin-top: auto; text-align: center; white-space: nowrap; padding-inline: .9rem; }
 .plan .btn-ghost { box-shadow: inset 0 0 0 1.5px var(--line-2); }
 .plans-foot { color: var(--muted); margin-top: 1.5rem; font-size: .95rem; }
 .plans-foot a, .final a.link, .site-footer a { color: inherit; text-underline-offset: 3px; }
@@ -328,6 +337,29 @@ h1 em { font-style: normal; color: var(--clay); }
 .social a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 .social svg { width: 20px; height: 20px; }
 @media (max-width: 960px) { .plan-grid { grid-template-columns: 1fr; max-width: 30rem; } .plan .for { min-height: 0; } }
+.plan-dots { display: none; }
+@media (max-width: 640px) {
+  .plan-grid {
+    display: flex; max-width: none; gap: .75rem; margin: 1.5rem -16px 0; padding: 16px 16px 8px;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
+  }
+  .plan-grid::-webkit-scrollbar { display: none; }
+  .plan { flex: 0 0 86%; scroll-snap-align: center; }
+  .plan ul { margin: 1.25rem 0 1.5rem; }
+  .plan-dots { display: flex; justify-content: center; gap: .25rem; margin-top: .5rem; }
+  .plan-dots button { all: unset; cursor: pointer; display: grid; place-items: center; width: 44px; height: 44px; }
+  .plan-dots button::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: var(--line-2); transition: width .3s, background .3s; }
+  .plan-dots button[aria-current="true"]::before { width: 24px; background: var(--clay); }
+  .plan-dots button:focus-visible { outline: 3px solid var(--focus); outline-offset: -6px; border-radius: 999px; }
+  .plans-foot { text-align: center; }
+  .site-footer { gap: 1.75rem 1.25rem; padding-top: 2.75rem; }
+  .site-footer p { font-size: .9rem; }
+  .site-footer > div:nth-of-type(4) { grid-column: 1 / -1; }
+  .site-footer > div:nth-of-type(4) ul { grid-template-columns: 1fr 1fr; column-gap: 1.25rem; }
+  .site-footer .legal { flex-direction: row-reverse; justify-content: space-between; align-items: center; }
+  .site-footer .legal p { font-size: .8rem; max-width: 12rem; }
+  .social { gap: .25rem; }
+}
 @media (max-width: 860px) { .plans, .final { padding-block: 3.5rem; } .period { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; } .period button { padding: .6rem .2rem; text-align: center; font-size: .82rem; } .site-footer { grid-template-columns: 1fr 1fr; } .site-footer > div:first-child { grid-column: 1 / -1; } }
 
 @media (max-width: 860px) {
@@ -358,6 +390,11 @@ h1 em { font-style: normal; color: var(--clay); }
       <a class="btn btn-primary" href="https://admin.homly.world/#/registro?plan=pro">Prueba Homly 60 días</a>
       <a class="btn btn-ghost" href="#recorrido">Ver el recorrido</a>
     </div>
+    <p class="team-cta">¿Tienes un equipo de 3 agentes o más? <a href="https://admin.homly.world/#/registro?plan=agencia">Prueba Agencia</a></p>
+    <ul class="trust">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.5 3.2 8.2 7.5 9.5 4.3-1.3 7.5-5 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg>Desarrollado por Desarrollos Softronic, C.A. · RIF J-506650606</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 11-4.7"/><path d="m15 18 2 2 4.5-4.5"/></svg>Agentes verificados con KYC</li>
+    </ul>
   </section>
 
   <div class="atom">
@@ -369,7 +406,7 @@ h1 em { font-style: normal; color: var(--clay); }
       <defs>
         <g id="logo-art" transform="translate(-1.210111,-5.8516964)"><path fill="#aca9a8" d="m 434.56181,168.17319 c -2.33777,-2.01086 -2.74808,-3.13513 -2.74808,-7.52992 0,-4.00277 0.49978,-5.66605 2.21936,-7.3862 l 2.21936,-2.22009 53.71001,-0.5 53.71001,-0.5 2.15984,-4.5 c 5.4471,-11.34893 6.24396,-7.8704 -10.03975,-43.82609 -8.02682,-17.723843 -14.59421,-33.368213 -14.59421,-34.765273 0,-1.39706 0.46334,-3.40587 1.02964,-4.46402 1.27958,-2.39091 6.07536,-4.94461 9.28584,-4.94461 5.02123,0 7.11471,3.27614 17.70523,27.70734 5.67255,13.08596 10.60717,24.138853 10.96582,24.561973 0.35865,0.42312 4.62692,-9.02688 9.48505,-21.000003 10.84288,-26.72284 11.99977,-29.07132 14.99262,-30.43495 5.3397,-2.43293 14.5358,2.74258 14.5358,8.18065 0,2.79147 -35.79287,85.694453 -39.54503,91.593683 -1.78714,2.80978 -4.61588,6.08175 -6.28609,7.27105 -7.12372,5.07254 -7.7177,5.12025 -63.73884,5.12025 h -52.31851 z m -136.36346,-28.4578 c -11.23925,-3.72047 -12.8012,-3.67987 -20.29645,-13.93819 -4.04641,-5.5381 -8.20355,-15.28036 -8.20355,-26.219183 0,-10.88199 2.13588,-14.77131 5.50477,-20.958698 14.30038,-26.264395 46.42994,-30.050732 67.86147,-9.608512 9.62234,9.17816 13.79422,20.07986 12.86609,33.620893 -1.04401,15.23178 -9.5602,27.7656 -23.57015,34.68969 -7.06262,3.49054 -8.16041,3.73177 -18.09054,3.97534 -8.08423,0.19829 -11.86574,-0.16908 -16.07164,-1.56134 z m 23.78212,-17.72908 c 18.69252,-7.79642 19.94665,-34.203603 2.08606,-43.924553 -16.99627,-9.25053 -36.9198,3.61899 -35.68258,23.049013 0.81857,12.85554 10.86982,22.42621 23.55228,22.42621 3.4795,0 7.9994,-0.69781 10.04424,-1.55067 z m -138.43231,15.11672 -0.34981,-52.704363 c -0.2345,-35.331142 0.34624,-52.64013 1.08049,-54.01208 1.47073,-2.74809 7.11703,-4.9601 10.78728,-4.22605 1.64568,0.32914 4.03616,1.70845 5.31219,3.06513 2.19983,2.3389 2.33641,3.31208 2.63595,18.78257 l 0.31591,16.31588 5.68409,-2.92675 c 11.71757,-6.0334 27.18266,-5.95872 37.93674,0.18319 5.96998,3.4096 9.55468,7.74491 12.52476,15.14735 1.92796,4.8051 2.16686,7.66534 2.51676,30.130923 0.21262,13.65201 -0.11755,25.88055 -0.45625,27.23002 -0.3387,1.34948 -1.27735,3.38756 -2.36336,4.47357 -3.41274,3.41274 -13.67004,2.16028 -15.64959,-1.91089 -0.43178,-0.888 -1.01903,-12.67581 -1.30501,-26.19512 l -0.51996,-24.580583 -2.80169,-3.67047 c -3.99149,-5.22921 -8.00262,-7.0311 -15.71091,-7.05768 -7.40145,-0.0255 -13.7552,2.78976 -17.39882,7.70924 -1.9515,2.63485 -1.63647,4.476656 -2.58858,27.838193 l -1.08092,26.52196 c -0.13771,3.379 -18.53741,4.68624 -18.56927,-0.11404 z m 184.10474,0.9794 -2.45455,-2.45454 V 99.256757 62.885617 l 2.29807,-2.15893 c 1.26395,-1.18741 3.65768,-2.43085 5.3194,-2.7632 3.88662,-0.77732 9.98336,1.74046 10.85356,4.48221 0.77274,2.43469 1.82162,2.64852 3.43801,0.70089 2.42091,-2.91702 11.46725,-5.92685 18.09096,-6.01909 9.24857,-0.12878 15.21403,1.89731 21.059,7.15244 l 4.95329,4.45344 3.69823,-3.24708 c 2.03402,-1.7859 6.19375,-4.40975 9.24385,-5.83079 4.63678,-2.16027 6.93866,-2.57573 14.04563,-2.53507 13.73863,0.0786 23.1577,5.69538 28.1882,16.80915 2.21243,4.88786 1.96594,5.987109 2.61885,33.345813 0.11664,4.88756 0.11295,10.23267 0.0655,15.49773 -0.0465,5.16515 0.004,10.33663 -2.2701,15.25226 -1.8959,4.09755 -10.16137,3.49794 -13.74172,0.60225 -2.3427,-1.89471 -2.36461,-2.10339 -2.86078,-27.24999 -0.4541,-23.014633 -0.68358,-25.652333 -2.5,-28.736133 -3.29531,-5.59456 -6.79244,-7.57611 -13.30101,-7.53663 -6.71954,0.0408 -11.09028,2.06855 -14.37015,6.66701 -2.25459,3.16099 -2.34478,4.07297 -2.82884,28.603723 l -0.5,25.33863 -2.80576,2.41136 c -3.94517,3.39061 -10.82677,3.36975 -14.23969,-0.0432 l -2.45455,-2.45452 v -23.30205 c 0,-12.816133 -0.44114,-24.840213 -0.9803,-26.720183 -2.92841,-10.21074 -16.8477,-14.2915 -25.09032,-7.35579 -6.15294,5.17735 -6.39774,6.39208 -6.7562,33.524973 l -0.32682,24.73783 -2.55804,2.01216 c -3.76833,2.96416 -10.6472,2.74418 -13.83377,-0.4424 z m 130.33653,1.49824 c -1.95455,-17.82337 -1.95179,-38.15608 -1.94212,-56.208083 0.027,-50.433034 0.42062,-52.41341 2.32004,-54.47461 3.91393,-4.24728 13.14785,-3.37457 15.75055,1.48861 0.73383,1.37118 1.08049,18.52748 1.08049,53.47387 0,58.967373 0.52504,55.535313 -8.63036,56.415023 -4.29981,0.41316 -8.5786,-0.69481 -8.5786,-0.69481 z M 80.94835,130.8747 c 0.6875,-0.27741 1.8125,-0.27741 2.5,0 0.6875,0.27741 0.125,0.50439 -1.25,0.50439 -1.375,0 -1.9375,-0.22698 -1.25,-0.50439 z"/><path fill="#ef5022" d="M 71.089309,167.56058 C 51.94142,164.60057 35.8992,156.17663 22.854818,142.23215 -8.0067225,109.24106 -5.5657625,57.022952 28.256215,26.683002 40.159604,16.005092 53.89045,9.6558022 70.907819,6.9604622 c 8.7157,-1.38045 11.58368,-1.43393 19.92125,-0.37142 35.314321,4.5003198 63.325801,29.7001198 70.409681,63.3422798 2.15583,10.23824 1.91097,27.32864 -0.5268,36.769538 -7.54315,29.21289 -29.65981,51.49981 -58.40027,58.84988 -9.371901,2.39676 -23.031471,3.27605 -31.222371,2.00984 z m 27.67518,-35.17577 c 11.619871,-5.31976 18.079221,-15.16012 18.663341,-28.43233 0.31593,-7.178438 0.0322,-8.882968 -2.36933,-14.234308 -3.19492,-7.11922 -10.17711,-14.14718 -17.210241,-17.32303 -7.36919,-3.32761 -20.84275,-3.14926 -28.40691,0.37602 -6.882753,3.20771 -12.700373,8.84251 -15.913479,15.4134 -2.806978,5.74033 -3.794948,17.528818 -2.02114,24.116248 2.56948,9.5423 11.556346,18.46701 21.952749,21.8009 6.99962,2.24463 18.33124,1.47579 25.30501,-1.7169 z m -16.67518,-11.26882 c -0.55,-0.18347 -2.20282,-0.59781 -3.67293,-0.92076 -6.34044,-1.39284 -12.783153,-10.25707 -12.783153,-17.58776 0,-13.255718 14.850363,-22.175868 26.783523,-16.088028 14.429451,7.36136 12.433081,28.963498 -3.10306,33.577238 -5.21769,1.54949 -5.51099,1.59087 -7.22438,1.01931 z M 65.321726,62.945442 c 9.082263,-5.75173 17.020443,-10.26143 17.640393,-10.02155 0.61995,0.23987 7.46622,4.49226 15.21392,9.44975 19.756461,12.64148 19.981851,12.74653 23.043211,10.74065 3.12632,-2.04844 3.91789,-4.08957 2.77195,-7.14768 -1.0499,-2.80182 -38.660661,-27.35914 -41.901891,-27.35914 -2.12625,0 -40.22677,23.96371 -41.637588,26.18838 -2.499141,3.94082 2.114854,10.58839 6.40432,9.22697 1.073862,-0.34083 9.383419,-5.32565 18.465685,-11.07738 z m 195.503044,1.62549 c -2.70369,-1.08619 -4.46892,-5.18511 -3.64564,-8.46529 0.43963,-1.75163 6.84385,-6.36014 24.75163,-17.8114 26.08754,-16.68186 27.79054,-17.68677 29.97336,-17.68677 1.41376,0 43.9486,26.67577 50.49003,31.66486 2.80971,2.14295 3.25916,3.05363 3,6.07852 -0.21349,2.49179 -1.12023,4.16415 -3.02595,5.58096 -3.51454,2.61291 -3.01144,2.85051 -29.56612,-13.96313 l -21.28723,-13.47845 -20.36544,12.98261 c -26.956,17.18398 -26.14172,16.77856 -30.32464,15.09809 z"/></g>
         <clipPath id="clip-iso"><rect x="-10" y="-10" width="180" height="190"/></clipPath>
-        <clipPath id="clip-word"><rect x="82" y="-10" width="540" height="190"/></clipPath>
+        <clipPath id="clip-word"><rect x="168" y="-600" width="460" height="790"/></clipPath>
       </defs>
       <g id="core"><g id="logo">
         <g clip-path="url(#clip-word)"><use id="word" href="#logo-art"/></g>
@@ -421,6 +458,7 @@ h1 em { font-style: normal; color: var(--clay); }
           <div class="stage-body"><div>
             <p>Seguimiento y recordatorios con todo el historial en el CRM, listo para la próxima operación y los referidos.</p>
             <ul class="chips"><li>CRM</li><li>Agenda</li></ul>
+            <a class="btn btn-primary stage-cta" href="https://admin.homly.world/#/registro?plan=pro">Prueba Homly 60 días</a>
           </div></div>
         </li>
       </ol>
@@ -452,7 +490,7 @@ h1 em { font-style: normal; color: var(--clay); }
     </article>
     <article class="who-card featured">
       <h3>Agencia</h3>
-      <p>Diriges un equipo: cada agente con su cuenta, y tú con la vista completa de la operación.</p>
+      <p>Diriges un equipo de 3 agentes o más: cada uno con su cuenta, y tú con la vista completa de la operación.</p>
       <ul>
         <li>Roles y permisos para administradores y agentes</li>
         <li>Inventario, clientes y operaciones de toda la agencia</li>
@@ -508,7 +546,7 @@ h1 em { font-style: normal; color: var(--clay); }
     <article class="plan" data-plan="agencia">
       <span class="badge">60 días gratis</span>
       <h3>Agencia</h3>
-      <p class="for">Para agencias con equipo. El precio es por agente.</p>
+      <p class="for">Para agencias desde 3 agentes. El precio es por agente.</p>
       <div class="price"><span class="amount">$9,99</span><span class="unit">/ agente / mes</span></div>
       <p class="note"></p>
       <ul>
@@ -517,20 +555,25 @@ h1 em { font-style: normal; color: var(--clay); }
         <li>Roles y permisos</li>
         <li>Inventario y métricas de toda la agencia</li>
       </ul>
-      <a class="btn btn-ghost" href="https://admin.homly.world/#/registro?plan=agencia">Prueba Agencia 60 días</a>
+      <a class="btn btn-primary" href="https://admin.homly.world/#/registro?plan=agencia">Prueba Agencia 60 días</a>
     </article>
   </div>
-  <p class="plans-foot">¿Dudas sobre el plan o la forma de pago? <a href="https://wa.me/584129296192">Escríbenos por WhatsApp</a>.</p>
+  <div class="plan-dots" role="group" aria-label="Planes">
+    <button type="button" data-plan="free" aria-label="Ver plan Free"></button>
+    <button type="button" data-plan="pro" aria-label="Ver plan Pro"></button>
+    <button type="button" data-plan="agencia" aria-label="Ver plan Agencia"></button>
+  </div>
+  <p class="plans-foot">La prueba no pide tarjeta ni ningún pago. Al terminar los 60 días eliges tu plan, y tienes 5 días de gracia para pagarlo.</p>
 </section>
 
 <section class="final" aria-labelledby="final-title">
   <div class="final-box">
     <img src="/favicon.svg" alt="" width="72" height="72">
     <h2 id="final-title">Prueba Homly <em>60 días sin costo.</em></h2>
-    <p>Desde la captación hasta la postventa, toda tu operación en un solo núcleo. Crea tu cuenta en un clic.</p>
+    <p>Desde la captación hasta la postventa, toda tu operación en un solo núcleo. Crea tu cuenta en un clic, sin tarjeta ni pago.</p>
     <div class="ctas">
       <a class="btn btn-primary" href="https://admin.homly.world/#/registro?plan=pro">Prueba Homly 60 días</a>
-      <a class="btn btn-ghost" href="https://wa.me/584129296192">Hablar con nosotros</a>
+      <a class="btn btn-ghost" href="#planes">Ver planes</a>
     </div>
   </div>
 </section>
@@ -554,7 +597,6 @@ h1 em { font-style: normal; color: var(--clay); }
     <ul>
       <li><a href="https://myhomly.com" target="_blank" rel="noopener noreferrer">Buscar inmuebles</a></li>
       <li><a href="https://api.homly.world/developers/">Homly para Desarrolladores</a></li>
-      <li><a href="https://api.homly.world/api/health" target="_blank" rel="noopener noreferrer">Estado de la API</a></li>
     </ul>
   </div>
   <div>
@@ -662,13 +704,15 @@ if (reduce) {
        .to(L, { sx: 1.025, sy: .97, duration: .06, ease: "power1.out", ...draw })
        .to(L, { y: REST - 14, sx: 1, sy: 1, duration: .16, ease: "power2.out", ...draw })
        .to(L, { y: REST, duration: .16, ease: "power2.in", ...draw })
-       .to("#word", { attr: { x: -450 }, duration: 1, ease: "power2.inOut" }, "+=.35")
-       .to("#word", { opacity: 0, duration: .35, ease: "sine.in" }, "<.65")
-       .to(L, { ...toCenter, duration: 1.1, ease: "power3.inOut", ...draw }, "<")
+       .to("#word", { attr: { y: -260 }, opacity: 0, duration: .9, ease: "power3.in" }, "+=.35")
+       .to(".brand img", { opacity: 1, y: 0, duration: .8, ease: "power3.out" }, "<.55")
+       .to(L, { ...toCenter, duration: 1.1, ease: "power3.inOut", ...draw }, "<-.3")
        .add(beat, "-=.15")
        .to(".orbit", { opacity: 1, duration: 1.2, stagger: .15, ease: "sine.out" }, "<")
        .to(nodes, { grow: 1, duration: 1.3, ease: "expo.out", stagger: .06 }, "<")
        .add(() => gsap.delayedCall(2.6, loop));
+  if (!seen) gsap.set(".brand img", { opacity: 0, y: 18 });
+  document.documentElement.classList.remove("intro");
   if (seen) intro.progress(1);
   gsap.ticker.add(() => {
     if (!heroOn) return;
@@ -733,6 +777,7 @@ function setStage(i) {
   stages.forEach((st, k) => {
     st.classList.toggle("is-active", k === i);
     st.querySelector("button").toggleAttribute("aria-current", k === i);
+    st.querySelectorAll("a").forEach(l => l.tabIndex = k === i ? 0 : -1);
   });
   const on = stages[i].dataset.tools.split(",");
   miniTools.forEach(t => t.g.classList.toggle("on", on.includes(t.name)));
@@ -775,6 +820,17 @@ const PRICES = {
 const MONTHS = { monthly: 1, quarterly: 3, semiannual: 6, annual: 12 };
 const LABEL = { monthly: "mes", quarterly: "trimestre", semiannual: "semestre", annual: "año" };
 const usd = n => "$" + n.toLocaleString("es-VE", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+
+const planGrid = document.querySelector(".plan-grid");
+const planCards = [...planGrid.querySelectorAll(".plan")];
+const planDots = [...document.querySelectorAll(".plan-dots button")];
+const showPlan = (card, behavior = "smooth") => planGrid.scrollTo({ left: card.offsetLeft - (planGrid.clientWidth - card.offsetWidth) / 2, behavior });
+planDots.forEach(d => d.addEventListener("click", () => showPlan(planGrid.querySelector(`.plan[data-plan="${d.dataset.plan}"]`))));
+const planObserver = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) planDots.forEach(d => d.setAttribute("aria-current", d.dataset.plan === e.target.dataset.plan));
+}), { root: planGrid, threshold: .6 });
+planCards.forEach(c => planObserver.observe(c));
+if (matchMedia("(max-width: 640px)").matches) showPlan(planGrid.querySelector('.plan[data-plan="pro"]'), "instant");
 
 function setPeriod(period) {
   document.querySelectorAll(".period button").forEach(b => b.setAttribute("aria-pressed", b.dataset.period === period));
