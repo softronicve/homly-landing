@@ -14,7 +14,7 @@ from modulos_data import PAGES
 
 SITE = "https://homly.world"
 REG = "https://admin.homly.world/#/registro?plan="
-TOOLS = ["CRM", "KYC / KYB", "MLS / Alianzas", "Machine Learning", "Contratos", "Agenda", "Integraciones", "Página web", "Firma digital"]
+TOOLS = ["CRM", "KYC / KYB", "MLS / Alianzas", "Matching inteligente", "Contratos", "Agenda", "Integraciones", "Página web", "Firma digital"]
 NAV = [("crm-inmobiliario", "CRM"), ("contratos-inmobiliarios", "Contratos"), ("pagina-web-inmobiliaria", "Página web"), ("kyc-inmobiliario", "KYC / KYB")]
 EXT = 'target="_blank" rel="noopener noreferrer"'
 E = html.escape
