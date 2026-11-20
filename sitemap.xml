@@ -17,7 +17,7 @@
   </url>
   <url>
     <loc>https://homly.world/seguridad.html</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
@@ -34,5 +34,25 @@
     <loc>https://homly.world/eliminar-datos.html</loc>
     <lastmod>2026-06-24</lastmod>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://homly.world/crm-inmobiliario/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://homly.world/contratos-inmobiliarios/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://homly.world/pagina-web-inmobiliaria/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://homly.world/kyc-inmobiliario/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>
