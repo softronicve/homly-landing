@@ -22,7 +22,6 @@ const PORT = Number(process.env.PORT) || 0;
  * shell y le pisan title, description, canonical, OG/Twitter y JSON-LD.
  */
 const ROUTES = [
-  { path: '/', out: 'index.html', ready: 'homly-footer .foot-grid' },
   {
     path: '/contacto',
     out: 'contacto.html',
@@ -47,7 +46,7 @@ const ROUTES = [
         url: 'https://homly.world/',
         email: 'info@softronic.dev',
         address: { '@type': 'PostalAddress', addressLocality: 'Barquisimeto', addressRegion: 'Lara', addressCountry: 'VE' },
-        contactPoint: { '@type': 'ContactPoint', contactType: 'sales', telephone: '+58-414-520-0715', availableLanguage: 'Spanish' },
+        contactPoint: { '@type': 'ContactPoint', contactType: 'sales', telephone: '+58-412-929-6192', availableLanguage: 'Spanish' },
       },
     },
   },
