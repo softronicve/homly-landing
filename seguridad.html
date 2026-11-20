@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Verificación y firma electrónica · Homly</title>
-<meta name="description" content="Cómo Homly verifica identidades con Didit y protege los contratos: huella SHA-256, firma con código y registro de auditoría.">
+<meta name="description" content="Cómo Homly verifica identidades con su propio motor de verificación y protege los contratos: huella SHA-256, firma con código y registro de auditoría.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://homly.world/seguridad.html">
 <meta property="og:site_name" content="Homly">
 <meta property="og:locale" content="es_ES">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Verificación y firma electrónica · Homly">
-<meta property="og:description" content="Cómo Homly verifica identidades con Didit y protege los contratos: huella SHA-256, firma con código y registro de auditoría.">
+<meta property="og:description" content="Cómo Homly verifica identidades con su propio motor de verificación y protege los contratos: huella SHA-256, firma con código y registro de auditoría.">
 <meta property="og:url" content="https://homly.world/seguridad.html">
 <meta property="og:image" content="https://homly.world/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -66,27 +66,28 @@
 <main>
   <div class="wrap">
     <h1>Verificación y firma electrónica</h1>
-    <p class="updated">Última actualización: 18 de noviembre de 2026</p>
+    <p class="updated">Última actualización: 20 de noviembre de 2026</p>
     <p class="lead">Cómo verifica Homly la identidad de asesores, agencias y clientes, y cómo protege los contratos que se firman desde la plataforma.</p>
 
-    <h2>1. Verificación de identidad con Didit</h2>
-    <p>Homly verifica identidades con la tecnología de <a href="https://didit.me" target="_blank" rel="noopener">Didit</a> (didit.me), una plataforma especializada en verificación de identidad. Didit hace tres controles:</p>
+    <h2>1. Verificación de identidad</h2>
+    <p>Homly verifica identidades con su propio motor de verificación, desarrollado y operado por Desarrollos Softronic, C.A. La persona se verifica desde su teléfono, sin instalar nada, y el motor hace tres controles:</p>
     <ul>
-      <li><strong>Documento de identidad:</strong> revisa que la cédula o el pasaporte sea auténtico y lee sus datos.</li>
-      <li><strong>Prueba de vida:</strong> una selfie en vivo, que descarta fotos, videos o máscaras.</li>
+      <li><strong>Documento de identidad:</strong> lee la cédula venezolana o el pasaporte y revisa que sea auténtico.</li>
+      <li><strong>Prueba de vida:</strong> una selfie en vivo con un destello de colores en la pantalla, que descarta fotos, videos o máscaras.</li>
       <li><strong>Comparación facial:</strong> la cara de la selfie tiene que coincidir con la del documento.</li>
     </ul>
     <p>Esa verificación se usa en tres casos:</p>
     <ul>
       <li><strong>Asesores:</strong> al aprobarse, el asesor muestra la insignia <em>Asesor verificado</em> en <a href="https://myhomly.com/verificacion">myhomly.com</a> y en el sitio de su agencia.</li>
-      <li><strong>Agencias (KYB):</strong> Didit consulta el registro mercantil de la empresa y confirma que quien la representa figura en él.</li>
-      <li><strong>Clientes de la agencia:</strong> cada agencia conecta su propia cuenta de Didit en Integraciones. Además del KYC, puede pedir la revisión de listas (PEP y sanciones) y el origen de los fondos, como pide la debida diligencia.</li>
+      <li><strong>Agencias (KYB):</strong> se revisan la constancia de RIF, el acta constitutiva, la identidad de quien representa a la empresa y sus beneficiarios finales.</li>
+      <li><strong>Clientes de la agencia:</strong> la verificación viene incluida en Homly; la agencia no tiene que contratar ni conectar otro servicio. Además del KYC, se revisan listas de sanciones, personas expuestas políticamente (PEP) y el origen de los fondos, como pide la debida diligencia.</li>
     </ul>
-    <div class="enc">Homly guarda solo el resultado, el nombre y el número de documento. Las fotos y la biometría se quedan en Didit; el informe se consulta bajo demanda.</div>
+    <p>La metodología con la que se calcula el riesgo de cada verificación es pública en <a href="https://kyc.homly.world/metodologia" target="_blank" rel="noopener">kyc.homly.world/metodologia</a>.</p>
+    <div class="enc">Las fotos, el documento y los datos biométricos se guardan cifrados en servidores de Homly y no se envían a terceros. Se conservan durante 7 años desde que termina la relación con la persona.</div>
 
     <h2>2. Cómo se protege un contrato</h2>
     <ul>
-      <li><strong>Identidad de cada firmante.</strong> Homly recomienda verificarla con Didit, pero no la exige. La agencia también puede declarar que la verificó en persona. El contrato dice la verdad de cada firmante: nunca llama "biométrica" a una verificación manual.</li>
+      <li><strong>Identidad del cliente.</strong> Antes de pasar a firmas, el cliente completa su verificación KYC (persona) o KYB (empresa) con el motor de Homly: sin ella, el contrato no se envía a firmar. La constancia de cierre registra la verificación de cada firmante.</li>
       <li><strong>Texto congelado.</strong> Antes de firmar, el contrato se convierte en PDF y queda bloqueado en la base de datos, no solo en la aplicación. Para corregirlo hay que anularlo y crear uno nuevo, y los dos quedan en el historial.</li>
       <li><strong>Huella digital SHA-256.</strong> Del PDF se calcula una huella SHA-256 (estándar NIST FIPS 180-4), un código de 64 caracteres. Si cambia una sola letra, la huella es otra. La huella se imprime en el anexo de firma.</li>
       <li><strong>Firma electrónica con código.</strong> Cada firmante recibe en su correo un enlace y un código de un solo uso. Firma desde el teléfono o la computadora, sin crear cuenta.</li>
